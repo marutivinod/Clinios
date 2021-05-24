@@ -1,0 +1,142 @@
+﻿@{
+    ViewBag.Title = "Users";
+}
+
+<main style="margin-bottom: 365px;">
+    <div class="container margin_60_35">
+        <div class="row">
+            <div class="col-md-12">
+
+                <div ng-app="myApp" ng-controller="userCtrl">
+                    <div class="page-content-wrapper">
+                        <div class="page-content-block">
+
+                            <div class="form_title">
+                                <h3><strong><i class="icon-user-8"></i></strong>User List</h3>
+                                <p>User Details and Add/Edit/Delete Users</p>
+                            </div>
+
+                            <div class="step add_bottom_30">
+                                <div class="form-group add_bottom_45">
+                                    <div ui-grid="gridOptions" ui-grid-pinning></div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</main>
+
+<script>
+
+
+    var app = angular.module('myApp', ['checklist-model', 'ngMaterial', 'ngMessages', 'angularMoment', 'ui.grid', 'ui.grid.pinning', 'ui.grid.edit', 'ui.grid.rowEdit', 'ui.grid.cellNav']);
+    app.config(function ($mdDateLocaleProvider) {
+        $mdDateLocaleProvider.formatDate = function (date) {
+            return date ? moment(date).format('DD-MMM-YYYY') : '';
+        };
+        $mdDateLocaleProvider.parseDate = function (dateString) {
+            var m = moment(dateString, 'DD-MMM-YYYY', true);
+            return m.isValid() ? m.toDate() : new Date(NaN);
+        };
+    });
+
+    app.service('userService', function ($http) {
+        //get
+        this.getUsers = function () {
+            var req = $http.get(baseUrl + 'api/Users');
+            return req;
+        };
+        //delete
+        this.deleteUser = function (userId) {
+            var req = $http.delete(baseUrl + 'api/Users', { params: { userId: userId } });
+            return req;
+        };
+    });
+
+    app.controller('userCtrl', function ($scope, $http, $filter, $window, userService) {
+        $scope.maxDate = new Date(
+            new Date().getFullYear()-18,
+            new Date().getMonth(),
+            new Date().getDate()
+        );
+        $scope.isSubmitted = true;//i added
+        $scope.CPassword = "";
+        //$scope.rolesList = newRoles;
+        $scope.gridOptions = {enableColumnMenus: false };
+        $scope.emptyItem = {
+            FirstName: "",
+            MiddleName: "",
+            LastName: "",
+            RoleId: "",
+            DesignationId: "",
+            DOB: "",
+            GenderId: "",
+            PhoneNo: "",
+            AlternatePhoneNo: "",
+            Email: "",
+            StreetAddress: "",
+            CityId: "",
+            StateId: ""
+        };
+        userService.getUsers().then(function (response) {
+            $scope.gridOptions.data = response.data;
+            gridData = response.data;
+            return response;
+        });
+
+
+        $scope.cancelItem = function () {
+            $scope.sItem = $scope.emptyItem;
+            $scope.sItem.roles = [];
+        };
+        $scope.deleteUser = function (row) {
+            var r = confirm("Are You Sure to Delete the User ?");
+            if (r == true) {
+                userService.deleteUser(row.entity.ID).then(function () {
+                    location.reload();
+                });
+            }
+        };
+
+        $scope.gridOptions.columnDefs = [
+            {
+                name: '', field: 'Id', width: 110, enableColumnMenu: false,
+                headerCellTemplate: '<button title="Create User" ng-click="grid.appScope.createUser()" class="add-btn" style="background-color:lightgreen;">+ Add</button>',
+                cellTemplate: '<button title="Edit" class="edit-btn" ng-click="grid.appScope.editUser(row.entity.Id)" style="background-color:orange;">Edit</button> <button title="Delete" class="delete-btn" ng-click="grid.appScope.deleteUser(row)" style="background-color:crimson;">Delete</button>',
+                enableHiding: false, exporterSuppressExport: true, enableSorting: false, enableFiltering: false
+            },
+            { name: 'Id', displayName: 'Id',width:80 },
+            { name: 'FirstName', pinnedLeft: true, displayName: 'NAME', cellTemplate: '<div>{{(row.entity.FirstName!=null? " "+row.entity.FirstName:"") +  (row.entity.MiddleName!=null? " "+row.entity.MiddleName:"") + (row.entity.LastName!=null? " "+row.entity.LastName:"")}}</div>' },
+            { name: 'Email', displayName: 'EMAIL' },
+            { name: 'PhoneNo', displayName: 'CONTACT NO' },
+            { name: 'DOB', displayName: 'DATE OF BIRTH', type: 'date', cellFilter: 'date:"dd-MMM-yyyy"' },
+            { name: 'RoleName', displayName: 'DESCRIPTION',width: 200 }
+        ];
+
+        userService.getUsers().then(function (response) {
+            $scope.gridOptions.data = convertDateTimeFieldsG(response.data, ["DOB"]);
+
+            return response;
+        });
+
+        // add BUTTON
+        $scope.createUser = function () {
+            window.location.href = "/Users/UsersAddEdit?id=-1";
+        };
+        // add BUTTON end
+
+        // edit BUTTON
+        var rData = null;
+        $scope.editUser = function (id) {
+            window.location.href = "/Users/UsersAddEdit?id="+id;
+        };
+        // edit BUTTON end
+
+    });
+</script>

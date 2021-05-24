@@ -1,0 +1,330 @@
+﻿@model int
+@{
+    var id = Model;
+    ViewBag.Title = "UsersAddEdit";
+}
+
+<main style="margin-bottom: 365px;">
+    <div class="container margin_60_35">
+        <div class="row">
+            <div class="col-md-12">
+
+                <div class="page-content-wrapper">
+                    <div ng-app="myApp" ng-controller="userCtrl">
+                        <div class="page-content-block">
+
+                            <div class="form_title">
+                                <h3><strong><i class="icon-user-8"></i></strong>USER CREATION</h3>
+                                <p>User Details and Add/Edit Users</p>
+                            </div>
+                            <form name="myForm">
+                                <div style="display: flex;" class="page-content" id="main-form-content" ng-form name="form" ng-show="isSubmitted">
+
+                                    <div class="step">
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-md-6 col-sm-6">
+                                                    <div class="form-group">
+                                                        <label class="label-1">First Name :</label>
+                                                        <input class="form-control" type="text" required name="FirstName" ng-class="{'required': form.FirstName.$invalid}" ng-model="sItem.FirstName">
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-6 col-sm-6">
+                                                    <div class="form-group">
+                                                        <label class="label-1">Middle Name :</label>
+                                                        <input class="form-control" type="text" required name="MiddleName" ng-class="{'required': form.MiddleName.$invalid}" ng-model="sItem.MiddleName">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-md-6 col-sm-6">
+                                                    <div class="form-group">
+                                                        <label class="label-1">Last Name :</label>
+                                                        <input class="form-control" type="text" required name="LastName" ng-class="{'required': form.LastName.$invalid}" ng-model="sItem.LastName">
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-6 col-sm-6">
+                                                    <div class="form-group">
+                                                        <label class="label-1">Date Of Birth :</label>
+                                                        <md-datepicker class="form-control" required name="DOB" ng-class="{'dateRequired': form.DOB.$invalid}" md-max-date="maxDate" ng-model="sItem.DOB" md-placeholder="Enter date"></md-datepicker>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-md-6 col-sm-6">
+                                                    <div class="form-group">
+                                                        <label class="label-1">Phone Number :</label>
+                                                        <input class="form-control" type="text" required name="PhoneNo" ng-class="{'dateRequired': form.PhoneNo.$invalid}" ng-model="sItem.PhoneNo">
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-6 col-sm-6">
+                                                    <div class="form-group">
+                                                        <label class="label-1">Alternate Phone Number :</label>
+                                                        <input class="form-control" type="text" required name="AlternatePhoneNo" ng-class="{'required': form.AlternatePhoneNo.$invalid}" ng-model="sItem.AlternatePhoneNo">@*@@epda.in*@
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-md-6 col-sm-6">
+                                                    <div class="form-group">
+                                                        <label class="label-1">Designation :</label>
+                                                        <input class="form-control" type="text" required name="DesignationId" ng-class="{'required': form.DesignationId.$invalid}" ng-model="sItem.DesignationId">
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-6 col-sm-6">
+                                                    <div class="form-group">
+                                                        <label class="label-1">Role :</label>
+                                                        <input class="form-control" type="text" required name="RoleId" ng-class="{'required': form.RoleId.$invalid}" ng-model="sItem.RoleId">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-md-6 col-sm-6">
+                                                    <div class="form-group">
+                                                        <label class="label-1">User Name :</label>
+                                                        <input class="form-control" type="text" required name="UserName" ng-class="{'required': form.UserName.$invalid}" ng-model="sItem.UserName">@*@@epda.in*@
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-6 col-sm-6">
+                                                    <div class="form-group">
+                                                        <label class="label-1">Password :</label>
+                                                        <input class="form-control" type="text" required name="Password" ng-class="{'required': form.Password.$invalid}" ng-model="sItem.Password">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-md-6 col-sm-6">
+                                                    <div class="form-group">
+                                                        <label class="label-1">Email :</label>
+                                                        <input class="form-control" type="text" required name="Email" ng-class="{'required': form.Email.$invalid}" ng-model="sItem.Email">@*@@epda.in*@
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-6 col-sm-6">
+                                                    <div class="form-group">
+                                                        <label class="label-1">Gender</label>
+                                                        <div class="form-control">
+                                                            <span ng-repeat="item in ddValues.Gender">
+                                                                <label class="radio-inline"><input type="radio" name="genradio" ng-value='{{item.Id}}' ng-model="sItem.GenderId" ng-disabled="sItem.Status == 1">{{item.Name}} </label>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+                                            <div class="row" style="column-span: 2 !important;">
+                                                <div class="col-md-9 col-sm-9">
+                                                    <div class="form-group">
+                                                        <label class="form-control-static">Address </label>
+                                                        <textarea rows="2" cols="90" required name="StreetAddress" ng-class="{'required': form.StreetAddress.$invalid}" ng-model="sItem.StreetAddress" ng-disabled="disableEdit"></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-md-6 col-sm-6">
+                                                    <div class="form-group">
+                                                        <label class="form-control-static">City</label>
+                                                        <select class="form-control" required name="CityId" ng-class="{'required': form.CityId.$invalid}" ng-options="selectitem.Id as selectitem.Name for selectitem in getCitis" ng-model="sItem.CityId" ng-disabled="disableEdit" ng-change="cityChange(sItem.CityId)"><option value="" disabled="" class="">-- choose value --</option></select>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-6 col-sm-6">
+                                                    <div class="form-group">
+                                                        <label class="label-1">State</label>
+                                                        <select class="form-control" required name="StateId" ng-class="{'required': form.StateId.$invalid}" ng-options="selectitem.Id as selectitem.Name for selectitem in getStates" ng-model="sItem.StateId" ng-disabled="data.Status == 1"><option value="" disabled="" class="">-- choose value --</option></select>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div style="display:flex;" id="main-form-buttons" class="page-row-btn">
+                                    <span ng-show="form.$invalid" class="required-message">Fill the required data.</span>
+                                    <button ng-click="saveItem(sItem)" class="submit-btn" ng-class="{'required': form.$invalid}" ng-disabled="form.$invalid">Save</button>&nbsp;&nbsp;
+                                    <button ng-click="cancelItem(sItem)" class="submit-btn">Cancel</button>
+
+                                </div>
+                            </form>
+                        </div>
+
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</main>
+
+<script>
+
+    getDDValues("1,2,3");
+
+    var app = angular.module('myApp', ['checklist-model', 'ngMaterial', 'ngMessages', 'angularMoment', 'ui.grid', 'ui.grid.pinning', 'ui.grid.edit', 'ui.grid.rowEdit', 'ui.grid.cellNav']);
+    app.config(function ($mdDateLocaleProvider) {
+        $mdDateLocaleProvider.formatDate = function (date) {
+            return date ? moment(date).format('DD-MMM-YYYY') : '';
+        };
+        $mdDateLocaleProvider.parseDate = function (dateString) {
+            var m = moment(dateString, 'DD-MMM-YYYY', true);
+            return m.isValid() ? m.toDate() : new Date(NaN);
+        };
+    });
+
+    app.service('userService', function ($http) {
+        //get
+        this.getUsers = function () {            
+            var req = $http.get(baseUrl + 'api/Users/Edit?id=' + @id);
+            return req;
+        };
+
+        //insert
+        this.addUser = function (data) {
+            var req = $http.post(baseUrl +'api/Users', JSON.stringify(data) +'&id=' + @id,
+                {
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
+            data = updateDateFieldsG(data, ["DOB"]);
+            return req;
+        };
+        //update
+        this.updateUser = function (data) {           
+            var req = $http.put(baseUrl +'api/Users', JSON.stringify(data) +'&id=' + @id,
+                {
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
+            return req;
+        };
+
+    });
+
+    app.controller('userCtrl', function ($scope, $http, $filter, $window, userService) {
+        $scope.maxDate = new Date(
+            new Date().getFullYear()-18,
+            new Date().getMonth(),
+            new Date().getDate()
+        );
+        $scope.isSubmitted = true;//i added
+        //$scope.rolesList = newRoles;
+        $scope.ddValues = ddValues;
+
+        $scope.gridOptions = { enableColumnMenus: false };
+
+        $scope.emptyItem = {
+
+           FirstName: "",
+           MiddleName: "",
+           LastName: "",
+           RoleId: "",
+           DesignationId: "",
+           DOB: "",
+           GenderId: "",
+           PhoneNo: "",
+           AlternatePhoneNo: "",
+           Email: "",
+           StreetAddress: "",
+           CityId: "",
+           StateId: ""
+        };
+
+        //states
+        $scope.getStates = "";
+
+        $scope.cityChange = function (CityId) {
+            $.ajax({
+                type: "GET",
+                dataType: "json",
+                url: baseUrl + "api/DDValues/getStatesCountry?cityId=" + CityId + "&flag=1",
+                async: false,
+                success: function (response) {
+                    $scope.getStates = response;
+                }
+            });
+        }
+        
+        //cities
+        $scope.getCitis = "";
+
+        $.ajax({
+            type: "GET",
+            dataType: "json",
+            url: baseUrl + "api/DDValues/getCities",
+            async: false,
+            success: function (data) {
+                $scope.getCitis = data;
+            }
+        });
+
+
+
+        userService.getUsers().then(function (response) {          
+            //$scope.gridOptions.data = response.data;
+            //gridData = response.data;
+            $scope.sItem = response.data;
+            $scope.cityChange($scope.sItem.StateId);
+            return response;
+        });
+
+        $scope.editUser = function (row) {
+            var sItem = row.entity;
+            $scope.sItem = sItem;
+        };
+
+
+        $scope.saveItem = function (item) {           
+            let errMsg = "";
+
+            let textLengths = [{ field: "FirstName", min: 4, length: 50 }, { field: "LastName", min: 4, length: 50 }, { field: "MiddleName", min: 4, length: 50 }, { field: "Email", min: 4, length: 50 }, { field: "PhoneNo", min: 10, length: 12 }, { field: "AlternatePhoneNo", min: 10, length: 12 }];
+            textLengths.forEach(function (l) {
+                if (item[l.field] == null || (item[l.field] != null && (item[l.field].length < l.min || item[l.field].length > l.length))) {
+                    errMsg += l.field + " length should be between " + l.min + "and" + l.length + "\n";
+                }
+            });
+            //if (item["PhoneNo"].match(/^\d+$/) == null) {
+            //    errMsg += "phone number should contain only numbers" + "\n";
+            //}
+            //if (item["AlternatePhoneNo"].match(/^\d+$/) == null) {
+            //    errMsg += "Alternate Phone number should contain only numbers" + "\n";
+            //}
+
+            if (errMsg.length != 0) { alert(errMsg); saveClicked = false; return; }
+
+            var r = confirm("Are You Sure to Save/Update the User ?");
+            if (r == true) {
+                if (item.Id != null && item.Id > 0) {
+                    userService.updateUser(item).then(function (response) {
+                        window.location.href = "/Users/Users";
+                    });
+                }
+                else {
+
+                    userService.addUser(item).then(function (response) {
+                        window.location.href = "/Users/Users";
+                    });
+
+                }
+            }
+
+        };
+
+    });
+</script>
+

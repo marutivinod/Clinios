@@ -1,0 +1,1733 @@
+﻿<main>
+    <div ng-app="myApp" ng-controller="PoisoningController">
+        <form name="myForm">
+            <div class="md-container">
+                <div class="md-subheader">
+                    <div class="header-logo">
+                        <img src="~/Images/logo-small-trans.png" />
+                    </div>
+                    <div class="userinfo"></div>
+                </div>
+                <div class="body-content">
+                    <div class="form-elements">
+                        <div class="form-heading">Emergency Triage</div>
+                        <div class="row-div-hding">
+                            <div class="div-column-left">
+                                <label>MR No :</label>
+                                <field>APLO34465</field>
+                            </div>
+                            <div class="div-column-right">
+                                <label>OP No :</label>
+                                <field>OP3045</field>
+                            </div>
+                        </div>
+                        <div class="patient-details">
+                            <div class="div-row-info">
+                                <div class="div-column-left">
+                                    <div>
+                                        <label>Patient Name :</label>
+                                        <field>Somesh Pagadala</field>
+                                    </div>
+                                </div>
+                                <div class="div-column-right">
+                                    <div class="right-column-small">
+                                        <label>Age (Years) :</label>
+                                        <field>45 (Years)</field>
+                                    </div>
+                                    <div class="right-column-small">
+                                        <label>Gender :</label>
+                                        <field>Male</field>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="div-row-info">
+                                <div class="div-column-left">
+                                    <div>
+                                        <label>Phone No  </label>
+                                        <field>+91 88888 88888</field>
+                                    </div>
+                                </div>
+                                <div class="div-column-right">
+                                    <div>
+                                        <label>Address </label>
+                                        <field>6-2-/60, DilshukNagar, Hyderabad - 500016 </field>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="whitebg top-margin">
+                            <div class="div-row-woborder">
+                                <div class="row-innerbox-nopadding">
+                                    <div class="vitals-hdr">
+                                        <label>Mode of Arrival:</label>
+                                    </div>
+                                    <div class="vitals-sec">
+                                        <div class="vitals-sec">
+                                            <input ng-repeat="item in ddValues.ModeOfArrival_Id"
+                                                   type='button'
+                                                   class="btn-unselected"
+                                                   ng-class="{'btnselected': Moa.ModeOfArrival_Id == {{item.Id}}}"
+                                                   value='{{item.Name}}'
+                                                   ng-click="buttonSelect('ModeOfArrival_Id',item.Id,'Moa')"
+                                                   ng-model="Moa.ModeOfArrival_Id">
+                                            <input type="text" class="input-box-medium" ng-if="Moa.ModeOfArrival_Id == '34'" ng-model="Moa.ModeOfArrival_Other" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row-innerbox-bg">
+                                    <label>Accompanied by:</label>
+                                    <input type="checkbox" ng-model="Moa.AccompByFamily" /><label>Family</label>
+                                    <input type="checkbox" ng-model="Moa.AccompByPolice" /><label>Police</label>
+                                    <input type="checkbox" /><label>Others</label>
+                                    <input type="text" class="input-box-medium" ng-model="Moa.AccompByOthers" />
+                                </div>
+                                <div class="row-innerbox">
+                                    <div class="left-box">
+                                        <label>Pre-arrival notification:</label>
+                                        <div class="toggle-button-cover">
+                                            <div class="button-cover">
+                                                <div class="button b2" id="button-10">
+                                                    <input type="checkbox" class="checkbox">
+                                                    <div class="knobs">
+                                                        <input ng-repeat="item in ddValues.YesNo"
+                                                               type='button'
+                                                               class="btn-unselected"
+                                                               ng-class="{'btnselected': Moa.Pre_Arvl_Note == {{item.Id}}}"
+                                                               value='{{item.Name}}'
+                                                               ng-click="buttonSelect('Pre_Arvl_Note',item.Id,'Moa')"
+                                                               ng-model="Moa.Pre_Arvl_Note">
+                                                    </div>
+                                                    <div class="layer"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="right-box">
+                                        <label>First aid received before arrival:</label>
+                                        <div class="toggle-button-cover">
+                                            <div class="button-cover">
+                                                <div class="button b2" id="button-10">
+                                                    <input type="checkbox" class="checkbox">
+                                                    <div class="knobs">
+                                                        <input ng-repeat="item in ddValues.YesNo"
+                                                               type='button'
+                                                               class="btn-unselected"
+                                                               ng-class="{'btnselected': Moa.FirstAidRecieved == {{item.Id}}}"
+                                                               value='{{item.Name}}'
+                                                               ng-click="buttonSelect('FirstAidRecieved',item.Id,'Moa')"
+                                                               ng-model="Moa.FirstAidRecieved">
+                                                    </div>
+                                                    <div class="layer"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row-innerbox-nopadding">
+                                    <div class="vitals-hdr">
+                                        <label>Vitals on Arrival:</label>
+                                        @*<input type="button" class="btn-unselected" value="VITALS" />*@
+                                        <button ng-click="entryVitals($event)" class="btnselected">Vitals</button>
+                                    </div>
+
+                                    <div class="vitals-sec">
+                                        <label>Disability:</label><label class="green-txt ">{{vitals.ConsciousLevelId}}</label>
+                                        <label>Respiratory rate:</label><label class="green-txt ">{{vitals.RR}}</label>
+                                        <label>HR:</label><label class="green-txt ">{{vitals.HR}}</label>
+                                        <label>Systolic BP:</label><label class="green-txt ">{{vitals.BP_R_Sys}}</label>
+                                        <label>Diatolic BP:</label><label class="green-txt ">{{vitals.BP_R_Dia}}</label>
+                                        <label>TEMP:</label><label class="green-txt">{{vitals.Temp}}</label>
+                                        <label>Pain Score:</label><label class="green-txt">{{vitals.PainScore}}</label>
+                                        <div class="div-row-woborder">
+                                            <label>GRBS:</label><label class="green-txt">{{vitals.GRBS}}</label>
+                                            <label>SpO2 <span class="green-txt">{{vitals.O2Sat}}</span>% on room air,  <span class="green-txt">{{vitals.Air}}</span>% on <span class="green-txt">{{vitals.O2Qty}}</span>Ltr/min.</label><label class="label-medium"></label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="whitebg top-margin">
+                            <div class="sectionhdrCenter">PRIMARY SURVEY</div>
+                            <div class="div-row-woborder">
+                                <div id="PAtabs">
+                                    <ul>
+                                        <li><a href="#tabs-1">AIRWAY & C-SPINE</a></li>
+                                        <li><a href="#tabs-2">BREATHING & VENTILATION</a></li>
+                                        <li><a href="#tabs-3">CIRCULATION & HEMORRHAGE CONTROL</a></li>
+                                        <li><a href="#tabs-4">DISABILITY</a></li>
+                                        <li><a href="#tabs-5">EXPOSURE</a></li>
+                                    </ul>
+                                    <div id="tabs-1">
+                                        <div class="trauma-asses-sec">
+                                            <div class="sec-hdr">Assessment</div>
+                                            <div class="sec-content">
+                                                <div class="sec-row">
+                                                    <label class="sec-label">Patent:</label>
+                                                    <span class="sec-fields">
+                                                        <span class="radiospan">
+                                                            <input ng-repeat="item in ddValues.YesNo"
+                                                                   type='button'
+                                                                   class="btn-unselected"
+                                                                   ng-class="{'btnselected': PAAir.A_PatentInd == {{item.Id}}}"
+                                                                   value='{{item.Name}}'
+                                                                   ng-click="buttonSelect('A_PatentInd',item.Id,'PAAir')"
+                                                                   ng-model="PAAir.A_PatentInd">
+                                                        </span>
+                                                    </span>
+                                                </div>
+                                                <div class="sec-row" ng-if="PAAir.A_PatentInd == false">
+                                                    <label class="sec-label">Obstructed:</label>
+                                                    <span class="sec-fields">
+                                                        <span class="radiospan"><input type="checkbox" ng-model="PAAir.A_ObstrForgnBodyId">Foreign Body</span>
+                                                        <span class="radiospan"><input type="checkbox" ng-model="PAAir.A_ObstrFluidsId">Fluids</span>
+                                                    </span>
+                                                </div>
+                                                <div class="sec-row">
+                                                    <label class="sec-label">Protected:</label>
+                                                    <span class="sec-fields">
+                                                        <span class="radiospan">
+                                                            <input ng-repeat="item in YesNo"
+                                                                   type='button'
+                                                                   class="btn-unselected"
+                                                                   ng-class="{'btnselected': PAAir.A_ProtectedInd == {{item.Id}}}"
+                                                                   value='{{item.Name}}'
+                                                                   ng-click="buttonSelect('A_ProtectedInd',item.Id,'PAAir')"
+                                                                   ng-model="PAAir.A_ProtectedInd">
+                                                        </span>
+                                                    </span>
+                                                    <span class="sec-fields">
+                                                        <span class="radiospan">
+                                                            <input ng-repeat="item in ddValues.Asmnt_Protected"
+                                                                   type='button'
+                                                                   class="btn-unselected"
+                                                                   ng-class="{'btnselected': PAAir.A_ProtectedId == {{item.Id}}}"
+                                                                   value='{{item.Name}}'
+                                                                   ng-click="buttonSelect('A_ProtectedId',item.Id,'PAAir')"
+                                                                   ng-model="PAAir.A_ProtectedId">
+                                                        </span>
+                                                    </span>
+                                                </div>
+
+                                                <div class="sec-row">
+                                                    <label>C-SPLINE IMMOBLIZATION:</label>
+                                                    <span class="sec-fields">
+                                                        <label>C-COLLAR</label>
+                                                        <span class="radiospan"><input type="checkbox" ng-model="PAAir.A_C_CollarInd"></span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="trauma-manag-sec">
+                                            <div class="sec-hdr">Management</div>
+                                            <div class="sec-content">
+                                                <div class="sec-row">
+                                                    <label class="sec-label">Adjuvants:</label>
+                                                    <span class="sec-fields">
+                                                        <span class="radiospan">
+                                                            <input ng-repeat="item in ddValues.A_ProtectedId"
+                                                                   type='button'
+                                                                   class="btn-unselected"
+                                                                   ng-class="{'btnselected': PAAir.M_AdjId == {{item.Id}}}"
+                                                                   value='{{item.Name}}'
+                                                                   ng-click="buttonSelect('M_AdjId',item.Id,'PAAir')"
+                                                                   ng-model="PAAir.M_AdjId">
+                                                        </span>
+                                                    </span>
+                                                </div>
+                                                <div class="sec-row">
+                                                    <label class="sec-label">Procedures:</label>
+                                                    <span class="sec-fields">
+                                                        <span class="radiospan">
+                                                            <input ng-repeat="item in ddValues.M_AdjId"
+                                                                   type='button'
+                                                                   class="btn-unselected"
+                                                                   ng-class="{'btnselected': PAAir.M_ProcId == {{item.Id}}}"
+                                                                   value='{{item.Name}}'
+                                                                   ng-click="buttonSelect('M_ProcId',item.Id,'PAAir')"
+                                                                   ng-model="PAAir.M_ProcId">
+                                                        </span>
+                                                    </span>
+                                                </div>
+                                                <div class="sec-row">
+                                                    <label class="sec-label">Suction:</label>
+                                                    <span class="sec-fields">
+                                                        <span class="radiospan">
+                                                            <input ng-repeat="item in YesNo"
+                                                                   type='button'
+                                                                   class="btn-unselected"
+                                                                   ng-class="{'btnselected': PAAir.M_SuctionInd == {{item.Id}}}"
+                                                                   value='{{item.Name}}'
+                                                                   ng-click="buttonSelect('M_SuctionInd',item.Id,'PAAir')"
+                                                                   ng-model="PAAir.M_SuctionInd">
+                                                        </span>
+                                                    </span>
+                                                </div>
+                                                <div class="sec-row">
+                                                    <label class="sec-label">Inform:</label>
+                                                    <span class="sec-fields">
+                                                        <span class="radiospan"><input type="checkbox" ng-model="PAAir.M_Info_AnastInd">Anesthetist</span>
+                                                        <span class="radiospan"><input type="checkbox" ng-model="PAAir.M_Info_NeuroInd">Neurosurgeon</span><br />
+                                                        <span class="radiospan"><input type="checkbox" ng-model="PAAir.M_Info_HdNcktInd">Head & neck surgeon</span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="trauma-re-asses-sec">
+                                            <div class="sec-hdr">Re-assessment</div>
+                                            <input type="text" class="input-box-medium" ng-model="PAAir.Air_Re_Assesment" />
+                                        </div>
+                                    </div>
+                                    <div id="tabs-2">
+                                        <div class="asses-sec">
+                                            <div class="sec-hdr">Assessment</div>
+                                            <div class="sec-content">
+                                                <div class="sec-row">
+                                                    <label class="sec-label">Chest Rise:</label>
+                                                    <span class="sec-fields">
+                                                        <label>Bilateral</label>
+                                                        <span class="radiospan">
+                                                            <input ng-repeat="item in ddValues.Asmnt_ChstBL_Eql_Id"
+                                                                   type='button'
+                                                                   class="btn-unselected"
+                                                                   ng-class="{'btnselected': PABreat.A_ChstRaiseId == {{item.Id}}}"
+                                                                   value='{{item.Name}}'
+                                                                   ng-click="buttonSelect('A_ChstRaiseId',item.Id,'PABreat')"
+                                                                   ng-model="PABreat.A_ChstRaiseId">
+                                                        </span>
+                                                    </span>
+                                                </div>
+                                                <div class="sec-row">
+                                                    <label class="sec-label">Palpation:</label>
+                                                    <span class="sec-fields">
+                                                        <span class="radiospan">
+                                                            <input ng-repeat="item in ddValues.Asmnt_Crep_Trend"
+                                                                   type='button'
+                                                                   class="btn-unselected"
+                                                                   ng-class="{'btnselected': PABreat.A_PalpationId == {{item.Id}}}"
+                                                                   value='{{item.Name}}'
+                                                                   ng-click="buttonSelect('A_PalpationId',item.Id,'PABreat')"
+                                                                   ng-model="PABreat.A_PalpationId">
+                                                        </span>
+                                                    </span>
+                                                    <span class="LRbuttons">
+                                                        <span class="sec-fields">
+                                                            <span class="radiospan">
+                                                                <input ng-repeat="item in LeftRight"
+                                                                       type='button'
+                                                                       class="btn-unselected"
+                                                                       ng-class="{'btnselected': PABreat.A_Palpation_RL == {{item.Id}}}"
+                                                                       value='{{item.Name}}'
+                                                                       ng-click="buttonSelect('A_Palpation_RL',item.Id,'PABreat')"
+                                                                       ng-model="PABreat.A_Palpation_RL">
+                                                            </span>
+                                                        </span>
+                                                    </span>
+                                                </div>
+                                                <div class="sec-row">
+                                                    <label class="sec-label">Percussion:</label>
+                                                    <span class="sec-fields">
+                                                        <span class="radiospan">
+                                                            <input ng-repeat="item in ddValues.M_ProcId"
+                                                                   type='button'
+                                                                   class="btn-unselected"
+                                                                   ng-class="{'btnselected': PABreat.A_PercussionId == {{item.Id}}}"
+                                                                   value='{{item.Name}}'
+                                                                   ng-click="buttonSelect('A_PercussionId',item.Id,'PABreat')"
+                                                                   ng-model="PABreat.A_PercussionId">
+                                                        </span>
+                                                    </span>
+                                                    <span class="LRbuttons">
+                                                        <span class="sec-fields">
+                                                            <span class="radiospan">
+                                                                <input ng-repeat="item in LeftRight"
+                                                                       type='button'
+                                                                       class="btn-unselected"
+                                                                       ng-class="{'btnselected': PABreat.A_Percussion_RL == {{item.Id}}}"
+                                                                       value='{{item.Name}}'
+                                                                       ng-click="buttonSelect('A_Percussion_RL',item.Id,'PABreat')"
+                                                                       ng-model="PABreat.A_Percussion_RL">
+                                                            </span>
+                                                        </span>
+                                                    </span>
+                                                </div>
+                                                <div class="sec-row">
+                                                    <label class="sec-label">Air Entry:</label>
+                                                    <span class="sec-fields">
+                                                        <label>Bilateral</label>
+                                                        <span class="sec-fields">
+                                                            <span class="radiospan">
+                                                                <input ng-repeat="item in ddValues.Asmnt_AEBL_Id"
+                                                                       type='button'
+                                                                       class="btn-unselected"
+                                                                       ng-class="{'btnselected': PABreat.A_AirEntryId == {{item.Id}}}"
+                                                                       value='{{item.Name}}'
+                                                                       ng-click="buttonSelect('A_AirEntryId',item.Id,'PABreat')"
+                                                                       ng-model="PABreat.A_AirEntryId">
+                                                            </span>
+                                                        </span>
+                                                    </span>
+                                                    <span class="LRbuttons">
+                                                        <span class="sec-fields">
+                                                            <span class="radiospan">
+                                                                <input ng-repeat="item in LeftRight"
+                                                                       type='button'
+                                                                       class="btn-unselected"
+                                                                       ng-class="{'btnselected': PABreat.A_AirEntry_RL == {{item.Id}}}"
+                                                                       value='{{item.Name}}'
+                                                                       ng-click="buttonSelect('A_AirEntry_RL',item.Id,'PABreat')"
+                                                                       ng-model="PABreat.A_AirEntry_RL">
+                                                            </span>
+                                                        </span>
+                                                    </span>
+                                                </div>
+                                                <div class="sec-row">
+                                                    <label class="sec-label"></label>
+                                                    <span class="sec-fields">
+                                                        <span class="radiospan"><input type="checkbox" ng-model="PABreat.A_RhonchiId">Rhonchi</span>
+                                                        <span class="radiospan"><input type="checkbox" ng-model="PABreat.A_WheezeId">Wheeze</span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="manag-sec">
+                                            <div class="sec-hdr">Management</div>
+                                            <div class="sec-content">
+                                                <div class="sec-row">
+                                                    <label class="sec-label">Oxygen:</label>
+                                                    <span class="sec-fields">
+                                                        <input type="text" width="100" ng-model="PABreat.M_Oxygen" /> ltr/min
+                                                    </span>
+                                                </div>
+                                                <div class="sec-row">
+                                                    <label class="sec-label"></label>
+                                                    <span class="sec-fields bdr-bottom">
+                                                        <span class="sec-fields">
+                                                            <span class="radiospan">
+                                                                <input ng-repeat="item in ddValues.Mngmnt_NslBag_Id"
+                                                                       type='button'
+                                                                       class="btn-unselected"
+                                                                       ng-class="{'btnselected': PABreat.M_ProngMaskId == {{item.Id}}}"
+                                                                       value='{{item.Name}}'
+                                                                       ng-click="buttonSelect('M_ProngMaskId',item.Id,'PABreat')"
+                                                                       ng-model="PABreat.M_ProngMaskId">
+                                                            </span>
+                                                        </span>
+                                                    </span>
+                                                </div>
+                                                <div class="sec-row">
+                                                    <label class="sec-label"></label>
+                                                    <span class="sec-fields">
+                                                        <span class="radiospan">
+                                                            <input ng-repeat="item in ddValues.Mngmnt_NdlThor_ICD_Id"
+                                                                   type='button'
+                                                                   class="btn-unselected"
+                                                                   ng-class="{'btnselected': PABreat.M_Ndl_ICDId == {{item.Id}}}"
+                                                                   value='{{item.Name}}'
+                                                                   ng-click="buttonSelect('M_Ndl_ICDId',item.Id,'PABreat')"
+                                                                   ng-model="PABreat.M_Ndl_ICDId">
+                                                        </span>
+                                                    </span>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="trauma-re-asses-sec">
+                                            <div class="sec-hdr">Re-assessment</div>
+                                            <input type="text" class="input-box-medium" ng-model="PABreat.Brath_Re_Assesment" />
+                                        </div>
+                                    </div>
+
+                                    <div id="tabs-3">
+                                        <div class="asses-sec-big">
+                                            <div class="sec-hdr">Assessment</div>
+                                            <div class="sec-content">
+
+                                                <div class="sec-row">
+                                                    <label class="sec-vbiglabel">Palor:</label>
+                                                    <span class="sec-fields">
+                                                        <span class="radiospan">
+                                                            <input ng-repeat="item in ddValues.YesNo"
+                                                                   type='button'
+                                                                   class="btn-unselected"
+                                                                   ng-class="{'btnselected': PACir.A_PalorId == {{item.Id}}}"
+                                                                   value='{{item.Name}}'
+                                                                   ng-click="buttonSelect('A_PalorId',item.Id,'PACir')"
+                                                                   ng-model="PACir.A_PalorId">
+                                                        </span>
+                                                    </span>
+                                                </div>
+                                                <div class="sec-row">
+                                                    <label class="sec-vbiglabel">Cold Extremities:</label>
+                                                    <span class="sec-fields">
+                                                        <span class="radiospan">
+                                                            <input ng-repeat="item in ddValues.YesNo"
+                                                                   type='button'
+                                                                   class="btn-unselected"
+                                                                   ng-class="{'btnselected': PACir.A_ColdExtrId == {{item.Id}}}"
+                                                                   value='{{item.Name}}'
+                                                                   ng-click="buttonSelect('A_ColdExtrId',item.Id,'PACir')"
+                                                                   ng-model="PACir.A_ColdExtrId">
+                                                        </span>
+                                                    </span>
+                                                </div>
+                                                <div class="drugchart-grid">
+                                                    <table>
+                                                        <thead>
+                                                            <tr>
+                                                                <td>PR</td>
+                                                                <td>SBP</td>
+                                                                <td>RR</td>
+                                                                <td>SENSORIUM</td>
+                                                                <td>CLASS</td>
+                                                                <td>BLOOD LOSS</td>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr class="even">
+                                                                <td class="align-center"><input type="button" class="btnselected" value="&gt;100" /></td>
+                                                                <td class="align-center"><input type="button" class="btnselected" value="&lt;100" /></td>
+                                                                <td class="align-center"><input type="button" class="btnselected" value="14 - 20" /></td>
+                                                                @*<td class="align-center">Alert</td>*@
+                                                                <td class="align-center">Class1</td>
+                                                                <td class="align-center">&gt;750ml</td>
+                                                            </tr>
+                                                            <tr class="odd">
+                                                                <td class="align-center"><input type="button" class="btn-unselected" value="&gt;100" /></td>
+                                                                <td class="align-center"><input type="button" class="btn-unselected" value="&gt;100" /></td>
+                                                                <td class="align-center"><input type="button" class="btn-unselected" value="20 - 30" /></td>
+                                                                <td class="align-center">@*Anxious*@</td>
+                                                                <td class="align-center">Class2</td>
+                                                                <td class="align-center">750-1500ml</td>
+                                                            </tr>
+                                                            <tr class="even">
+                                                                <td class="align-center"><input type="button" class="btnselected" value="&gt;120" /></td>
+                                                                <td class="align-center"><input type="button" class="btnselected" value="&lt;100" /></td>
+                                                                <td class="align-center"><input type="button" class="btnselected" value="30 - 40" /></td>
+                                                                <td class="align-center">@*Confused*@</td>
+                                                                <td class="align-center">Class3</td>
+                                                                <td class="align-center">1500-2000ml</td>
+                                                            </tr>
+                                                            <tr class="odd">
+                                                                <td class="align-center"><input type="button" class="btn-unselected" value="&gt;140" /></td>
+                                                                <td class="align-center"><input type="button" class="btn-unselected" value="&gt;100" /></td>
+                                                                <td class="align-center"><input type="button" class="btn-unselected" value="&gt;35" /></td>
+                                                                @*<td class="align-center">Lethargic</td>*@
+                                                                <td class="align-center">Class4</td>
+                                                                <td class="align-center">&gt;2000ml</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+
+                                                <div class="sec-row">
+                                                    <label class="sec-vbiglabel">Pulse:</label>
+                                                    <span class="sec-fields">
+                                                        <span class="radiospan">
+                                                            <input ng-repeat="item in ddValues.Pulse_Id"
+                                                                   type='button'
+                                                                   class="btn-unselected"
+                                                                   ng-class="{'btnselected': PACir.A_PulseId == {{item.Id}}}"
+                                                                   value='{{item.Name}}'
+                                                                   ng-click="buttonSelect('A_PulseId',item.Id,'PACir')"
+                                                                   ng-model="PACir.A_PulseId">
+                                                        </span>
+                                                    </span>
+                                                </div>
+                                                <div class="sec-row">
+                                                    <label class="sec-vbiglabel">CVS:</label>
+                                                    <span class="sec-fields">
+                                                        <span class="radiospan">
+                                                            <input ng-repeat="item in ddValues.YesNo"
+                                                                   type='button'
+                                                                   class="btn-unselected"
+                                                                   ng-class="{'btnselected': PACir.A_CVSId == {{item.Id}}}"
+                                                                   value='{{item.Name}}'
+                                                                   ng-click="buttonSelect('A_CVSId',item.Id,'PACir')"
+                                                                   ng-model="PACir.A_CVSId">
+                                                        </span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="manag-sec-small">
+                                            <div class="sec-hdr">Management</div>
+                                            <div class="sec-content">
+                                                <div class="sec-row">
+                                                    <label class="sec-label">IV Lines:</label>
+                                                    <span class="sec-fields">
+                                                        <label class="label-nomargin">Site</label><input type="text" style="width:80px;" ng-model="PACir.M_IVSite" />
+                                                        <label class="label-small">Size</label><input type="text" style="width: 80px;" ng-model="PACir.M_IVSize" />
+                                                    </span>
+                                                </div>
+                                                <br />
+                                                <div class="sec-row">
+                                                    <label class="sec-biglabel">IV Access:</label>
+                                                    <span class="sec-fields">
+                                                        <span class="radiospan"><input type="checkbox" ng-model="PACir.M_IVAccInd"></span>
+                                                        <label class="label-rightmargin">IV Fluids:</label>
+                                                        <span class="radiospan"><input type="checkbox" ng-model="PACir.M_IVFluidsInd"></span>
+                                                        <label class="label-rightmargin">Defibrillator:</label>
+                                                        <span class="radiospan"><input type="checkbox" ng-model="PACir.M_DefibrillatorInd"></span>
+                                                    </span>
+                                                </div>
+                                                <br />
+                                                <div class="sec-row">
+                                                    <label class="sec-label-block">Pre hospital Total iv fluids given:</label>
+                                                    <input type="checkbox" ng-model="PACir.M_PreHospFluids" />
+                                                </div>
+                                                <div class="sec-row" style="height:60px">
+                                                    <label>Fluids:</label><input type="checkbox" ng-model="PACir.M_FluidsCrystInd" /> <label>Crystalloids</label>
+                                                    <input type="checkbox" ng-model="PACir.M_FluidsCollInd" /> <label>Colloids</label>
+                                                    <input type="checkbox" ng-model="PACir.M_FluidsBldInd" /> <label>Blood</label></br>
+                                                    <input type="checkbox" ng-model="PACir.M_BldSmplsInd" /> <label>Blood Samples</label>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="trauma-re-asses-sec">
+                                            <div class="sec-hdr">Re-assessment</div>
+                                            <input type="text" class="input-box-medium" ng-model="PACir.Re_Assesment" />
+                                        </div>
+
+                                    </div>
+                                    <div id="tabs-4">
+                                        <div class="asses-sec-big">
+                                            <div class="sec-hdr">Assessment</div>
+                                            <div class="sec-content">
+                                                <div class="sec-row">
+                                                    <label class="sec-label-block">PUPILS:</label>
+                                                </div>
+                                                <div class="sec-row">
+                                                    <label class="sec-label">Right:</label>
+                                                    <label>Size:</label>
+                                                    <input type="text" class="input-box-vsmall" ng-model="PADisa.A_PupilR_Size" />
+                                                    <label class="sec-biglabel">Reaction:</label>
+                                                    <input ng-repeat="item in ddValues.BrisSluggAbse"
+                                                           type='button'
+                                                           class="btn-unselected"
+                                                           ng-class="{'btnselected': PADisa.A_PupilR_ReactId == {{item.Id}}}"
+                                                           value='{{item.Name}}'
+                                                           ng-click="buttonSelect('A_PupilR_ReactId',item.Id,'PADisa')"
+                                                           ng-model="PADisa.A_PupilR_ReactId">
+                                                </div>
+                                                <div class="sec-row">
+                                                    <label class="sec-label">Left:</label>
+                                                    <label>Size:</label>
+                                                    <input type="text" class="input-box-vsmall" ng-model="PADisa.A_PupilL_Size" />
+                                                    <label class="sec-biglabel">Reaction:</label>
+                                                    <input ng-repeat="item in ddValues.BrisSluggAbse"
+                                                           type='button'
+                                                           class="btn-unselected"
+                                                           ng-class="{'btnselected': PADisa.A_PupilL_ReactId == {{item.Id}}}"
+                                                           value='{{item.Name}}'
+                                                           ng-click="buttonSelect('A_PupilL_ReactId',item.Id,'PADisa')"
+                                                           ng-model="PADisa.A_PupilL_ReactId">
+                                                </div>
+                                                <div class="sec-row">
+                                                    <label class="sec-vbiglabel">Lateralising signs:</label>
+                                                    <span class="sec-fields">
+                                                        <input type="text" class="input-box-m160" ng-model="PADisa.A_Laterasigns" />
+                                                    </span>
+                                                </div>
+                                                <div class="sec-row">
+                                                    <div class="left-box">
+                                                        <label class="sec-label">LOC:</label>
+                                                        <span class="sec-fields">
+                                                            <input type="checkbox" ng-model="PADisa.A_LOCInd" />
+                                                            <label class="sec-label">duration:</label>
+                                                            <input type="text" class="input-box-vsmall" ng-model="PADisa.A_LOCDur" />
+                                                        </span>
+                                                    </div>
+                                                    <div class="right-box">
+                                                        <label class="sec-label">Seizures:</label>
+                                                        <span class="sec-fields">
+                                                            <input type="checkbox" ng-model="PADisa.A_SezInd" />
+                                                            <label class="sec-label">duration:</label>
+                                                            <input type="text" class="input-box-vsmall" ng-model="PADisa.A_SezDur" />
+                                                        </span>
+                                                    </div>
+                                                </div>
+
+                                                <div class="drugchart-grid">
+                                                    <div class="row-innerbox-bg">
+                                                        <div class="left-box">
+                                                            <label>GCS:</label><button ng-click="calcEvm($event)" class="btnselected">GCS</button>
+                                                            <label>E</label><input type="text" class="input-box-vsmall" ng-model="EyeOpen" />
+                                                            <label class="label-rightmargin">V</label><input type="text" class="input-box-vsmall" ng-model="VerbalResp" />
+                                                            <label class="label-rightmargin">M</label><input type="text" class="input-box-vsmall" ng-model="MotorResp" />
+                                                            <label class="sec-label">Total</label>
+                                                            <input type="text" class="input-box-vsmall" ng-model="EVMTotal" />/15
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="sec-row">
+                                                    <label class="sec-label">Pain score:</label>
+                                                    <span class="sec-fields">
+                                                        <input type="text" class="input-box-small" ng-model="PADisa.PainScore" />
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="manag-sec-small">
+                                            <div class="sec-hdr">Management</div>
+                                            <div class="sec-content" style="height:236px">
+
+                                                <div class="drugchart-grid">
+                                                    <table>
+                                                        <thead>
+                                                            <tr>
+                                                                <td>GCS</td>
+                                                                <td>SBP</td>
+                                                                <td>RR</td>
+                                                                <td>score</td>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr class="even">
+                                                                <td class="align-center">14-15</td>
+                                                                <td class="align-center">&gt;90</td>
+                                                                <td class="align-center">10-24</td>
+                                                                <td class="align-center">4</td>
+                                                            </tr>
+                                                            <tr class="odd">
+                                                                <td class="align-center">11-13</td>
+                                                                <td class="align-center">70-90</td>
+                                                                <td class="align-center">25-35</td>
+                                                                <td class="align-center">3</td>
+                                                            </tr>
+                                                            <tr class="even">
+                                                                <td class="align-center">8-10</td>
+                                                                <td class="align-center">50-70</td>
+                                                                <td class="align-center">&gt;35</td>
+                                                                <td class="align-center">2</td>
+                                                            </tr>
+                                                            <tr class="odd">
+                                                                <td class="align-center">5-7</td>
+                                                                <td class="align-center">&lt;50</td>
+                                                                <td class="align-center">&lt;10</td>
+                                                                <td class="align-center">1</td>
+                                                            </tr>
+                                                            <tr class="even">
+                                                                <td class="align-center">3-4</td>
+                                                                <td class="align-center"></td>
+                                                                <td class="align-center"></td>
+                                                                <td class="align-center">0</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                                <div class="sec-row">
+                                                    <div class="right-box">
+                                                        <label class="label">RTS:(GCS+SBP+RR)=</label>
+                                                        <span class="sec-fields">
+                                                            <span class="radiospan">
+                                                                <input type="text" class="input-box-small" ng-model="PADisa.A_RTS" />
+                                                            </span>
+                                                        </span>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <div class="exposure-re-asses-sec">
+                                            <div class="sec-hdr">Re-assessment</div>
+                                            <input type="text" ng-model="PADisa.Dis_Re_Assesment" />
+                                            @*<textarea style="margin: 0px; height: 176px; width: 228px;" ng-model="PADisa.Re_Assesment" />*@
+                                        </div>
+                                    </div>
+                                    <div id="tabs-5">
+                                        <div class="exposure-asses-sec">
+                                            <div class="sec-hdr">Assessment</div>
+                                            <div class="sec-content">
+                                                <div class="sec-row">
+                                                    <label class="label">Log roll:</label>
+                                                    <span class="sec-fields">
+                                                        <input type="text" class="input-box-medium" ng-model="PAExpo.A_LogRoll" />
+                                                    </span>
+                                                </div>
+                                                <div class="sec-row">
+                                                    <label class="label">Spinal examination:</label>
+                                                    <span class="sec-fields">
+                                                        <input type="text" class="input-box-medium" ng-model="PAExpo.A_SpinalExm" />
+                                                    </span>
+                                                </div>
+                                                <div class="sec-row">
+                                                    <label class="label">Per-rectal examination:</label>
+                                                    <span class="sec-fields">
+                                                        <input type="text" class="input-box-medium" ng-model="PAExpo.A_PreRectExm" />
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="exposure-manag-sec">
+                                            <div class="sec-hdr">Management</div>
+                                            <div class="sec-content">
+                                                <div class="sec-row">
+                                                    <span class="sec-fields">
+                                                        <input type="text" class="input-box-medium" ng-model="PAExpo.M_LogRoll" />
+                                                    </span>
+                                                </div>
+                                                <div class="sec-row">
+                                                    <span class="sec-fields">
+                                                        <input type="text" class="input-box-medium" ng-model="PAExpo.M_SpinalExm" />
+                                                    </span>
+                                                </div>
+                                                <div class="sec-row">
+                                                    <span class="sec-fields">
+                                                        <input type="text" class="input-box-medium" ng-model="PAExpo.M_PreRectExm" />
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="exposure-re-asses-sec">
+                                            <div class="sec-hdr">Re-assessment</div>
+                                            <div class="sec-content">
+                                                <input type="text" ng-model="PAExpo.Expo_Re_Assesment" />
+                                                @*<textarea style="margin: 0px; height: 176px; width: 228px;" ng-model="PAExpo.Re_Assesment" />*@
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="page-footer">
+                                    <input type="button" class="btn-cancel" value="Cancel" />
+                                    <button class="btn-submit" ng-click="save()">Submit</button>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="whitebg top-margin">
+                            <div class="sectionhdrCenter">DETAILS OF THE EVENT</div>
+                            <div class="div-row-woborder">
+                                <div class="row-innerbox-bg">
+                                    <table style="width:100%">
+                                        <thead>
+                                            <tr>
+                                                <td width="25%" style="text-align:center;">
+                                                    <label>What poison</label>
+                                                </td>
+                                                <td width="25%" style="text-align:center;">
+                                                    <label>When</label>
+                                                </td>
+                                                <td width="25%" style="text-align:center;">
+                                                    <label>How Much</label>
+                                                </td>
+                                                <td width="25%" style="text-align:center;">
+                                                    <label>Why</label>
+                                                </td>
+                                            </tr>
+                                        </thead>
+                                        <tr>
+                                            <td>
+                                                <textarea rows="6" style="width:96%" ng-model="DetEvnt.Poison"></textarea>
+                                            </td>
+                                            <td>
+                                                <textarea rows="6" style="width:96%" ng-model="DetEvnt.WhenEpd"></textarea>
+                                            </td>
+                                            <td>
+                                                <textarea rows="6" style="width:96%" ng-model="DetEvnt.HowMuch"></textarea>
+                                            </td>
+                                            <td>
+                                                <textarea rows="6" style="width:96%" ng-model="DetEvnt.Why"></textarea>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <div class="row-innerbox">
+                                    <input type="checkbox" checked="checked" ng-model="DetEvnt.AgriPetInd" />
+                                    <label>Agricultural pesticides</label>
+                                    <input type="checkbox" checked="checked" ng-model="DetEvnt.DrugsInd" />
+                                    <label>Drugs</label>
+                                    <input type="checkbox" checked="checked" ng-model="DetEvnt.HouseChemInd" />
+                                    <label>Household Chemicals</label>
+                                    <input type="checkbox" checked="checked" ng-model="DetEvnt.IndChemInd" />
+                                    <label>Industrial chemicals</label>
+                                    <input type="checkbox" checked="checked" ng-model="DetEvnt.EnvToxinInd" />
+                                    <label>Environmental toxins</label>
+                                    <input type="checkbox" checked="checked" ng-model="DetEvnt.NervGasInd" />
+                                    <label>Nerve gases</label>
+                                </div>
+                                <div class="row-innerbox-bg">
+                                    <label>Containers:</label>
+                                    <input type="checkbox" checked="checked" ng-model="DetEvnt.Cont_BottlInd" />
+                                    <label>Bottles</label>
+                                    <input type="checkbox" checked="checked" ng-model="DetEvnt.Cont_DrgSheetInd" />
+                                    <label>Drug Sheets</label>
+                                    <input type="checkbox" checked="checked" ng-model="DetEvnt.Cont_OthInd" />
+                                    <label>Others</label>
+                                    <input type="text" class="input-box-medium" ng-model="DetEvnt.Cont_Oth" />
+                                </div>
+                            </div>
+                            <div class="page-footer">
+                                <input type="button" class="btn-cancel" value="Cancel" />
+                                <button class="btn-submit" ng-click="save()">Submit</button>
+                            </div>
+                        </div>
+
+                        <div class="whitebg top-margin">
+                            <div class="sectionhdrCenter">AMPLE HISTORY</div>
+                            <div class="div-row-woborder">
+                                <div class="row-innerbox-bg">
+                                    <label>Allergies:</label>
+                                    <input type="text" class="input-box" style="width:91%" ng-model="AmplHist.Allergies" />
+                                </div>
+                            </div>
+                            <div class="div-row-woborder">
+                                <div class="comorbid-sec">
+                                    <div class="left-box comorbid-sec-label">
+                                        <label>CO MORBIDS:</label>
+                                    </div>
+                                    <div class="right-box" style="width:82%;">
+                                        <div class="card-row-box-bg">
+                                            <label class="checkbox-label"><input type="checkbox" value="" ng-model="AmplHist.Cmrbds_HTNInd" />HTN</label>
+                                            <label class="checkbox-label"><input type="checkbox" value="" ng-model="AmplHist.Cmrbds_DMInd" />DM</label>
+                                            <label class="checkbox-label"><input type="checkbox" value="" ng-model="AmplHist.Cmrbds_AlcohoInd" />Alcoholic</label>
+                                            <label class="checkbox-label"><input type="checkbox" value="" ng-model="AmplHist.Cmrbds_SmokeInd" />Smoking</label>
+                                            <label class="checkbox-label"><input type="checkbox" value="" ng-model="AmplHist.Cmrbds_BldingDisOrdInd" />Bleeding Disorder</label>
+                                        </div>
+                                        <div class="card-row-box">
+                                            <label class="checkbox-label"><input type="checkbox" value="" ng-model="AmplHist.Cmrbds_LiverCirrhoInd" />Liver Cirrhosis/Ascitis</label>
+                                            <label class="checkbox-label"><input type="checkbox" value="" ng-model="AmplHist.Cmrbds_CADInd" />CAD / CHF</label>
+                                            <label class="checkbox-label"><input type="checkbox" value="" ng-model="AmplHist.Cmrbds_Asth_COPDInd" />Asthma / COPD</label>
+                                            <label class="checkbox-label"><input type="checkbox" value="" ng-model="AmplHist.Cmrbds_CKDInd" />CKD </label>
+                                        </div>
+                                        <div class="card-row-box-bg">
+                                            <label class="checkbox-label"><input type="checkbox" value="" ng-model="AmplHist.Cmrbds_StrokeInd" />Stroke</label>
+                                            <label class="checkbox-label"><input type="checkbox" value="" ng-model="AmplHist.Cmrbds_MalignancyInd" />Malignancy</label>
+                                            <label class="checkbox-label"><input type="checkbox" value="" ng-model="AmplHist.Cmrbds_IBDId" />IBD</label>
+                                            <label class="checkbox-label"><input type="checkbox" value="" ng-model="AmplHist.Cmrbds_PreSurgeryInd" />Previous Surgery</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="div-row-woborder">
+                                <div class="row-innerbox">
+                                    <label>Surgical History:</label>
+                                    <input type="text" class="input-box" style="width:74%" ng-model="AmplHist.SurgicalHist" />
+                                </div>
+                                <div class="row-innerbox-bg">
+                                    <div class="left-box">
+                                        <label>Last Meal:</label>
+                                        <input type="text" class="input-box" ng-model="AmplHist.LastMeal" />
+                                    </div>
+                                    <div class="right-box">
+                                        <label>Last Tetanus:</label>
+                                        <input type="text" class="input-box" ng-model="AmplHist.LastTetanus" />
+                                    </div>
+                                </div>
+                                <div class="row-innerbox">
+                                    <label>Previous Events</label>
+                                    <input type="text" class="input-box" style="width:86%" ng-model="AmplHist.PreviousEvents" />
+                                </div>
+                            </div>
+                            <div class="page-footer">
+                                <input type="button" class="btn-cancel" value="Cancel" />
+                                <button class="btn-submit" ng-click="save()">Submit</button>
+                            </div>
+                        </div>
+
+                        <div class="whitebg top-margin">
+                            <div class="sectionhdrCenter">SUPPORTIVE CARE:<span class="italic">{as per the type of poison and the toxidrome}</span></div>
+                            <div class="div-row-woborder">
+                                <div class="row-innerbox">
+                                    <div>
+                                        <input type="checkbox" checked="checked" ng-model="SupCare.GasLavInd" />
+                                        <label>Gastric lavage</label>
+                                        <input type="checkbox" checked="checked" ng-model="SupCare.ActCharInd" />
+                                        <label>Activated charcoal</label>
+                                        <input type="checkbox" checked="checked" ng-model="SupCare.ChathInd" />
+                                        <label>Cathartics</label>
+                                        <input type="checkbox" checked="checked" ng-model="SupCare.BwlIttigInd" />
+                                        <label>Whole bowel irrigation</label>
+                                    </div>
+                                    <div>
+                                        <input type="checkbox" checked="checked" ng-model="SupCare.FrcDiuInd" />
+                                        <label>Forced diuresis</label>
+                                        <input type="checkbox" checked="checked" ng-model="SupCare.UrinAlkalInd" />
+                                        <label>Urine Alkalinisation</label>
+                                        <input type="checkbox" checked="checked" ng-model="SupCare.HaemodInd" />
+                                        <label>Haemodialysis</label>
+                                        <input type="checkbox" checked="checked" ng-model="SupCare.PeriDialInd" />
+                                        <label>Peritoneal dialysis</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="page-footer">
+                                <input type="button" class="btn-cancel" value="Cancel" />
+                                <button class="btn-submit" ng-click="save()">Submit</button>
+                            </div>
+                        </div>
+
+                        <div class="whitebg top-margin">
+                            <div class="sectionhdrCenter">DRUG RECONCILATION</div>
+                            <div class="div-row-woborder">
+                                <div class="drugchart-grid">
+                                    <table>
+                                        <thead>
+                                            <tr>
+                                                <td>S.No</td>
+                                                <td>Drug</td>
+                                                <td>Drug Name</td>
+                                                <td>Dose</td>
+                                                <td>Route</td>
+                                                <td>Frequency</td>
+                                                <td>To Continue</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr class="even" ng-repeat="record in drugs">
+                                                <td>{{record.Id}}</td>
+                                                <td><input type="text" class="input-box-small" ng-model="record.Drug" /></td>
+                                                <td><input type="text" class="input-box-small" ng-model="record.DrugName" /></td>
+                                                <td><input type="text" class="input-box-small" ng-model="record.Dose" /></td>
+                                                <td><input type="text" class="input-box-small" ng-model="record.Route" /></td>
+                                                <td><input type="text" class="input-box-small" ng-model="record.Frequency" /></td>
+                                                <td class="align-center">
+                                                    <div class="toggle-button-cover">
+                                                        <div class="button-cover">
+                                                            <div class="button b2" id="button-10">
+                                                                <input type="checkbox" class="checkbox">
+                                                                <div class="knobs">
+                                                                    <input ng-repeat="item in ddValues.YesNo"
+                                                                           type='button'
+                                                                           class="btn-unselected"
+                                                                           ng-class="{'btnselected': record.ToContInd == {{item.Id}}}"
+                                                                           value='{{item.Name}}'
+                                                                           ng-click="buttonSelect('ToContInd',item.Id,'record')"
+                                                                           ng-model="record.ToContInd">
+                                                                </div>
+                                                                <div class="layer"></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td><img class="input-del-vsmall" src="~/Images/del.png" ng-click="deleteDrugRecRow(record.Id)" /></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="div-row-woborder text-right">
+                                <input type="button" value="Add New" class="add-button" ng-click="newDrugRecRow()" />
+                            </div>
+                            <div class="page-footer">
+                                <input type="button" class="btn-cancel" value="Cancel" />
+                                <button class="btn-submit" ng-click="save()">Submit</button>
+                            </div>
+                        </div>
+
+                        <div class="whitebg top-margin">
+                            <div class="sectionhdrCenter">PHYSICAL EXAMINATION</div>
+                            <div class="div-row-woborder">
+                                <div class="row-innerbox">
+                                    <label>HEENT:</label>
+                                    <input type="text" class="input-box" ng-model="PHExam.HEENT" />
+                                </div>
+                                <div class="row-innerbox-bg">
+                                    <label>CVS:</label>
+                                    <input type="text" class="input-box" ng-model="PHExam.CVS" />
+                                </div>
+                                <div class="row-innerbox">
+                                    <label>RS:</label>
+                                    <input type="text" class="input-box" ng-model="PHExam.RS" />
+                                </div>
+                                <div class="row-innerbox-bg">
+                                    <label>GIT:</label>
+                                    <input type="text" class="input-box" ng-model="PHExam.GIT" />
+                                </div>
+                                <div class="row-innerbox">
+                                    <label>CNS:</label>
+                                    <input type="text" class="input-box" ng-model="PHExam.CNS" />
+                                </div>
+                                <div class="row-innerbox-bg">
+                                    <label>Skin:</label>
+                                    <input type="text" class="input-box" ng-model="PHExam.SKIN" />
+                                </div>
+                                <div class="row-innerbox">
+                                    <table style="width:100%">
+                                        <thead>
+                                            <tr>
+                                                <td width="25%" style="text-align:center; background-color: #bdd7ee">
+                                                    <label>Cholinergic</label>
+                                                </td>
+                                                <td width="25%" style="text-align:center; background-color: #bdd7ee">
+                                                    <label>Non-Cholinergic</label>
+                                                </td>
+                                                <td width="25%" style="text-align:center; background-color: #bdd7ee">
+                                                    <label>Sympathomimetic</label>
+                                                </td>
+                                                <td width="25%" style="text-align:center; background-color: #bdd7ee">
+                                                    <label>Opioid</label>
+                                                </td>
+                                            </tr>
+                                        </thead>
+                                        <tr>
+                                            <td class="row-boxcolor">
+                                                <div>
+                                                    <div><input type="checkbox" ng-model="PoiCat.Chron_LacrimationInd" />Lacrimation/ Miosis/ Salivation</div>
+                                                    <div><input type="checkbox" ng-model="PoiCat.Chron_SweatingInd" />Sweating</div>
+                                                    <div><input type="checkbox" ng-model="PoiCat.Chron_BradycardiaInd" />Bradycardia</div>
+                                                    <div><input type="checkbox" ng-model="PoiCat.Chron_BronchospasmInd" />Bronchospasm</div>
+                                                    <div><input type="checkbox" ng-model="PoiCat.Chron_EmesisInd" />Emesis</div>
+                                                    <div><input type="checkbox" ng-model="PoiCat.Chron_Urin_DefecInd" />Urination/Defecation</div>
+                                                    <div><input type="checkbox" ng-model="PoiCat.Chron_HyporeflexiaInd" />Hyporeflexia</div>
+                                                </div>
+                                            </td>
+                                            <td class="row-boxcolor">
+                                                <div>
+                                                    <div><input type="checkbox" ng-model="PoiCat.Nchron_MidriasisInd" />Mydriasis/Dry mouth</div>
+                                                    <div><input type="checkbox" ng-model="PoiCat.Nchron_Dry_Flushe_HypInd" />Dry skin/Flushed skin/ Hyperpyrexia</div>
+                                                    <div><input type="checkbox" ng-model="PoiCat.Nchron_Tachy_HypInd" />Tachycardia/Hypertension</div>
+                                                    <div><input type="checkbox" ng-model="PoiCat.Nchron_Dec_BwlSndInd" />Decreased bowel sounds</div>
+                                                    <div><input type="checkbox" ng-model="PoiCat.Nchron_Seiz_Agit_AtaxiaInd" />Seizures/Agitated/Ataxia</div>
+                                                    <div><input type="checkbox" ng-model="PoiCat.Nchron_UrinRetenInd" />Urinary retention</div>
+                                                </div>
+                                            </td>
+                                            <td class="row-boxcolor">
+                                                <div>
+                                                    <div><input type="checkbox" ng-model="PoiCat.Symp_MydriasisInd" />Mydriasis</div>
+                                                    <div><input type="checkbox" ng-model="PoiCat.Symp_SweatingInd" />Sweating</div>
+                                                    <div><input type="checkbox" ng-model="PoiCat.Symp_HyperpyrexiaInd" />Hyperpyrexia</div>
+                                                    <div><input type="checkbox" ng-model="PoiCat.Symp_Hype_TachycardiaInd" />Hypertension/ Tachycardia</div>
+                                                    <div><input type="checkbox" ng-model="PoiCat.Symp_AnxietyInd" />Anxiety</div>
+                                                </div>
+                                            </td>
+                                            <td class="row-boxcolor">
+                                                <div>
+                                                    <div><input type="checkbox" ng-model="PoiCat.Opioid_MiosisInd" />Miosis</div>
+                                                    <div><input type="checkbox" ng-model="PoiCat.Opioid_RespDepInd" />Resp. depression</div>
+                                                    <div><input type="checkbox" ng-model="PoiCat.Opioid_Dec_BwlSndInd" />Decreased bowel sounds</div>
+                                                    <div><input type="checkbox" ng-model="PoiCat.Opioid_DrowzInd" />Drowsiness</div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+
+                            </div>
+                            <div class="page-footer">
+                                <input type="button" class="btn-cancel" value="Cancel" />
+                                <button class="btn-submit" ng-click="save()">Submit</button>
+                            </div>
+                        </div>
+
+                        <div class="whitebg top-margin">
+                            <div class="sectionhdrCenter">INVESTIGATIONS</div>
+                            <div class="div-row-woborder">
+                                <div class="drugchart-grid">
+                                    <table>
+                                        <tr class="odd">
+                                            <td class="text-right">CBP</td>
+                                            <td><input type="checkbox" ng-model="Inves.CBPInd" /></td>
+                                            <td class="text-right">Urine drug screen </td>
+                                            <td><input type="checkbox" ng-model="Inves.UrinDrunInd" /></td>
+                                            @*<td class="align-center" colspan="2"><label>RADIOLOGY</label></td>*@
+                                        </tr>
+                                        <tr class="odd">
+                                            <td class="text-right">Blood Grouping/Typing</td>
+                                            <td><input type="checkbox" ng-model="Inves.BloodGroupInd" /></td>
+                                        </tr>
+                                        <tr class="odd">
+                                            <td class="text-right">RFT</td>
+                                            <td><input type="checkbox" ng-model="Inves.RFTInd" /></td>
+                                            <td class="text-right">Specific drug levels</td>
+                                            <td><input type="checkbox" ng-model="Inves.SpesificDrug" /></td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr class="odd">
+                                            <td class="text-right">LFT</td>
+                                            <td><input type="checkbox" ng-model="Inves.LFTInd" /></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr class="odd">
+                                            <td class="text-right">Viral screening</td>
+                                            <td><input type="checkbox" ng-model="Inves.ViralScrInd" /></td>
+                                        </tr>
+                                        <tr class="odd">
+                                            <td class="text-right">CK</td>
+                                            <td><input type="checkbox" ng-model="Inves.CKInd" /></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr class="odd">
+                                            <td class="text-right">RBS</td>
+                                            <td><input type="checkbox" ng-model="Inves.RBSInd" /></td>
+                                        </tr>
+                                        <tr class="odd">
+                                            <td class="text-right">Coagulation profile</td>
+                                            <td><input type="checkbox" ng-model="Inves.CoagProfInd" /></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr class="odd">
+                                            <td class="text-right">UPT in females</td>
+                                            <td><input type="checkbox" ng-model="Inves.UPTInd" /></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr class="odd">
+                                            <td class="text-right">ABG</td>
+                                            <td><input type="checkbox" ng-model="Inves.ABGInd" /></td>
+                                        </tr>
+                                        <tr class="odd">
+                                            <td class="text-right">CXR</td>
+                                            <td><input type="checkbox" ng-model="Inves.CXRInd" /></td>
+                                        </tr>
+                                        <tr class="odd">
+                                            <td class="text-right">CK-MB</td>
+                                            <td><input type="checkbox" ng-model="Inves.CK_MBInd" /></td>
+                                        </tr>
+                                        <tr class="odd">
+                                            <td colspan="2" class="text-right"><label class="label-rightmargin">Others:</label><input type="text" class="input-box-medium" ng-model="Inves.AnyOthers" /></td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="page-footer">
+                                <input type="button" class="btn-cancel" value="Cancel" />
+                                <button class="btn-submit" ng-click="save()">Submit</button>
+                            </div>
+                        </div>
+
+                        <div class="whitebg top-margin">
+                            <div class="sectionhdrCenter">DRUG CHART</div>
+                            <div class="div-row-woborder">
+                                <div class="drugchart-grid">
+                                    <table>
+                                        <thead>
+                                            <tr>
+                                                <td>S.No</td>
+                                                <td>Drug</td>
+                                                <td>Drug Name</td>
+                                                <td>Dose</td>
+                                                <td>Route</td>
+                                                <td>Frequency</td>
+                                                <td>To Continue</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr class="even" ng-repeat="recorddc in drugsChart">
+                                                <td>{{recorddc.Id}}</td>
+                                                <td><input type="text" class="input-box-small" ng-model="recorddc.Drug" /></td>
+                                                <td><input type="text" class="input-box-small" ng-model="recorddc.DrugSpec" /></td>
+                                                <td><input type="text" class="input-box-small" ng-model="recorddc.Dose" /></td>
+                                                <td><input type="text" class="input-box-small" ng-model="recorddc.Route" /></td>
+                                                <td><input type="text" class="input-box-small" ng-model="recorddc.Qty" /></td>
+                                                <td class="align-center">
+                                                    <div class="toggle-button-cover">
+                                                        <div class="button-cover">
+                                                            <div class="button b2" id="button-10">
+                                                                <input type="checkbox" class="checkbox">
+                                                                <div class="knobs">
+                                                                    <input ng-repeat="item in ddValues.YesNo"
+                                                                           type='button'
+                                                                           class="btn-unselected"
+                                                                           ng-class="{'btnselected': recorddc.ToContInd == {{item.Id}}}"
+                                                                           value='{{item.Name}}'
+                                                                           ng-click="buttonSelect('ToContInd',item.Id,'recorddc')"
+                                                                           ng-model="recorddc.ToContInd">
+                                                                </div>
+                                                                <div class="layer"></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td><img class="input-del-vsmall" src="~/Images/del.png" ng-click="deleteDrugChrtRow(recorddc.Id)" /></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="div-row-woborder text-right">
+                                <input type="button" value="Add New" class="add-button" ng-click="newDrugChrtRow()" />
+                            </div>
+                            <div class="row-innerbox-bg">
+                                <div class="left-box">
+                                    <label>Order By:</label>
+                                    <input type="text" class="input-box-medium" ng-model="recorddc.OrderBy" />
+                                </div>
+                                <div class="right-box">
+                                    <label>Given By:</label>
+                                    <input type="text" class="input-box-medium" ng-model="recorddc.AdminBy" />
+                                </div>
+                            </div>
+                            <div class="page-footer">
+                                <input type="button" class="btn-cancel" value="Cancel" />
+                                <button class="btn-submit" ng-click="save()">Submit</button>
+                            </div>
+                        </div>
+
+                        <div class="whitebg top-margin">
+                            <div class="sectionhdrCenter">DISPOSITION</div>
+                            <div class="div-row-woborder">
+                                <div class="row-innerbox">
+                                    <input ng-repeat="item in ddValues.DischAdmitDAMADecea"
+                                           type='button'
+                                           class="btn-unselected"
+                                           ng-class="{'btnselected': Dispo.DispId == {{item.Id}}}"
+                                           value='{{item.Name}}'
+                                           ng-click="buttonSelect('DispId',item.Id,'Dispo')"
+                                           ng-model="Dispo.DispId">
+                                </div>
+                                <div class="row-innerbox-bg">
+                                    <div class="left-box">
+                                        <label>ER Physician:</label>
+                                        <input type="text" class="input-box-medium" ng-model="Dispo.ER" />
+                                    </div>
+                                    <div class="right-box">
+                                        <label>Sign:</label>
+                                        <input type="text" class="input-box-medium" ng-model="Dispo.ERSign" />
+                                    </div>
+                                </div>
+                                <div class="row-innerbox-bg">
+                                    <div class="left-box">
+                                        <label>Receiving Unit Doctor:</label>
+                                        <input type="text" class="input-box-medium" ng-model="Dispo.ReceiveDoc" />
+                                    </div>
+                                    <div class="right-box">
+                                        <label>Disposition Time:</label>
+                                        <input type="text" class="input-box-medium" ng-model="Dispo.DispTime" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="page-footer">
+                                <input type="button" class="btn-cancel" value="Cancel" />
+                                <button class="btn-submit" ng-click="save(9,$event)">Submit</button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <!-- Pop up hidden start-->
+            <div class="pop-up" style="display:none;">
+                <div class="popup-hdr">Add New Drug</div>
+                <div class="div-row-woborder">
+                    <label class="popup-label">Drug:</label><input type="text" class="input-box" />
+                </div>
+                <div class="div-row-woborder">
+                    <label class="popup-label">Drug (Specific Name):</label><input type="text" class="input-box" />
+                </div>
+                <div class="div-row-woborder">
+                    <label class="popup-label">Dose:</label><input type="text" class="input-box" />
+                </div>
+                <div class="div-row-woborder">
+                    <label class="popup-label">Route:</label><input type="text" class="input-box" />
+                </div>
+                <div class="div-row-woborder">
+                    <label class="popup-label">Order By:</label><input type="text" class="input-box" />
+                </div>
+                <div class="div-row-woborder">
+                    <label class="popup-label">Admin By:</label><input type="text" class="input-box" />
+                </div>
+                <div class="div-row-woborder">
+                    <label class="popup-label">Time:</label><input type="text" class="input-box" />
+                </div>
+                <div class="div-row-woborder footer-box text-right">
+                    <input type="button" value="Add" ng-click="save()" class="add-button" />
+                    <input type="button" value="Cancel" class="add-button" />
+                </div>
+            </div>
+            <!-- Pop up hidden Ends -->
+        </form>
+
+        @*vital entry dialog*@
+
+        <div style="visibility: hidden;">
+            <div class="md-dialog-container" id="entryVitals">
+                <md-dialog layout-padding>
+                    <div class="whitebg">
+                        <div class="col-md-4 col-sm-4">
+                            <label>Disability</label>
+                            <input ng-repeat="item in ddValues.LevlOfConsness"
+                                   type='button'
+                                   class="btn-unselected"
+                                   ng-class="{'btnselected': VitalsPop.ConsciousLevelId == {{item.Id}}}"
+                                   value='{{item.Name}}'
+                                   ng-click="buttonSelect('ConsciousLevelId',item.Id,'VitalsPop')"
+                                   ng-model="VitalsPop.ConsciousLevelId">
+                        </div>
+                        <br>
+                        <div class="col-md-4 col-sm-4">
+                            <label>Respiratory rate  </label>
+                            <input type="number" class="input-box" min="9.00" max="30.00" required name="RR" ng-class="{'required': VitalsPop.RR.$invalid}" ng-model="VitalsPop.RR" />
+                        </div><br>
+                        <div class="col-md-4 col-sm-4">
+                            <label>Heart rate </label>
+                            <input type="number" class="input-box" min="30.00" max="200.00" required name="HR" ng-class="{'required': VitalsPop.HR.$invalid}" ng-model="VitalsPop.HR" />
+                        </div><br>
+                        <div class="col-md-4 col-sm-4">
+                            <label>Systolic BP </label>
+                            <input type="number" class="input-box" min="60.00" max="300.00" required name="BP_R_Sys" ng-class="{'required': VitalsPop.BP_R_Sys.$invalid}" ng-model="VitalsPop.BP_R_Sys" />
+                        </div><br>
+                        <div class="col-md-4 col-sm-4">
+                            <label>Diastolic BP </label>
+                            <input type="number" class="input-box" min="60.00" max="300.00" required name="BP_R_Dia" ng-class="{'required': VitalsPop.BP_R_Dia.$invalid}" ng-model="VitalsPop.BP_R_Dia" />
+                        </div><br>
+                        <div class="col-md-4 col-sm-4">
+                            <label>Temparature (°F) </label>
+                            <input type="number" class="input-box" step="0.01" min="80.00" max="110.00" required name="Temp" ng-class="{'required': VitalsPop.Temp.$invalid}" ng-model="VitalsPop.Temp" />
+                        </div><br>
+                        <div class="col-md-4 col-sm-4">
+                            <label>Pain score </label>
+                            <input type="number" class="input-box" required name="PainScore" ng-class="{'required': VitalsPop.PainScore.$invalid}" ng-model="VitalsPop.PainScore" />
+                        </div><br>
+                        <div class="col-md-4 col-sm-4">
+                            <label>GRBS </label>
+                            <input type="number" class="input-box" required name="GRBS" ng-class="{'required': VitalsPop.GRBS.$invalid}" ng-model="VitalsPop.GRBS" />
+                        </div><br>
+
+                        <div class="col-md-4 col-sm-4">
+                            <label>
+                                O2 Saturation
+                                <input class="input-box-vsmall" type="text" required name="O2Sat" ng-model="VitalsPop.O2Sat" />% on room air 
+                                <input class="input-box-vsmall" type="text" required name="Air" ng-model="VitalsPop.Air" />% at 
+                                <input class="input-box-vsmall" type="text" required name="O2Qty" ng-model="VitalsPop.O2Qty" /> Ltr/min O2
+                            </label>
+                        </div>
+
+                    </div>
+                    <div>
+                        <button class="btnselected" ng-click="vitalsSave($event)">Ok</button>
+                        <button class="btnselected" ng-click="vitalsCancel()">Cancel</button>
+                    </div>
+
+                </md-dialog>
+            </div>
+        </div>
+        @*end vital entry dialog*@
+
+
+        @*Evm dialog*@
+
+        <div style="visibility: hidden;">
+            <div class="md-dialog-container" id="calcEvm">
+                <md-dialog layout-padding>
+
+                    <div class="whitebg">
+                        <div class="drugchart-grid">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <td>Eye opening</td>
+                                        <td>Verbal response</td>
+                                        <td>Motor response</td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="even">
+                                        <td class="align-center"><input type="button" class="btnselected" value="Spontaneous" ng-model="EyeOpen" ng-click="calcEvmTotal('E',4)" /></td>
+                                        <td class="align-center"><input type="button" class="btnselected" value="Oriented" ng-model="VerbalResp" ng-click="calcEvmTotal('V',5)" /></td>
+                                        <td class="align-center"><input type="button" class="btnselected" value="Obeys commands" ng-model="MotorResp" ng-click="calcEvmTotal('M',6)" /></td>
+                                    </tr>
+                                    <tr class="odd">
+                                        <td class="align-center"><input type="button" class="btn-unselected" value="To voice" ng-model="EyeOpen" ng-click="calcEvmTotal('E',3)" /></td>
+                                        <td class="align-center"><input type="button" class="btn-unselected" value="Confused" ng-model="VerbalResp" ng-click="calcEvmTotal('V',4)" /></td>
+                                        <td class="align-center"><input type="button" class="btn-unselected" value="Localises to pain" ng-model="MotorResp" ng-click="calcEvmTotal('M',5)" /></td>
+                                    </tr>
+                                    <tr class="even">
+                                        <td class="align-center"><input type="button" class="btnselected" value="To pain" ng-model="EyeOpen" ng-click="calcEvmTotal('E',2)" /></td>
+                                        <td class="align-center"><input type="button" class="btnselected" value="Inappropriate" ng-model="VerbalResp" ng-click="calcEvmTotal('V',3)" /></td>
+                                        <td class="align-center"><input type="button" class="btnselected" value="Withdraws to pain" ng-model="MotorResp" ng-click="calcEvmTotal('M',4)" /></td>
+                                    </tr>
+                                    <tr class="odd">
+                                        <td class="align-center"><input type="button" class="btn-unselected" value="No response" ng-model="EyeOpen" ng-click="calcEvmTotal('E',1)" /></td>
+                                        <td class="align-center"><input type="button" class="btn-unselected" value="Incomprehensive" ng-model="VerbalResp" ng-click="calcEvmTotal('V',2)" /></td>
+                                        <td class="align-center"><input type="button" class="btn-unselected" value="Flexion" ng-model="MotorResp" ng-click="calcEvmTotal('M',3)" /></td>
+                                    </tr>
+                                    <tr class="even">
+                                        <td class="align-center"></td>
+                                        <td class="align-center"><input type="button" class="btnselected" value="No response" ng-model="VerbalResp" ng-click="calcEvmTotal('V',1)" /></td>
+                                        <td class="align-center"><input type="button" class="btnselected" value="Extension" ng-model="MotorResp" ng-click="calcEvmTotal('M',2)" /></td>
+                                    </tr>
+                                    <tr class="odd">
+                                        <td class="align-center"></td>
+                                        <td class="align-center"></td>
+                                        <td class="align-center"><input type="button" class="btn-unselected" value="No response" ng-model="MotorResp" ng-click="calcEvmTotal('M',1)" /></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <label>E</label><input type="text" class="input-box-vsmall" ng-model="EyeOpen" ng-click="calcEvmTotal()" />
+                        <label class="label-rightmargin">V</label>
+                        <input type="text" class="input-box-vsmall" ng-model="VerbalResp" ng-click="calcEvmTotal()" />
+                        <label class="label-rightmargin">M</label>
+                        <input type="text" class="input-box-vsmall" ng-model="MotorResp" ng-click="calcEvmTotal()" />
+                        <label class="label-rightmargin">Total</label>
+                        <input type="text" class="input-box-vsmall" ng-model="EVMTotal" />
+                    </div>
+
+                    <div>
+                        <button class="btnselected" ng-click="saveEvm()">Ok</button>
+                        <button class="btnselected" ng-click="calcEvmCancel()">Cancel</button>
+                    </div>
+
+                </md-dialog>
+            </div>
+        </div>
+        @*end Evm dialog*@
+    </div>
+
+</main>
+
+
+<script>
+
+    getDDValues("8,9,10,16,17,18,19,20,21,22,23,25,90,91");
+    var DrugRec = [{ Id: 1, Drug: 'Disprin', DrugName: '(aspirin)', Dose: '350 Mg', Route: 'PO', Frequency: '09.35 a.m', ToContInd: 'Twice Daily' }];
+    var CurRecId = 1;
+
+    var DrugChrt = [{ Id: 1, Drug: 'Disprin', DrugSpec: '(aspirin)', Dose: '350 Mg', Route: 'PO', Qty: '10 mg', ToContInd: 'Twice Daily' }];
+    var CurRecoId = 1;
+
+    var app = angular.module('myApp', ['ngMaterial', 'ngMessages', 'angularMoment']);
+
+    app.service('PoisoningService', function ($http) { });
+
+    var json_VitalsPop = null;
+    var json_Moa = null;
+    var json_vitals = null;
+    var json_PAAir = null;
+    var json_PABreat = null;
+    var json_PACir = null;
+    var json_PADisa = null;
+    var json_PAExpo = null;
+    var json_DetEvnt = null;
+    var json_AmplHist = null;
+    var json_SupCare = null;
+    var json_PHExam = null;
+    var json_PoiCat = null;
+    var json_Inves = null;
+    var json_Dispo = null;
+    var json_drugs = null;
+    var json_drugsChart = null;
+
+    app.controller('PoisoningController', function ($scope, $http, $filter, $mdDialog, $window) {
+
+        var request = $http.get(baseUrl + "api/Poisoning?secName=PO_VitalsPop&Id=1").then(function (response) { if (response.data.Id != null) { $scope.VitalsPop = response.data; json_VitalsPop = response.data;   /* insertRecord('chestpain', json)*/ } });
+        var request = $http.get(baseUrl + "api/Poisoning?secName=PO_Moa&Id=1").then(function (response) { if (response.data.Id != null) { $scope.Moa = response.data; json_Moa = response.data; } });
+        var request = $http.get(baseUrl + "api/Poisoning?secName=PO_vitals&Id=1").then(function (response) { if (response.data.Id != null) { $scope.vitals = response.data; json_vitals = response.data; } });
+        var request = $http.get(baseUrl + "api/Poisoning?secName=PO_PAAir&Id=1").then(function (response) { if (response.data.Id != null) { $scope.PAAir = response.data; json_PAAir = response.data; } });
+        var request = $http.get(baseUrl + "api/Poisoning?secName=PO_PABreat&Id=1").then(function (response) { if (response.data.Id != null) { $scope.PABreat = response.data; json_PABreat = response.data; } });
+        var request = $http.get(baseUrl + "api/Poisoning?secName=PO_PACir&Id=1").then(function (response) { if (response.data.Id != null) { $scope.PACir = response.data; json_PACir = response.data; } });
+        var request = $http.get(baseUrl + "api/Poisoning?secName=PO_PADisa&Id=1").then(function (response) { if (response.data.Id != null) { $scope.PADisa = response.data; json_PADisa = response.data; } });
+        var request = $http.get(baseUrl + "api/Poisoning?secName=PO_PAExpo&Id=1").then(function (response) { if (response.data.Id != null) { $scope.PAExpo = response.data; json_PAExpo = response.data; } });
+        var request = $http.get(baseUrl + "api/Poisoning?secName=PO_DetEvnt&Id=1").then(function (response) { if (response.data.Id != null) { $scope.DetEvnt = response.data; json_DetEvnt = response.data; } });
+        var request = $http.get(baseUrl + "api/Poisoning?secName=PO_AmplHist&Id=1").then(function (response) { if (response.data.Id != null) { $scope.AmplHist = response.data; json_AmplHist = response.data; } });
+        var request = $http.get(baseUrl + "api/Poisoning?secName=PO_SupCare&Id=1").then(function (response) { if (response.data.Id != null) { $scope.SupCare = response.data; json_SupCare = response.data; } });
+        var request = $http.get(baseUrl + "api/Poisoning?secName=PO_PHExam&Id=1").then(function (response) { if (response.data.Id != null) { $scope.PHExam = response.data; json_PHExam = response.data; } });
+        var request = $http.get(baseUrl + "api/Poisoning?secName=PO_PoiCat&Id=1").then(function (response) { if (response.data.Id != null) { $scope.PoiCat = response.data; json_PoiCat = response.data; } });
+        var request = $http.get(baseUrl + "api/Poisoning?secName=PO_Inves&Id=1").then(function (response) { if (response.data.Id != null) { $scope.Inves = response.data; json_Inves = response.data; } });
+        var request = $http.get(baseUrl + "api/Poisoning?secName=PO_Dispo&Id=1").then(function (response) {if (response.data.Id != null) { $scope.Dispo = response.data; json_Dispo = response.data; }});
+        var request = $http.get(baseUrl + "api/Poisoning?secName=PO_Drugs&Id=1").then(function (response) {if (response.data.Id != null) { $scope.drugs = response.data; json_drugs = response.data; }});
+        var request = $http.get(baseUrl + "api/Poisoning?secName=PO_DrugsChrts&Id=1").then(function (response) { if (response.data.Id != null) { $scope.drugsChart = response.data; json_drugsChart = response.data; }});
+
+
+
+        $scope.ddValues = ddValues;
+        $scope.YesNo = [{ Id: true, Name: "Yes" }, { Id: false, Name: "No" }];
+        $scope.LeftRight = [{ Id: true, Name: "Left" }, { Id: false, Name: "Right" }];
+        $scope.buttonSelect = function (field, value, tblname) { $scope[tblname][field] = value; };
+
+        $scope.EyeOpen = 0;
+        $scope.VerbalResp = 0;
+        $scope.MotorResp = 0;
+        $scope.EVMTotal = 0;
+
+        $scope.VitalsPop = {};
+        $scope.Moa = {};
+        $scope.vitals = {};
+        $scope.PAAir = {};
+        $scope.PABreat = {};
+        $scope.PACir = {};
+        $scope.PADisa = {};
+        $scope.PAExpo = {};
+        $scope.DetEvnt = {};
+        $scope.AmplHist = {};
+        $scope.SupCare = {};
+        $scope.PHExam = {};
+        $scope.PoiCat = {};
+        $scope.Inves = {};
+        $scope.Dispo = {};
+
+        $scope.drugs = DrugRec;
+        $scope.drugsChart = DrugChrt;
+
+        //Drug Reconcilation add
+        $scope.newDrugRecRow = function () {
+            $scope.drugs.push({ Id: ++CurRecId, Drug: null, DrugName: null, Dose: null, Route: null, Frequency: null, ToContInd: null }); // adds row to the bottom
+        };
+        $scope.deleteDrugRecRow = function (id) {
+            if ($scope.drugs.length > 1) {
+                $scope.drugs = $scope.drugs.filter((item) => item.Id !== id);
+                CurRecId--;
+                DrugRec = $scope.drugs;
+            }
+        };
+        // end
+
+        //Drug chart add
+        $scope.newDrugChrtRow = function () {
+            $scope.drugsChart.push({ Id: ++CurRecoId, Drug: null, DrugSpec: null, Dose: null, Route: null, Qty: null, ToContInd: null }); // adds row to the bottom
+        };
+        $scope.deleteDrugChrtRow = function (id) {
+            if ($scope.drugsChart.length > 1) {
+                $scope.drugsChart = $scope.drugsChart.filter((item) => item.Id !== id);
+                CurRecoId--;
+                DrugChrt = $scope.drugsChart;
+            }
+        };
+        // end
+
+        //Vitals window
+        $scope.entryVitals = function (ev) {
+            $mdDialog.show({
+                contentElement: '#entryVitals',
+                parent: angular.element(document.body),
+                targetEvent: ev
+            });
+        };
+        $scope.vitalsCancel = function () {
+            $scope.VitalsPop = {};
+            $mdDialog.cancel();
+        };
+        //Vitals window end
+
+        //evm window
+        $scope.calcEvm = function (ev) {
+            $mdDialog.show({
+                contentElement: '#calcEvm',
+                parent: angular.element(document.body),
+                targetEvent: ev
+            });
+        };
+        $scope.calcEvmCancel = function () {
+            $scope.EyeOpen = null;
+            $scope.VerbalResp = null;
+            $scope.MotorResp = null;
+            $scope.EVMTotal = null;
+
+            $mdDialog.cancel();
+        };
+        //evm window end
+
+        //calc total evm
+        $scope.calcEvmTotal = function (EVM, resl) {
+            switch (EVM) {
+                case 'E': $scope.EyeOpen = resl; break; //$("#E").val(resl)
+                case 'V': $scope.VerbalResp = resl; break; //$("#V").val(resl)
+                case 'M': $scope.MotorResp = resl; break; //$("#M").val(resl)
+            }
+            $scope.EVMTotal = $scope.EyeOpen + $scope.VerbalResp + $scope.MotorResp;
+        };
+        //calc total evm end
+
+        //save Vitals
+        $scope.vitalsSave = function (ev) {
+            var vitls = $scope.VitalsPop;
+        };
+        //end Vitals
+
+        //SAVE FORMS
+        $scope.save = function (field, ev) {
+
+            //var jsonData = {
+            //    "PO_VitalsPop": json_VitalsPop, "PO_Moa ": json_Moa, "PO_vitals": json_vitals, "PO_PAAir": json_PAAir, "PO_PABreat ": json_PABreat, "PO_PACir ": json_PACir,
+            //    "PO_PADisa ": json_PADisa, "PO_PAExpo ": json_PAExpo, "PO_DetEvnt ": json_DetEvnt, "PO_AmplHist ": json_AmplHist, "PO_SupCare": json_SupCare, "PO_PHExam": json_PHExam,
+            //    "PO_PoiCat ": json_PoiCat, "PO_Inves ": json_Inves, "PO_Dispo": json_Dispo
+
+            //    "PO_VitalsPop": $scope.VitalsPop,"PO_Moa ": $scope.Moa ,"PO_vitals": $scope.vitals,"PO_PAAir": $scope.PAAir,"PO_PABreat ": $scope.PABreat,"PO_PACir ": $scope.PACir,"PO_PADisa ": $scope.PADisa,"PO_PAExpo ": $scope.PAExpo,
+            //    "PO_DetEvnt ": $scope.DetEvnt,"PO_AmplHist ": $scope.AmplHist,"PO_SupCare": $scope.SupCare,"PO_PHExam": $scope.PHExam,"PO_PoiCat ": $scope.PoiCat,"PO_Inves ": $scope.Inves,"PO_Dispo": $scope.Dispo
+            //}
+
+            if (field == 9) {
+                var req = $http.put(baseUrl + "api/Poisoning?key=PO_Dispo", $scope.Dispo, {}).then(function (response) {
+                    alert("Successfully Saved.");
+                });
+            }
+
+            var req = $http.put(baseUrl + "api/Poisoning?key=PO_VitalsPop", $scope.VitalsPop, {}).then(function (response) {
+                alert("Successfully Saved.");
+            });
+
+            var req = $http.put(baseUrl + "api/Poisoning?key=PO_Moa", $scope.Moa, {}).then(function (response) {
+                alert("Successfully Saved.");
+            });
+
+            var req = $http.put(baseUrl + "api/Poisoning?key=PO_vitals", $scope.vitals, {}).then(function (response) {
+                alert("Successfully Saved.");
+            });
+
+            var req = $http.put(baseUrl + "api/Poisoning?key=PO_PAAir", $scope.PAAir , {}).then(function (response) {
+                alert("Successfully Saved.");
+            });
+
+            var req = $http.put(baseUrl + "api/Poisoning?key=PO_PABreat", $scope.PABreat, {}).then(function (response) {
+                alert("Successfully Saved.");
+            });
+
+            var req = $http.put(baseUrl + "api/Poisoning?key=PO_PACir", $scope.PACir, {}).then(function (response) {
+                alert("Successfully Saved.");
+            });
+
+            var req = $http.put(baseUrl + "api/Poisoning?key=PO_PADisa", $scope.PADisa, {}).then(function (response) {
+                alert("Successfully Saved.");
+            });
+
+            var req = $http.put(baseUrl + "api/Poisoning?key=PO_PAExpo", $scope.PAExpo, {}).then(function (response) {
+                alert("Successfully Saved.");
+            });
+
+            var req = $http.put(baseUrl + "api/Poisoning?key=PO_DetEvnt", $scope.DetEvnt, {}).then(function (response) {
+                alert("Successfully Saved.");
+            });
+
+            var req = $http.put(baseUrl + "api/Poisoning?key=PO_AmplHist ", $scope.AmplHist , {}).then(function (response) {
+                alert("Successfully Saved.");
+            });
+
+            var req = $http.put(baseUrl + "api/Poisoning?key=PO_SupCare", $scope.SupCare , {}).then(function (response) {
+                alert("Successfully Saved.");
+            });
+
+            var req = $http.put(baseUrl + "api/Poisoning?key=PO_PHExam", $scope.PHExam, {}).then(function (response) {
+                alert("Successfully Saved.");
+            });
+
+            var req = $http.put(baseUrl + "api/Poisoning?key=PO_PoiCat", $scope.PoiCat, {}).then(function (response) {
+                alert("Successfully Saved.");
+            });
+
+            var req = $http.put(baseUrl + "api/Poisoning?key=PO_Inves ", $scope.Inves , {}).then(function (response) {
+                alert("Successfully Saved.");
+            });
+            
+            $http.put(baseUrl + "api/Poisoning?key=PO_Drugs", $scope.drugs, {}).then(function (response) {
+                alert("Successfully Saved.");
+            });
+
+            $http.put(baseUrl + "api/Poisoning?key=PO_DrugsChrts", $scope.drugsChart, {}).then(function (response) {
+                alert("Successfully Saved.");
+            });
+        };
+        // END SAVE
+
+    });
+
+
+</script>

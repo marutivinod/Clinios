@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="8ebbc7c77f4b4d0e9c49dbce6a928f22" Name="Diagram1" ZoomLevel="82">
+        <EntityTypeShape EntityType="ClinIOSModel.Patient" Width="1.5" PointX="0.5" PointY="3.375" IsExpanded="false" />
+        <EntityTypeShape EntityType="ClinIOSModel.Role_Master" Width="1.5" PointX="0.5" PointY="2.25" IsExpanded="false" />
+        <EntityTypeShape EntityType="ClinIOSModel.Traige_Master" Width="1.5" PointX="0.5" PointY="1.75" IsExpanded="false" />
+        <EntityTypeShape EntityType="ClinIOSModel.Triage" Width="1.5" PointX="0.5" PointY="0.5" IsExpanded="false" />
+        <EntityTypeShape EntityType="ClinIOSModel.Vw_MasterListKeys" Width="1.5" PointX="2.375" PointY="0.5" IsExpanded="false" />
+        <EntityTypeShape EntityType="ClinIOSModel.vw_PatientDetails" Width="1.5" PointX="2.375" PointY="1.75" IsExpanded="false" />
+        <EntityTypeShape EntityType="ClinIOSModel.User" Width="1.5" PointX="0.5" PointY="2.875" IsExpanded="false" />
+        <EntityTypeShape EntityType="ClinIOSModel.vw_Users" Width="1.5" PointX="2.375" PointY="1.125" IsExpanded="false" />
+        <EntityTypeShape EntityType="ClinIOSModel.Triage_Vitals" Width="1.5" PointX="0.5" PointY="1.25" IsExpanded="false" />
+        <AssociationConnector Association="ClinIOSModel.FK_Triage_Vital_Triage" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

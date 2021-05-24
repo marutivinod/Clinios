@@ -1,0 +1,369 @@
+﻿<main>
+    <div ng-app="myApp" ng-controller="TirageController">
+        <form name="myForm">
+            <div class="md-container">
+                <div class="md-subheader">
+                    <div class="header-logo">
+                        <img src="~/Images/logo-small-trans.png" />
+                    </div>
+                    <div class="userinfo"></div>
+                </div>
+                <div class="body-content">
+                    <div class="form-elements">
+                        <div class="form-heading">Emergency Triage</div>
+                        <div class="row-div-hding">
+                            <div class="div-column-left">
+                                <label>MR No :</label>
+                                <field> <label>  {{item.MRNO}} </label></field>
+                            </div>
+                            <div class="div-column-right">
+                                <label>OP No :</label>
+                                <field><label>  {{item.OPNO}} </label></field>
+                            </div>
+                        </div>
+                        <div class="patient-details">
+                            <div class="div-row-info">
+                                <div class="div-column-left">
+                                    <div>
+                                        <label>Patient Name :</label>
+                                        <field>Somesh Pagadala</field>
+                                    </div>
+                                </div>
+                                <div class="div-column-right">
+                                    <div class="right-column-small">
+                                        <label>Age (Years) :</label>
+                                        <field>45 (Years)</field>
+                                    </div>
+                                    <div class="right-column-small">
+                                        <label>Gender :</label>
+                                        <field>Male</field>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="div-row-info">
+                                <div class="div-column-left">
+                                    <div>
+                                        <label>Phone No  </label>
+                                        <field>+91 88888 88888</field>
+                                    </div>
+                                </div>
+                                <div class="div-column-right">
+                                    <div>
+                                        <label>Address </label>
+                                        <field>6-2-/60, DilshukNagar, Hyderabad - 500016. </field>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="triage-sec">
+                            <div class="div-column-left div-column-leftBorder">
+                                <span ng-repeat="item in ddValues.RiskType1" class="priority1Style">
+                                    <label><input type="radio" ng-click="risktypeOnclick()" name="CardOrPerArrestTypeId" ng-value='{{item.Id}}' ng-model="data.CardOrPerArrestTypeId">{{item.Name}} </label>
+                                </span>
+                            </div>
+                            <div class="div-column-right div-column-rightBorder">
+                                <select required name="PainTypeId" ng-change="CardorPerOnClick()" ng-class="{'required': form.PainTypeId.$invalid}" ng-options="selectitem.Id as selectitem.Name for selectitem in ddValues.RiskType2" ng-model="data.PainTypeId" class=" select-box"><option value="" class="">-- choose value --</option></select>
+                            </div>
+                            <div ng-show="Pno >0" class="priority_12">
+                                <label>PRIORITY - {{Pno}}</label>
+                            </div>
+                        </div>
+                        <div class="whitebg">
+                            <div class="div-row">
+                                <label>Level of Consciousness</label>
+                                <div class="input-field">
+                                    <span ng-repeat="item in ddValues.LevlOfConsness">
+                                        <label><input type="radio" name="consciousradio" ng-value='{{item.Id}}' ng-model="data.ConsciousLevelId" required>{{item.Name}} </label>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="div-row">
+                                <label>Respiratory rate  </label>
+                                <input type="number" class="input-box" min="9.00" max="30.00" required name="RespRate" ng-class="{'required': form.RespRate.$invalid}" ng-model="data.RespRate" />
+                            </div>
+                            <div class="div-row">
+                                <label>Heart rate </label>
+                                <input type="number" class="input-box" min="30.00" max="200.00" required name="HeartRate" ng-class="{'required': form.HeartRate.$invalid}" ng-model="data.HeartRate" />
+                            </div>
+                            <div class="div-row">
+                                <label>Systolic BP </label>
+                                <input type="number" class="input-box" min="60.00" max="300.00" required name="SystBP" ng-class="{'required': form.SystBP.$invalid}" ng-model="data.SystBP" />
+                            </div>
+                            <div class="div-row">
+                                <label>Diastolic BP </label>
+                                <input type="number" class="input-box" min="60.00" max="300.00" required name="DiastBP" ng-class="{'required': form.DiastBP.$invalid}" ng-model="data.DiastBP" />
+                            </div>
+                            <div class="div-row">
+                                <label>Temparature (°F) </label>
+                                <input type="number" class="input-box" step="0.01" min="80.00" max="110.00" required name="Temp" ng-class="{'required': form.Temp.$invalid}" ng-model="data.Temp" />
+                            </div>
+                            <div class="div-row">
+                                <label>Pain score </label>
+                                <input type="number" class="input-box" required name="PainScore" ng-class="{'required': form.PainScore.$invalid}" ng-model="data.PainScore" />
+                            </div>
+                            <div class="div-row">
+                                <label>GRBS </label>
+                                <input type="number" class="input-box" required name="GRBS" ng-class="{'required': form.GRBS.$invalid}" ng-model="data.GRBS" />
+                            </div>
+                            <div class="div-row">
+                                <label>O2 saturation(%) </label>
+                                <input type="number" class="input-box" required name="O2Perctge" ng-class="{'required': form.O2Perctge.$invalid}" ng-model="data.O2Perctge" ng-change="SaturationOnChange(data.O2Perctge)" />
+                            </div>
+                            <div class="div-row">
+                                <label>COPD</label>
+                                <div class="input-field">
+                                    <span ng-repeat="item in YesNo">
+                                        <label><input required type="radio" name="COPD" ng-value='{{item.Id}}' ng-model="data.COPD" ng-change="COPDOnChanges({{item.Id}})">{{item.Name}} </label>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="div-row">
+                                <label>Patient requires O2 supplementation </label>
+                                <label ng-model="data.O2Req" style="text-align: left !important;">{{data.O2Req? "Yes" :"No"}}</label>
+                                @*<input class="input-box" type="text" ng-model="data.O2Req" ng-value={{data.O2Req? 'Yes' :'No'}} ng-disabled="true">{{data.O2Req? "Yes" :"No"}}</input>*@
+                            </div>
+                            <div class="div-row">
+                                <label></label>
+                                <button class="calc-button" ng-click="Calculate()">Calculate</button>
+                            </div>
+                            @*<div>
+                                    <input type="text" ng-model="data.RiskLevel" ng-disabled="true" />
+                                </div>*@
+                            @*<div ng-class="{risklvl:priorityNo==2,risklvl_O:priorityNo==3,risklvl_G:priorityNo==4}">{{result}}</div>*@
+                            <div class="{{priorityNo}}">{{result}}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="page-btm-btn">
+                <span ng-show="form.$invalid" class="required-message">Fill the required data.</span>
+                <button ng-click="saveItem(data)" class="submit-btn" ng-class="{'required': form.$invalid}" ng-disabled="form.$invalid">SUBMIT</button>&nbsp;&nbsp;
+            </div>
+
+        </form>
+    </div>
+</main>
+
+<script>
+
+    getDDValues("3,5,6,7,8,9");
+    var json = {};
+
+    var app = angular.module('myApp', ['ngMaterial', 'ngMessages', 'angularMoment']);
+    app.config(function ($mdDateLocaleProvider) {
+        $mdDateLocaleProvider.formatDate = function (date) {
+            return date ? moment(date).format('DD-MMM-YYYY') : '';
+        };
+        $mdDateLocaleProvider.parseDate = function (dateString) {
+            var m = moment(dateString, 'DD-MMM-YYYY', true);
+            return m.isValid() ? m.toDate() : new Date(NaN);
+        };
+    });
+
+    app.service('tirageService', function ($http) {
+        //insert
+        this.addTirageVitals = function (data) {
+            var req = $http.post(baseUrl + 'api/TirageVitals', JSON.stringify(data),
+                {
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                }
+            );
+            return req;
+        };
+        //Get
+        this.getTirageVitals = function () {
+            var req = $http.get(baseUrl + 'api/TirageVitals', { params: { id: "1002" } });
+            return req;
+        };
+    });
+
+    app.controller('TirageController', function ($scope, $http, $filter, $window, tirageService) {
+        $scope.priorityNo = '';
+        tirageService.getTirageVitals().then(function (response) {
+            $scope.data = response.data;
+            requiresO2();
+            return response;
+        });
+        $scope.maxDate = new Date(
+            new Date().getFullYear(),
+            new Date().getMonth(),
+            new Date().getDate()
+        );
+        $scope.ddValues = ddValues;
+
+        $scope.YesNo = [{ Id: true, Name: "Yes" }, { Id: false, Name: "No" }];
+
+        $scope.Pno = 0;
+        $scope.Calculate = function () {
+            var loc = '';
+            if ($scope.data.ConsciousLevelId == 26) { loc = 'A' } else { loc = 'V' };
+
+            $scope.result = $scope.getPriorityTotal(loc, $scope.data.RespRate, $scope.data.HeartRate, $scope.data.SystBP, $scope.data.Temp, $scope.data.O2Perctge, $scope.data.COPD);
+        }
+        $scope.risktypeOnclick = function () {
+            $scope.data.PainTypeId = null;
+            $scope.Pno = 1;
+        }
+        $scope.CardorPerOnClick = function () {
+            //if ($scope.data.PainTypeId != null) {
+            $scope.data.CardOrPerArrestTypeId = null;
+            $scope.Pno = 2;
+            // }
+        }
+
+        $scope.painTypeIdOnChange = function () {
+            if ($scope.data.CardOrPerArrestTypeId == undefined || $scope.data.CardOrPerArrestTypeId != null) {
+                $scope.data.CardOrPerArrestTypeId = null;
+            }
+            if ($scope.data.CardOrPerArrestTypeId == null) {
+                $scope.data.CardOrPerArrestTypeId = null;
+            }
+        }
+        $scope.COPDOnChanges = function (item) {
+            requiresO2();
+        }
+        $scope.SaturationOnChange = function () {
+            requiresO2();
+        }
+        $scope.saveItem = function (item) {
+            item.PatientID = 1002;
+            item.TrgDate = new Date();
+            item.TrgTime = new Date().getHours() + ":" + new Date().getMinutes();
+            item.RiskPriority = (item.PainTypeId == null ? item.CardOrPerArrestTypeId : (item.CardOrPerArrestTypeId == null ? item.PainTypeId : 0));
+            item.SymptomId = (item.PainTypeId == null ? item.CardOrPerArrestTypeId : (item.CardOrPerArrestTypeId == null ? item.PainTypeId : 0));
+            item.Status = 1;
+            item.CreatedBy = 1;
+            item.Total = tot;
+            //if (item.Total == null) { alert("Total Score not calculated, click 'Calculate' button....."); return; }
+
+
+            //item.RiskLevel = priority;
+
+            var r = confirm("Are You Sure to Update the Tirage ?");
+            if (r == true) {
+                tirageService.addTirageVitals(item).then(function (response) {
+                    tirageService.getTirageVitals().then(function (response) {
+                        debugger;
+                        switch (response.data.PainTypeId) {
+                            case 15: window.location.href = baseUrl + "Stroke/Stroke"; break;
+                            case 16: window.location.href = baseUrl + "ChestPain/ChestPain"; break;
+                            case 17: window.location.href = baseUrl + "Poisoning/Poisoning"; break;
+                            case 18: window.location.href = baseUrl + "Seizures/Seizures"; break;
+                            case 19: window.location.href = baseUrl + "SOB/SOB"; break;
+                            case 20: window.location.href = baseUrl + "Trauma/Trauma"; break;
+                            case 21: window.location.href = baseUrl + "AltMentalStatus/AltMentalStatus"; break;
+                            case 22: window.location.href = baseUrl + "GI/GI"; break;
+                            case 23: window.location.href = baseUrl + "Burns/Burns"; break;
+                            case 24: window.location.href = baseUrl + "Febrile/Febrile"; break;
+                            case 25: window.location.href = baseUrl + "PainAbdomen/PainAbdomen"; break;
+
+                            default: window.location.href = baseUrl + "Tirage/TirageCalc"; break
+                        }
+                        return response;
+                    });
+
+
+                });
+
+            }
+        };
+        function requiresO2() {
+            debugger;
+            if (($scope.data != null && $scope.data.COPD != 'undefined' && $scope.data.COPD != null) && ($scope.data != null && $scope.data.O2Perctge != 'undefined' && $scope.data.O2Perctge != null)) {
+                if ($scope.data.COPD == true && $scope.data.O2Perctge >= 92) {
+                    $scope.data.O2Req = false;
+                }
+                else if ($scope.data.COPD == false && $scope.data.O2Perctge >= 96) {
+                    $scope.data.O2Req = false;
+                }
+                else {
+                    $scope.data.O2Req = true;
+                }
+            }
+        }
+        $scope.getPriorityTotal = function (loc, resp, hr, sysBP, temp, o2, copd) {
+
+            if ((typeof (loc) !== "undefined" && loc !== null) && (typeof (resp) !== "undefined" && resp !== null) &&
+                (typeof (hr) !== "undefined" && hr !== null) && (typeof (sysBP) !== "undefined" && sysBP !== null) &&
+                (typeof (temp) !== "undefined" && temp !== null) && (typeof (o2) !== "undefined" && o2 !== null) &&
+                (typeof (copd) !== "undefined" && copd !== null)) {
+                var priority, locTot, respTot, hrTot, sysBPTot, tempTot, o2Tot
+
+            /*----------------------Level of consciousness---------------*/
+            /**/if (loc == 'A') locTot = 0                             /**/
+            /**/if (loc == 'V' || loc == 'P' || loc == 'U') locTot = 3 /**/
+            /*-----------------------------------------------------------*/
+
+            /*-------------Respiratory rate-----------------*/
+            /**/if (resp >= 9 && resp <= 11) respTot = 1  /**/
+            /**/if (resp >= 12 && resp <= 20) respTot = 0 /**/
+            /**/if (resp >= 21 && resp <= 24) respTot = 2 /**/
+            /**/if (resp <= 8 || resp >= 25) respTot = 3  /**/
+            /*----------------------------------------------*/
+
+            /*----------------O2 saturation-------------*/
+            /**/if (o2 >= 96) o2Tot = 0               /**/
+            /**/if (o2 >= 94 && o2 <= 95) o2Tot = 1   /**/
+            /**/if (o2 >= 92 && o2 <= 93) o2Tot = 2   /**/
+            /**/if (o2 <= 91) o2Tot = 3              /**/
+            /*------------------------------------------*/
+
+            /*-----------------------------Heart rate------------------------------*/
+            /**/if (hr >= 51 && hr <= 90) hrTot = 0                              /**/
+            /**/if ((hr >= 41 && hr <= 50) || (hr >= 90 && hr <= 110)) hrTot = 1 /**/
+            /**/if (hr >= 111 && hr <= 130) hrTot = 2                            /**/
+            /**/if (hr <= 40 || hr >= 131) hrTot = 3                             /**/
+            /*---------------------------------------------------------------------*/
+
+            /*-----------------------------------Systolic BP------------------------------------------*/
+            /**/if (sysBP >= 111 && sysBP <= 140) sysBPTot = 0                                      /**/
+            /**/if ((sysBP >= 101 && sysBP <= 110) || (sysBP >= 141 && sysBP <= 180)) sysBPTot = 1  /**/
+            /**/if ((sysBP >= 91 && sysBP <= 100) || (sysBP >= 181 && sysBP <= 220)) sysBPTot = 2   /**/
+            /**/if (sysBP <= 90 || sysBP >= 221) sysBPTot = 3                                       /**/
+            /*----------------------------------------------------------------------------------------*/
+
+            /*-------------------------------------Temparature----------------------------------------*/
+            /**/if (temp >= 96.9 && temp <= 100.4) tempTot = 0                                      /**/
+            /**/if ((temp >= 95.1 && temp <= 96.8) || (temp >= 100.5 && temp <= 102.2)) tempTot = 1 /**/
+            /**/if (temp > 102.2) tempTot = 2                                                       /**/
+            /**/if (temp <= 95.0) tempTot = 3                                                       /**/
+                /*----------------------------------------------------------------------------------------*/
+
+                /*----------------------Total Calculation------------------*/
+                tot = locTot + respTot + hrTot + sysBPTot + tempTot + o2Tot
+            /*---------------------------------------------------------*/
+
+            /*------------O2 requires---------*/
+            /**/if (copd == true) {         /**/
+            /**/    if (o2 < 92) tot += 2   /**/
+                    /**/
+                }                           /**/
+            /**/else {                      /**/
+            /**/     if (o2 < 96) tot += 2  /**/
+                    /**/
+                }                           /**/
+                /*--------------------------------*/
+                debugger;
+                if (tot >= 0 && tot <= 4) {
+                    priority = 'PRIORITY 4 - LOW RISK';
+                    this.priorityNo = 'risklvlG';
+                    return priority;
+                }
+                if ((locTot == 3 || respTot == 3 || hrTot == 3 || sysBPTot == 3 || tempTot == 3 || o2Tot == 3) || (tot >= 5 && tot <= 6)) {
+                    priority = 'PRIORITY 3 - MEDIUM RISK';
+                    this.priorityNo = 'risklvlO';
+                    return priority;
+                }
+                if (tot >= 7) {
+                    priority = 'PRIORITY 2 - HIGH RISK';
+                    this.priorityNo = 'risklvl';
+                    return priority;
+                }
+
+                return priority;
+            }
+        }
+    });
+</script>

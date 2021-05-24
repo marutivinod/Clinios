@@ -1,0 +1,85 @@
+﻿
+@model ClinIOS.Models.Login
+@{
+    ViewBag.Title = "Login";
+}
+<div class="login-container">
+    <div class="login-page">
+        <div class="login-logo">
+            <img src="~/Images/logo-trans.png" />
+        </div>
+        <div class="login-section">
+            <div class="login-sec">
+                <div class="login-hd">CliniOS</div>
+                <div class="login-box">
+                    @using (Html.BeginForm(null, null, new { ViewBag.ReturnUrl }, FormMethod.Post, new { id = "loginForm" }))
+                    {
+                        @Html.ValidationSummary(true)
+                        <div class="div-row">
+                            <span class="username">@Html.TextBox("UserName")</span>
+                        </div>
+                        <div class="div-row">
+                            <span class="password">@Html.Password("Password")</span>
+                        </div>
+                        <div class="div-row">
+                            <div class="notmember">Not a member yet? <a href="#">Register</a></div>
+                            <div class="login-btn">
+                                <input class="submit" type="submit" value="LOGIN" />
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+
+        <div class="forgot">
+            <span class="frgtPWD"><a href="@Url.Action("ForgotPassword","Account")">Forgot Password?</a></span>
+        </div>
+    </div>
+    <div class="powered-by">
+        Developed and maintained by: <img src="~/Images/endpoint-logo.png" style="height: 40px;margin: 0px 0px -10px;" />
+    </div>
+</div>
+
+<script>
+     var baseUrl = "@Url.Content("~/")";
+    $(document).ready(function () {
+
+        $("#loginForm").submit(function (e) {
+            var username = $("#UserName").val();
+            var password = $("#Password").val();
+
+            if (username == "" || password == "") {
+                alert("Enter Username and Password.....");
+                e.preventDefault();
+                return;
+            }
+
+            var alreadyLogin = false;
+
+            //ajax call to get alreadyLogin info by passing username -> if there is some guid then return true if null return false
+
+            $.ajax({
+                type: "GET",
+                dataType: "json",
+                url: baseUrl + "api/General/getUserLoginStatus?uname=" + username,
+                async: false,
+                success: function (response) {
+                    alreadyLogin = response;
+                }
+            });
+
+            if (alreadyLogin) {
+                var r = confirm("Already logged in some where, do you still want to login...?");
+                if (r == true) {
+                    //normal login occurs active guid changes to new one.
+                }
+                else {
+                    e.preventDefault();
+                }
+            }
+        });
+    });
+
+</script>
+
