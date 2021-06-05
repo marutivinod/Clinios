@@ -2359,5 +2359,14 @@ namespace ClinIOS.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("spInsertUpdateGI_Bleed_Vitals", operationParameter, newId);
         }
+    
+        public virtual ObjectResult<sp_GetCP_Inference_Result> sp_GetCP_Inference(Nullable<int> id)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("Id", id) :
+                new ObjectParameter("Id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_GetCP_Inference_Result>("sp_GetCP_Inference", idParameter);
+        }
     }
 }

@@ -269,6 +269,9 @@
     <Compile Include="Models\sp_GetCP_Exposure_Result.cs">
       <DependentUpon>ClinIOS.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\sp_GetCP_Inference_Result.cs">
+      <DependentUpon>ClinIOS.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\sp_GetCP_Investgations_Result.cs">
       <DependentUpon>ClinIOS.tt</DependentUpon>
     </Compile>

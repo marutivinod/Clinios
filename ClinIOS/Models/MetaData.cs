@@ -183,6 +183,7 @@ namespace ClinIOS.Models
                 case "CP_Vitals": _ = da.GetDictionaryFromClass(da.GetRecord<sp_GetCP_Vitals_Result>("sp_GetCP_Vitals", Id) ?? new sp_GetCP_Vitals_Result()); break;
                 //case "ST_DISP": _ = da.GetDictionaryFromClass(da.GetRecord<sp_GetCP_Vitals_Result>("sp_GetST_DISP", Id) ?? new sp_GetCP_Vitals_Result()); break;
                 case "CP_DISP": _ = da.GetDictionaryFromClass(da.GetRecord<sp_GetPoisoning_Disposition_Result>("sp_GetPoisoning_Disposition", Id) ?? new sp_GetPoisoning_Disposition_Result()); break;
+                case "CP_INF": _ = da.GetDictionaryFromClass(da.GetRecord<sp_GetCP_Inference_Result>("sp_GetCP_Inference", Id) ?? new sp_GetCP_Inference_Result()); break;
 
                 //stroke
                 case "STRK_preHospt": _ = da.GetDictionaryFromClass(da.GetRecord<sp_GetStrokeMaster_Result>("sp_GetStrokeMaster", Id) ?? new sp_GetStrokeMaster_Result()); break;

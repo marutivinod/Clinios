@@ -322,6 +322,9 @@ warning 6002: The table/view 'CliniOS.dbo.vw_Users' does not have a primary key 
         <Function Name="sp_GetCP_Exposure" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="PatientID" Type="int" Mode="In" />
         </Function>
+        <Function Name="sp_GetCP_Inference" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="int" Mode="In" />
+        </Function>
         <Function Name="sp_GetCP_Investgations" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="PatientID" Type="int" Mode="In" />
         </Function>
@@ -2233,11 +2236,14 @@ warning 6002: The table/view 'CliniOS.dbo.vw_Users' does not have a primary key 
           <Parameter Name="PatientID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_GetGI_Bleed_Vitals" ReturnType="Collection(ClinIOSModel.sp_GetGI_Bleed_Vitals_Result)">
-            <Parameter Name="PatientID" Mode="In" Type="Int32" />
+          <Parameter Name="PatientID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="spInsertUpdateGI_Bleed_Vitals">
             <Parameter Name="Operation" Mode="In" Type="Boolean" />
             <Parameter Name="newId" Mode="InOut" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_GetCP_Inference" ReturnType="Collection(ClinIOSModel.sp_GetCP_Inference_Result)">
+            <Parameter Name="Id" Mode="In" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="sp_getCitynames_Result">
@@ -5245,6 +5251,221 @@ warning 6002: The table/view 'CliniOS.dbo.vw_Users' does not have a primary key 
           <Property Type="DateTime" Name="CreatedDate" Nullable="true" Precision="23" />
           <Property Type="Int32" Name="ModifiedBy" Nullable="true" />
           <Property Type="DateTime" Name="ModifiedDate" Nullable="true" Precision="23" />
+        </ComplexType>
+        <ComplexType Name="sp_GetCP_Inference_Result">
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="Int32" Name="PatientId" Nullable="true" />
+          <Property Type="String" Name="ModeOfArrival" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="Revisit48" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="RevisitReason" Nullable="true" />
+          <Property Type="String" Name="Ref_From" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="Pre_Arvl_Note" Nullable="true" MaxLength="150" />
+          <Property Type="DateTime" Name="Pre_Arvl_Time" Nullable="true" Precision="23" />
+          <Property Type="String" Name="TraigeDoneby" Nullable="false" MaxLength="9" />
+          <Property Type="String" Name="TriageTime" Nullable="false" MaxLength="18" />
+          <Property Type="Int32" Name="ChestPainId" Nullable="true" />
+          <Property Type="Boolean" Name="DMInd" Nullable="true" />
+          <Property Type="Boolean" Name="HTNInd" Nullable="true" />
+          <Property Type="Boolean" Name="DyslipidemiaInd" Nullable="true" />
+          <Property Type="Boolean" Name="ObesityInd" Nullable="true" />
+          <Property Type="Boolean" Name="Asth_COPDInd" Nullable="true" />
+          <Property Type="Boolean" Name="SmokInd" Nullable="true" />
+          <Property Type="Boolean" Name="EthonolicInd" Nullable="true" />
+          <Property Type="Boolean" Name="hoCVAInd" Nullable="true" />
+          <Property Type="Boolean" Name="EpilepsyInd" Nullable="true" />
+          <Property Type="Boolean" Name="hoCADInd" Nullable="true" />
+          <Property Type="Boolean" Name="CABGInd" Nullable="true" />
+          <Property Type="Boolean" Name="RiskPCTAInd" Nullable="true" />
+          <Property Type="Boolean" Name="CADInd" Nullable="true" />
+          <Property Type="Boolean" Name="SedLifeStyle" Nullable="true" />
+          <Property Type="Boolean" Name="PreviousMI" Nullable="true" />
+          <Property Type="Boolean" Name="PreviousStroke" Nullable="true" />
+          <Property Type="Boolean" Name="Stress" Nullable="true" />
+          <Property Type="Boolean" Name="Family_HO_IHD" Nullable="true" />
+          <Property Type="String" Name="Prev_Card_Surgs" Nullable="true" />
+          <Property Type="Boolean" Name="RuleOut" Nullable="true" />
+          <Property Type="String" Name="RiskOthers" Nullable="true" />
+          <Property Type="String" Name="ChestPainInd" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="OnSet_Id" Nullable="true" MaxLength="150" />
+          <Property Type="Int32" Name="Duration_Id" Nullable="true" />
+          <Property Type="String" Name="Location_Id" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="Radiation_Id" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="Type" Nullable="true" MaxLength="150" />
+          <Property Type="Boolean" Name="Inc_Dec_Breath" Nullable="true" />
+          <Property Type="Boolean" Name="Inc_Dec_FoodInTake" Nullable="true" />
+          <Property Type="Boolean" Name="Inc_ChestPulp" Nullable="true" />
+          <Property Type="Boolean" Name="Dec_BendFwd" Nullable="true" />
+          <Property Type="Boolean" Name="Sweating" Nullable="true" />
+          <Property Type="Boolean" Name="Nausea" Nullable="true" />
+          <Property Type="Boolean" Name="Dyspnoea" Nullable="true" />
+          <Property Type="Boolean" Name="Palpations" Nullable="true" />
+          <Property Type="Boolean" Name="Dizziness" Nullable="true" />
+          <Property Type="Boolean" Name="Fever" Nullable="true" />
+          <Property Type="Boolean" Name="Cough" Nullable="true" />
+          <Property Type="Boolean" Name="Expectpration" Nullable="true" />
+          <Property Type="String" Name="PastHIstory" Nullable="true" />
+          <Property Type="DateTime" Name="DispTime" Nullable="true" Precision="23" />
+          <Property Type="String" Name="DispId" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="ER" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="ERSign" Nullable="true" />
+          <Property Type="String" Name="ReceiveDoc" Nullable="true" MaxLength="150" />
+          <Property Type="Boolean" Name="Ele_Septal_V1" Nullable="true" />
+          <Property Type="Boolean" Name="Ele_Septal_V2" Nullable="true" />
+          <Property Type="Boolean" Name="Ele_Ant_V3" Nullable="true" />
+          <Property Type="Boolean" Name="Ele_Ant_V4" Nullable="true" />
+          <Property Type="Boolean" Name="Ele_Inf_II" Nullable="true" />
+          <Property Type="Boolean" Name="Ele_Inf_III" Nullable="true" />
+          <Property Type="Boolean" Name="Ele_Inf_avF" Nullable="true" />
+          <Property Type="Boolean" Name="Ele_Rt_Ventr_V3R" Nullable="true" />
+          <Property Type="Boolean" Name="Ele_Rt_V4R" Nullable="true" />
+          <Property Type="Boolean" Name="Ete_Lat_V5" Nullable="true" />
+          <Property Type="Boolean" Name="Ete_Lat_V6" Nullable="true" />
+          <Property Type="Boolean" Name="Ete_Lat_I" Nullable="true" />
+          <Property Type="Boolean" Name="Ete_Lat_avL" Nullable="true" />
+          <Property Type="Boolean" Name="Depr_Septal_V1" Nullable="true" />
+          <Property Type="Boolean" Name="Depr_Septal_V2" Nullable="true" />
+          <Property Type="Boolean" Name="Depr_Ant_V3" Nullable="true" />
+          <Property Type="Boolean" Name="Depr_Ant_V4" Nullable="true" />
+          <Property Type="Boolean" Name="Depr_Inf_II" Nullable="true" />
+          <Property Type="Boolean" Name="Depr_Inf_III" Nullable="true" />
+          <Property Type="Boolean" Name="Depr_Inf_avF" Nullable="true" />
+          <Property Type="Boolean" Name="Depr_Rt_Ventr_V3R" Nullable="true" />
+          <Property Type="Boolean" Name="Depr_Rt_V4R" Nullable="true" />
+          <Property Type="Boolean" Name="Posterior" Nullable="true" />
+          <Property Type="Boolean" Name="LBBB" Nullable="true" />
+          <Property Type="Boolean" Name="RBBB" Nullable="true" />
+          <Property Type="Boolean" Name="LVH" Nullable="true" />
+          <Property Type="Boolean" Name="RVH" Nullable="true" />
+          <Property Type="Boolean" Name="Bradycardia" Nullable="true" />
+          <Property Type="Boolean" Name="AssBlocks" Nullable="true" />
+          <Property Type="Boolean" Name="TachycardiaInd" Nullable="true" />
+          <Property Type="Int32" Name="TachId" Nullable="true" />
+          <Property Type="String" Name="ECGOthers" Nullable="true" />
+          <Property Type="String" Name="TwoD_Eco" Nullable="true" />
+          <Property Type="Boolean" Name="Depr_Lat_V5" Nullable="true" />
+          <Property Type="Boolean" Name="Depr_Lat_V6" Nullable="true" />
+          <Property Type="Boolean" Name="Depr_Lat_I" Nullable="true" />
+          <Property Type="Boolean" Name="Depr_Lat_avL" Nullable="true" />
+          <Property Type="Boolean" Name="Prominent_TWaveInd" Nullable="true" />
+          <Property Type="Boolean" Name="PoisionProfileInd" Nullable="true" />
+          <Property Type="Boolean" Name="CBCInd" Nullable="true" />
+          <Property Type="Boolean" Name="RFTInd" Nullable="true" />
+          <Property Type="Boolean" Name="RBSInd" Nullable="true" />
+          <Property Type="Boolean" Name="ABGInd" Nullable="true" />
+          <Property Type="Boolean" Name="LFTInd" Nullable="true" />
+          <Property Type="Boolean" Name="CK_MBInd" Nullable="true" />
+          <Property Type="Boolean" Name="CKInd" Nullable="true" />
+          <Property Type="Boolean" Name="BloodGroupInd" Nullable="true" />
+          <Property Type="String" Name="AnyOthers" Nullable="true" />
+          <Property Type="Boolean" Name="TroopITInd" Nullable="true" />
+          <Property Type="Boolean" Name="UPTInd" Nullable="true" />
+          <Property Type="Boolean" Name="CoagProfInd" Nullable="true" />
+          <Property Type="Boolean" Name="CXRInd" Nullable="true" />
+          <Property Type="Boolean" Name="ViralScrInd" Nullable="true" />
+          <Property Type="Boolean" Name="UrinDrunInd" Nullable="true" />
+          <Property Type="String" Name="SpesificDrug" Nullable="true" />
+          <Property Type="String" Name="TwoDEcho" Nullable="true" />
+          <Property Type="Boolean" Name="StrokeProfileInd" Nullable="true" />
+          <Property Type="Int32" Name="TIMIScoreId" Nullable="true" />
+          <Property Type="Boolean" Name="Hist_AgeInd" Nullable="true" />
+          <Property Type="Boolean" Name="Hist_CADFactInd" Nullable="true" />
+          <Property Type="Boolean" Name="Hist_KnownCADInd" Nullable="true" />
+          <Property Type="Boolean" Name="Hist_ASAInd" Nullable="true" />
+          <Property Type="Boolean" Name="Hist_AnginaInd" Nullable="true" />
+          <Property Type="Boolean" Name="Pres_CardInd" Nullable="true" />
+          <Property Type="Boolean" Name="Pres_DeviationInd" Nullable="true" />
+          <Property Type="Int32" Name="NONSTTot" Nullable="true" />
+          <Property Type="Int32" Name="NonSTRisk_Id" Nullable="true" />
+          <Property Type="String" Name="NonSTPlanOfCare" Nullable="true" />
+          <Property Type="Int32" Name="NonSTECG_P5Id" Nullable="true" />
+          <Property Type="Int32" Name="NonSTECG_1Id" Nullable="true" />
+          <Property Type="Int32" Name="NonSTECG_2Id" Nullable="true" />
+          <Property Type="Int32" Name="NonSTECG_4Id" Nullable="true" />
+          <Property Type="String" Name="NonSTAngina_P5Ind" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="NonSTAngina_1Ind" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="NonSTAngina_2Ind" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="NonSTAngina_3Ind" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="NonStCard60Id" Nullable="true" MaxLength="150" />
+          <Property Type="Boolean" Name="GPInd" Nullable="true" />
+          <Property Type="String" Name="GPTxt" Nullable="true" />
+          <Property Type="Int32" Name="NonStDrugId" Nullable="true" />
+          <Property Type="String" Name="OtherNotes" Nullable="true" />
+          <Property Type="String" Name="Refs" Nullable="true" />
+          <Property Type="Boolean" Name="CVS_S1" Nullable="true" />
+          <Property Type="Boolean" Name="CVS_S2" Nullable="true" />
+          <Property Type="Boolean" Name="CVS_S3" Nullable="true" />
+          <Property Type="Boolean" Name="CVS_S4" Nullable="true" />
+          <Property Type="Boolean" Name="CVS_Murmur" Nullable="true" />
+          <Property Type="String" Name="RS_AirEntry_Id" Nullable="true" MaxLength="150" />
+          <Property Type="Boolean" Name="RS_RInd" Nullable="true" />
+          <Property Type="Boolean" Name="RS_LInd" Nullable="true" />
+          <Property Type="Boolean" Name="RhonchiInd" Nullable="true" />
+          <Property Type="Boolean" Name="CreptsInd" Nullable="true" />
+          <Property Type="Boolean" Name="PA_BSInd" Nullable="true" />
+          <Property Type="Boolean" Name="PA_TendernessInd" Nullable="true" />
+          <Property Type="String" Name="CNS" Nullable="true" />
+          <Property Type="Boolean" Name="MSK_CSTndrInd" Nullable="true" />
+          <Property Type="Boolean" Name="PP_Rt_ULInd" Nullable="true" />
+          <Property Type="Boolean" Name="PP_Rt_LLInd" Nullable="true" />
+          <Property Type="Boolean" Name="PP_Lt_ULInd" Nullable="true" />
+          <Property Type="Boolean" Name="PP_Lt_LLInd" Nullable="true" />
+          <Property Type="Boolean" Name="Ext_Rt_UL_SwellInd" Nullable="true" />
+          <Property Type="Boolean" Name="Ext_Rt_UL_PainInd" Nullable="true" />
+          <Property Type="Boolean" Name="Ext_Rt_UL_TenderInd" Nullable="true" />
+          <Property Type="Boolean" Name="Ext_Rt_LL_SwellInd" Nullable="true" />
+          <Property Type="Boolean" Name="Ext_Rt_LL_PainInd" Nullable="true" />
+          <Property Type="Boolean" Name="Ext_Rt_LL_TenderInd" Nullable="true" />
+          <Property Type="Boolean" Name="Ext_Lt_UL_SwellInd" Nullable="true" />
+          <Property Type="Boolean" Name="Ext_Lt_UL_PainInd" Nullable="true" />
+          <Property Type="Boolean" Name="Ext_Lt_UL_TenderInd" Nullable="true" />
+          <Property Type="Boolean" Name="Ext_Lt_LL_SwellInd" Nullable="true" />
+          <Property Type="Boolean" Name="Ext_Lt_LL_PainInd" Nullable="true" />
+          <Property Type="Boolean" Name="Ext_Lt_LL_TenderInd" Nullable="true" />
+          <Property Type="Boolean" Name="CardInformedInd" Nullable="true" />
+          <Property Type="String" Name="CardInfrmTxt" Nullable="true" />
+          <Property Type="DateTime" Name="CardInfrmTime" Nullable="true" Precision="23" />
+          <Property Type="Boolean" Name="CathAlertedInd" Nullable="true" />
+          <Property Type="DateTime" Name="CathAlertTime" Nullable="true" Precision="23" />
+          <Property Type="Boolean" Name="PrimePCIInd" Nullable="true" />
+          <Property Type="Boolean" Name="ThrombInd" Nullable="true" />
+          <Property Type="Boolean" Name="ThrombContraInd" Nullable="true" />
+          <Property Type="Boolean" Name="STEligibilityId" Nullable="true" />
+          <Property Type="Boolean" Name="CARBGInd" Nullable="true" />
+          <Property Type="Boolean" Name="ConentInd" Nullable="true" />
+          <Property Type="Boolean" Name="DrugALergyInd" Nullable="true" />
+          <Property Type="Boolean" Name="LMWHInd" Nullable="true" />
+          <Property Type="Int32" Name="VitalId_30" Nullable="true" />
+          <Property Type="Int32" Name="VitalId_60" Nullable="true" />
+          <Property Type="Int32" Name="VitalId_90" Nullable="true" />
+          <Property Type="Int32" Name="STDrugAdmin" Nullable="true" />
+          <Property Type="Int32" Name="StDrunOrderBy" Nullable="true" />
+          <Property Type="Int32" Name="StDrugId" Nullable="true" />
+          <Property Type="String" Name="STECG_30Id" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="STECG_60Id" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="STECG_90Id" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="StSymtRelf_30Id" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="StSymtRelf_60Id" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="StSymtRelf_90Id" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="STBleed_30Id" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="STBleed_60Id" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="STBleed_90Id" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="STThrob90SuccId" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="STPlanOfCare" Nullable="true" />
+          <Property Type="Int32" Name="STID" Nullable="true" />
+          <Property Type="Boolean" Name="PharmaPCTAInd" Nullable="true" />
+          <Property Type="Boolean" Name="OthersInd" Nullable="true" />
+          <Property Type="String" Name="OthrText" Nullable="true" />
+          <Property Type="Boolean" Name="PharmaEligibilityId" Nullable="true" />
+          <Property Type="Boolean" Name="PCTAContraInd" Nullable="true" />
+          <Property Type="Boolean" Name="PharmaConentInd" Nullable="true" />
+          <Property Type="Boolean" Name="PharmaDrugALergyInd" Nullable="true" />
+          <Property Type="String" Name="Prev_Rep_SrCr" Nullable="true" />
+          <Property Type="String" Name="Prev_Rep_INR" Nullable="true" />
+          <Property Type="Boolean" Name="Drg_Aci_Hep_LMInd" Nullable="true" />
+          <Property Type="Boolean" Name="Drg_InsulinInd" Nullable="true" />
+          <Property Type="Boolean" Name="Drg_ACEIInd" Nullable="true" />
+          <Property Type="DateTime" Name="CathShiftedTime" Nullable="true" Precision="23" />
+          <Property Type="String" Name="Plan_of_care" Nullable="true" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -9011,6 +9232,225 @@ warning 6002: The table/view 'CliniOS.dbo.vw_Users' does not have a primary key 
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="spInsertUpdateGI_Bleed_Vitals" FunctionName="ClinIOSModel.Store.spInsertUpdateGI_Bleed_Vitals" />
+          <FunctionImportMapping FunctionImportName="sp_GetCP_Inference" FunctionName="ClinIOSModel.Store.sp_GetCP_Inference">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ClinIOSModel.sp_GetCP_Inference_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="PatientId" ColumnName="PatientId" />
+                <ScalarProperty Name="ModeOfArrival" ColumnName="ModeOfArrival" />
+                <ScalarProperty Name="Revisit48" ColumnName="Revisit48" />
+                <ScalarProperty Name="RevisitReason" ColumnName="RevisitReason" />
+                <ScalarProperty Name="Ref_From" ColumnName="Ref_From" />
+                <ScalarProperty Name="Pre_Arvl_Note" ColumnName="Pre_Arvl_Note" />
+                <ScalarProperty Name="Pre_Arvl_Time" ColumnName="Pre_Arvl_Time" />
+                <ScalarProperty Name="TraigeDoneby" ColumnName="TraigeDoneby" />
+                <ScalarProperty Name="TriageTime" ColumnName="TriageTime" />
+                <ScalarProperty Name="ChestPainId" ColumnName="ChestPainId" />
+                <ScalarProperty Name="DMInd" ColumnName="DMInd" />
+                <ScalarProperty Name="HTNInd" ColumnName="HTNInd" />
+                <ScalarProperty Name="DyslipidemiaInd" ColumnName="DyslipidemiaInd" />
+                <ScalarProperty Name="ObesityInd" ColumnName="ObesityInd" />
+                <ScalarProperty Name="Asth_COPDInd" ColumnName="Asth_COPDInd" />
+                <ScalarProperty Name="SmokInd" ColumnName="SmokInd" />
+                <ScalarProperty Name="EthonolicInd" ColumnName="EthonolicInd" />
+                <ScalarProperty Name="hoCVAInd" ColumnName="hoCVAInd" />
+                <ScalarProperty Name="EpilepsyInd" ColumnName="EpilepsyInd" />
+                <ScalarProperty Name="hoCADInd" ColumnName="hoCADInd" />
+                <ScalarProperty Name="CABGInd" ColumnName="CABGInd" />
+                <ScalarProperty Name="RiskPCTAInd" ColumnName="RiskPCTAInd" />
+                <ScalarProperty Name="CADInd" ColumnName="CADInd" />
+                <ScalarProperty Name="SedLifeStyle" ColumnName="SedLifeStyle" />
+                <ScalarProperty Name="PreviousMI" ColumnName="PreviousMI" />
+                <ScalarProperty Name="PreviousStroke" ColumnName="PreviousStroke" />
+                <ScalarProperty Name="Stress" ColumnName="Stress" />
+                <ScalarProperty Name="Family_HO_IHD" ColumnName="Family_HO_IHD" />
+                <ScalarProperty Name="Prev_Card_Surgs" ColumnName="Prev_Card_Surgs" />
+                <ScalarProperty Name="RuleOut" ColumnName="RuleOut" />
+                <ScalarProperty Name="RiskOthers" ColumnName="RiskOthers" />
+                <ScalarProperty Name="ChestPainInd" ColumnName="ChestPainInd" />
+                <ScalarProperty Name="OnSet_Id" ColumnName="OnSet_Id" />
+                <ScalarProperty Name="Duration_Id" ColumnName="Duration_Id" />
+                <ScalarProperty Name="Location_Id" ColumnName="Location_Id" />
+                <ScalarProperty Name="Radiation_Id" ColumnName="Radiation_Id" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Inc_Dec_Breath" ColumnName="Inc_Dec_Breath" />
+                <ScalarProperty Name="Inc_Dec_FoodInTake" ColumnName="Inc_Dec_FoodInTake" />
+                <ScalarProperty Name="Inc_ChestPulp" ColumnName="Inc_ChestPulp" />
+                <ScalarProperty Name="Dec_BendFwd" ColumnName="Dec_BendFwd" />
+                <ScalarProperty Name="Sweating" ColumnName="Sweating" />
+                <ScalarProperty Name="Nausea" ColumnName="Nausea" />
+                <ScalarProperty Name="Dyspnoea" ColumnName="Dyspnoea" />
+                <ScalarProperty Name="Palpations" ColumnName="Palpations" />
+                <ScalarProperty Name="Dizziness" ColumnName="Dizziness" />
+                <ScalarProperty Name="Fever" ColumnName="Fever" />
+                <ScalarProperty Name="Cough" ColumnName="Cough" />
+                <ScalarProperty Name="Expectpration" ColumnName="Expectpration" />
+                <ScalarProperty Name="PastHIstory" ColumnName="PastHIstory" />
+                <ScalarProperty Name="DispTime" ColumnName="DispTime" />
+                <ScalarProperty Name="DispId" ColumnName="DispId" />
+                <ScalarProperty Name="ER" ColumnName="ER" />
+                <ScalarProperty Name="ERSign" ColumnName="ERSign" />
+                <ScalarProperty Name="ReceiveDoc" ColumnName="ReceiveDoc" />
+                <ScalarProperty Name="Ele_Septal_V1" ColumnName="Ele_Septal_V1" />
+                <ScalarProperty Name="Ele_Septal_V2" ColumnName="Ele_Septal_V2" />
+                <ScalarProperty Name="Ele_Ant_V3" ColumnName="Ele_Ant_V3" />
+                <ScalarProperty Name="Ele_Ant_V4" ColumnName="Ele_Ant_V4" />
+                <ScalarProperty Name="Ele_Inf_II" ColumnName="Ele_Inf_II" />
+                <ScalarProperty Name="Ele_Inf_III" ColumnName="Ele_Inf_III" />
+                <ScalarProperty Name="Ele_Inf_avF" ColumnName="Ele_Inf_avF" />
+                <ScalarProperty Name="Ele_Rt_Ventr_V3R" ColumnName="Ele_Rt_Ventr_V3R" />
+                <ScalarProperty Name="Ele_Rt_V4R" ColumnName="Ele_Rt_V4R" />
+                <ScalarProperty Name="Ete_Lat_V5" ColumnName="Ete_Lat_V5" />
+                <ScalarProperty Name="Ete_Lat_V6" ColumnName="Ete_Lat_V6" />
+                <ScalarProperty Name="Ete_Lat_I" ColumnName="Ete_Lat_I" />
+                <ScalarProperty Name="Ete_Lat_avL" ColumnName="Ete_Lat_avL" />
+                <ScalarProperty Name="Depr_Septal_V1" ColumnName="Depr_Septal_V1" />
+                <ScalarProperty Name="Depr_Septal_V2" ColumnName="Depr_Septal_V2" />
+                <ScalarProperty Name="Depr_Ant_V3" ColumnName="Depr_Ant_V3" />
+                <ScalarProperty Name="Depr_Ant_V4" ColumnName="Depr_Ant_V4" />
+                <ScalarProperty Name="Depr_Inf_II" ColumnName="Depr_Inf_II" />
+                <ScalarProperty Name="Depr_Inf_III" ColumnName="Depr_Inf_III" />
+                <ScalarProperty Name="Depr_Inf_avF" ColumnName="Depr_Inf_avF" />
+                <ScalarProperty Name="Depr_Rt_Ventr_V3R" ColumnName="Depr_Rt_Ventr_V3R" />
+                <ScalarProperty Name="Depr_Rt_V4R" ColumnName="Depr_Rt_V4R" />
+                <ScalarProperty Name="Posterior" ColumnName="Posterior" />
+                <ScalarProperty Name="LBBB" ColumnName="LBBB" />
+                <ScalarProperty Name="RBBB" ColumnName="RBBB" />
+                <ScalarProperty Name="LVH" ColumnName="LVH" />
+                <ScalarProperty Name="RVH" ColumnName="RVH" />
+                <ScalarProperty Name="Bradycardia" ColumnName="Bradycardia" />
+                <ScalarProperty Name="AssBlocks" ColumnName="AssBlocks" />
+                <ScalarProperty Name="TachycardiaInd" ColumnName="TachycardiaInd" />
+                <ScalarProperty Name="TachId" ColumnName="TachId" />
+                <ScalarProperty Name="ECGOthers" ColumnName="ECGOthers" />
+                <ScalarProperty Name="TwoD_Eco" ColumnName="TwoD_Eco" />
+                <ScalarProperty Name="Depr_Lat_V5" ColumnName="Depr_Lat_V5" />
+                <ScalarProperty Name="Depr_Lat_V6" ColumnName="Depr_Lat_V6" />
+                <ScalarProperty Name="Depr_Lat_I" ColumnName="Depr_Lat_I" />
+                <ScalarProperty Name="Depr_Lat_avL" ColumnName="Depr_Lat_avL" />
+                <ScalarProperty Name="Prominent_TWaveInd" ColumnName="Prominent_TWaveInd" />
+                <ScalarProperty Name="PoisionProfileInd" ColumnName="PoisionProfileInd" />
+                <ScalarProperty Name="CBCInd" ColumnName="CBCInd" />
+                <ScalarProperty Name="RFTInd" ColumnName="RFTInd" />
+                <ScalarProperty Name="RBSInd" ColumnName="RBSInd" />
+                <ScalarProperty Name="ABGInd" ColumnName="ABGInd" />
+                <ScalarProperty Name="LFTInd" ColumnName="LFTInd" />
+                <ScalarProperty Name="CK_MBInd" ColumnName="CK_MBInd" />
+                <ScalarProperty Name="CKInd" ColumnName="CKInd" />
+                <ScalarProperty Name="BloodGroupInd" ColumnName="BloodGroupInd" />
+                <ScalarProperty Name="AnyOthers" ColumnName="AnyOthers" />
+                <ScalarProperty Name="TroopITInd" ColumnName="TroopITInd" />
+                <ScalarProperty Name="UPTInd" ColumnName="UPTInd" />
+                <ScalarProperty Name="CoagProfInd" ColumnName="CoagProfInd" />
+                <ScalarProperty Name="CXRInd" ColumnName="CXRInd" />
+                <ScalarProperty Name="ViralScrInd" ColumnName="ViralScrInd" />
+                <ScalarProperty Name="UrinDrunInd" ColumnName="UrinDrunInd" />
+                <ScalarProperty Name="SpesificDrug" ColumnName="SpesificDrug" />
+                <ScalarProperty Name="TwoDEcho" ColumnName="TwoDEcho" />
+                <ScalarProperty Name="StrokeProfileInd" ColumnName="StrokeProfileInd" />
+                <ScalarProperty Name="TIMIScoreId" ColumnName="TIMIScoreId" />
+                <ScalarProperty Name="Hist_AgeInd" ColumnName="Hist_AgeInd" />
+                <ScalarProperty Name="Hist_CADFactInd" ColumnName="Hist_CADFactInd" />
+                <ScalarProperty Name="Hist_KnownCADInd" ColumnName="Hist_KnownCADInd" />
+                <ScalarProperty Name="Hist_ASAInd" ColumnName="Hist_ASAInd" />
+                <ScalarProperty Name="Hist_AnginaInd" ColumnName="Hist_AnginaInd" />
+                <ScalarProperty Name="Pres_CardInd" ColumnName="Pres_CardInd" />
+                <ScalarProperty Name="Pres_DeviationInd" ColumnName="Pres_DeviationInd" />
+                <ScalarProperty Name="NONSTTot" ColumnName="NONSTTot" />
+                <ScalarProperty Name="NonSTRisk_Id" ColumnName="NonSTRisk_Id" />
+                <ScalarProperty Name="NonSTPlanOfCare" ColumnName="NonSTPlanOfCare" />
+                <ScalarProperty Name="NonSTECG_P5Id" ColumnName="NonSTECG_P5Id" />
+                <ScalarProperty Name="NonSTECG_1Id" ColumnName="NonSTECG_1Id" />
+                <ScalarProperty Name="NonSTECG_2Id" ColumnName="NonSTECG_2Id" />
+                <ScalarProperty Name="NonSTECG_4Id" ColumnName="NonSTECG_4Id" />
+                <ScalarProperty Name="NonSTAngina_P5Ind" ColumnName="NonSTAngina_P5Ind" />
+                <ScalarProperty Name="NonSTAngina_1Ind" ColumnName="NonSTAngina_1Ind" />
+                <ScalarProperty Name="NonSTAngina_2Ind" ColumnName="NonSTAngina_2Ind" />
+                <ScalarProperty Name="NonSTAngina_3Ind" ColumnName="NonSTAngina_3Ind" />
+                <ScalarProperty Name="NonStCard60Id" ColumnName="NonStCard60Id" />
+                <ScalarProperty Name="GPInd" ColumnName="GPInd" />
+                <ScalarProperty Name="GPTxt" ColumnName="GPTxt" />
+                <ScalarProperty Name="NonStDrugId" ColumnName="NonStDrugId" />
+                <ScalarProperty Name="OtherNotes" ColumnName="OtherNotes" />
+                <ScalarProperty Name="Refs" ColumnName="Refs" />
+                <ScalarProperty Name="CVS_S1" ColumnName="CVS_S1" />
+                <ScalarProperty Name="CVS_S2" ColumnName="CVS_S2" />
+                <ScalarProperty Name="CVS_S3" ColumnName="CVS_S3" />
+                <ScalarProperty Name="CVS_S4" ColumnName="CVS_S4" />
+                <ScalarProperty Name="CVS_Murmur" ColumnName="CVS_Murmur" />
+                <ScalarProperty Name="RS_AirEntry_Id" ColumnName="RS_AirEntry_Id" />
+                <ScalarProperty Name="RS_RInd" ColumnName="RS_RInd" />
+                <ScalarProperty Name="RS_LInd" ColumnName="RS_LInd" />
+                <ScalarProperty Name="RhonchiInd" ColumnName="RhonchiInd" />
+                <ScalarProperty Name="CreptsInd" ColumnName="CreptsInd" />
+                <ScalarProperty Name="PA_BSInd" ColumnName="PA_BSInd" />
+                <ScalarProperty Name="PA_TendernessInd" ColumnName="PA_TendernessInd" />
+                <ScalarProperty Name="CNS" ColumnName="CNS" />
+                <ScalarProperty Name="MSK_CSTndrInd" ColumnName="MSK_CSTndrInd" />
+                <ScalarProperty Name="PP_Rt_ULInd" ColumnName="PP_Rt_ULInd" />
+                <ScalarProperty Name="PP_Rt_LLInd" ColumnName="PP_Rt_LLInd" />
+                <ScalarProperty Name="PP_Lt_ULInd" ColumnName="PP_Lt_ULInd" />
+                <ScalarProperty Name="PP_Lt_LLInd" ColumnName="PP_Lt_LLInd" />
+                <ScalarProperty Name="Ext_Rt_UL_SwellInd" ColumnName="Ext_Rt_UL_SwellInd" />
+                <ScalarProperty Name="Ext_Rt_UL_PainInd" ColumnName="Ext_Rt_UL_PainInd" />
+                <ScalarProperty Name="Ext_Rt_UL_TenderInd" ColumnName="Ext_Rt_UL_TenderInd" />
+                <ScalarProperty Name="Ext_Rt_LL_SwellInd" ColumnName="Ext_Rt_LL_SwellInd" />
+                <ScalarProperty Name="Ext_Rt_LL_PainInd" ColumnName="Ext_Rt_LL_PainInd" />
+                <ScalarProperty Name="Ext_Rt_LL_TenderInd" ColumnName="Ext_Rt_LL_TenderInd" />
+                <ScalarProperty Name="Ext_Lt_UL_SwellInd" ColumnName="Ext_Lt_UL_SwellInd" />
+                <ScalarProperty Name="Ext_Lt_UL_PainInd" ColumnName="Ext_Lt_UL_PainInd" />
+                <ScalarProperty Name="Ext_Lt_UL_TenderInd" ColumnName="Ext_Lt_UL_TenderInd" />
+                <ScalarProperty Name="Ext_Lt_LL_SwellInd" ColumnName="Ext_Lt_LL_SwellInd" />
+                <ScalarProperty Name="Ext_Lt_LL_PainInd" ColumnName="Ext_Lt_LL_PainInd" />
+                <ScalarProperty Name="Ext_Lt_LL_TenderInd" ColumnName="Ext_Lt_LL_TenderInd" />
+                <ScalarProperty Name="CardInformedInd" ColumnName="CardInformedInd" />
+                <ScalarProperty Name="CardInfrmTxt" ColumnName="CardInfrmTxt" />
+                <ScalarProperty Name="CardInfrmTime" ColumnName="CardInfrmTime" />
+                <ScalarProperty Name="CathAlertedInd" ColumnName="CathAlertedInd" />
+                <ScalarProperty Name="CathAlertTime" ColumnName="CathAlertTime" />
+                <ScalarProperty Name="PrimePCIInd" ColumnName="PrimePCIInd" />
+                <ScalarProperty Name="ThrombInd" ColumnName="ThrombInd" />
+                <ScalarProperty Name="ThrombContraInd" ColumnName="ThrombContraInd" />
+                <ScalarProperty Name="STEligibilityId" ColumnName="STEligibilityId" />
+                <ScalarProperty Name="CARBGInd" ColumnName="CARBGInd" />
+                <ScalarProperty Name="ConentInd" ColumnName="ConentInd" />
+                <ScalarProperty Name="DrugALergyInd" ColumnName="DrugALergyInd" />
+                <ScalarProperty Name="LMWHInd" ColumnName="LMWHInd" />
+                <ScalarProperty Name="VitalId_30" ColumnName="VitalId_30" />
+                <ScalarProperty Name="VitalId_60" ColumnName="VitalId_60" />
+                <ScalarProperty Name="VitalId_90" ColumnName="VitalId_90" />
+                <ScalarProperty Name="STDrugAdmin" ColumnName="STDrugAdmin" />
+                <ScalarProperty Name="StDrunOrderBy" ColumnName="StDrunOrderBy" />
+                <ScalarProperty Name="StDrugId" ColumnName="StDrugId" />
+                <ScalarProperty Name="STECG_30Id" ColumnName="STECG_30Id" />
+                <ScalarProperty Name="STECG_60Id" ColumnName="STECG_60Id" />
+                <ScalarProperty Name="STECG_90Id" ColumnName="STECG_90Id" />
+                <ScalarProperty Name="StSymtRelf_30Id" ColumnName="StSymtRelf_30Id" />
+                <ScalarProperty Name="StSymtRelf_60Id" ColumnName="StSymtRelf_60Id" />
+                <ScalarProperty Name="StSymtRelf_90Id" ColumnName="StSymtRelf_90Id" />
+                <ScalarProperty Name="STBleed_30Id" ColumnName="STBleed_30Id" />
+                <ScalarProperty Name="STBleed_60Id" ColumnName="STBleed_60Id" />
+                <ScalarProperty Name="STBleed_90Id" ColumnName="STBleed_90Id" />
+                <ScalarProperty Name="STThrob90SuccId" ColumnName="STThrob90SuccId" />
+                <ScalarProperty Name="STPlanOfCare" ColumnName="STPlanOfCare" />
+                <ScalarProperty Name="STID" ColumnName="STID" />
+                <ScalarProperty Name="PharmaPCTAInd" ColumnName="PharmaPCTAInd" />
+                <ScalarProperty Name="OthersInd" ColumnName="OthersInd" />
+                <ScalarProperty Name="OthrText" ColumnName="OthrText" />
+                <ScalarProperty Name="PharmaEligibilityId" ColumnName="PharmaEligibilityId" />
+                <ScalarProperty Name="PCTAContraInd" ColumnName="PCTAContraInd" />
+                <ScalarProperty Name="PharmaConentInd" ColumnName="PharmaConentInd" />
+                <ScalarProperty Name="PharmaDrugALergyInd" ColumnName="PharmaDrugALergyInd" />
+                <ScalarProperty Name="Prev_Rep_SrCr" ColumnName="Prev_Rep_SrCr" />
+                <ScalarProperty Name="Prev_Rep_INR" ColumnName="Prev_Rep_INR" />
+                <ScalarProperty Name="Drg_Aci_Hep_LMInd" ColumnName="Drg_Aci_Hep_LMInd" />
+                <ScalarProperty Name="Drg_InsulinInd" ColumnName="Drg_InsulinInd" />
+                <ScalarProperty Name="Drg_ACEIInd" ColumnName="Drg_ACEIInd" />
+                <ScalarProperty Name="CathShiftedTime" ColumnName="CathShiftedTime" />
+                <ScalarProperty Name="Plan_of_care" ColumnName="Plan_of_care" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
