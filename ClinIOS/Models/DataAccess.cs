@@ -42,6 +42,7 @@ namespace ClinIOS.Models
             return result;
         }
         public void TransactRecord<T>(T data, string spName, string spType, int insertInd) where T : class { using (var ctx = GetContext()) { ctx.ExecuteTableValueProcedure(new T[] { data }, spName, "@Rec", "@operation", insertInd, spType); ctx.SaveChanges(); } }
+        public void TransactRecord<T>(T data, string spName, string spType) where T : class { using (var ctx = GetContext()) { ctx.ExecuteTableValueProcedure(new T[] { data }, spName, "@Rec",  spType); ctx.SaveChanges(); } }
 
         public int TransactRecordWithId<T>(T data, string spName, string spType, bool insertInd) where T : class { using (var ctx = GetContext()) { var id = ctx.ExecuteTableValueProcedureWithId(new T[] { data }, spName, "@Rec", "@Operation", insertInd,  spType); ctx.SaveChanges(); return id; } }
 

@@ -149,6 +149,7 @@
     <Compile Include="Controllers\ChestPainController.cs" />
     <Compile Include="Controllers\GIController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PatientController.cs" />
     <Compile Include="Controllers\PoisoningController.cs" />
     <Compile Include="Controllers\SeizuresController.cs" />
     <Compile Include="Controllers\StrokeController.cs" />
@@ -736,6 +737,7 @@
     <Content Include="Views\Seizures\Seizures.cshtml" />
     <Content Include="Views\Abdomen\Abdomen.cshtml" />
     <Content Include="Views\ChestPain\ChestPainReport.cshtml" />
+    <Content Include="Views\Patient\PatientEntry.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

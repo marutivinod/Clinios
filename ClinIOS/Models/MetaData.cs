@@ -16,8 +16,8 @@ namespace ClinIOS.Models
             return new List<TableForms>()
             {
                 new TableForms(){FOMRID="CP_Complaints", GET="sp_GetCP_Complaints",TRANS="spInsertUpdateCP_Complaints",TYPE="CP_Complaints"}
-                ,new TableForms(){FOMRID="CP_Moa", GET="sp_GetCP_Master",TRANS="spInsertUpdateCP_Master",TYPE="CP_Master"}
-                ,new TableForms(){FOMRID="Chestpain" ,GET="sp_GetChestpain",TRANS="spInsertUpdateChestpain",TYPE="ChestPain"}
+                ,new TableForms(){FOMRID="CP_Moa", GET="sp_GetCP_Master",TRANS="spUpdateCP_Master",TYPE="CP_Master"}
+                ,new TableForms(){FOMRID="Chestpain" ,GET="sp_GetChestpain",TRANS="spUpdateCP_Master",TYPE="ChestPain"}
                 ,new TableForms(){FOMRID="CP_CoMor_RiskFactors" ,GET="sp_GetCP_CoMor_RiskFactors",TRANS="spInsertUpdateCP_CoMor_RiskFactors",TYPE="CP_CoMor_RiskFactors"}
                 ,new TableForms(){FOMRID="CP_Drug" ,GET="sp_GetCP_Drug",TRANS="spInsertUpdateCP_Drug",TYPE="CP_Drug"}
                 ,new TableForms(){FOMRID="CP_Ecg" ,GET="sp_GetCP_Ecg",TRANS="spInsertUpdateCP_Ecg",TYPE="CP_Ecg"}
@@ -312,7 +312,7 @@ namespace ClinIOS.Models
                 switch (secName)
                 {
                     case "Chestpain": da.TransactRecordWithId(da.GetClassFromDictionary<sp_GetChestpain_Result>(data), metadata.TRANS, metadata.TYPE, false); break;
-                    case "CP_Moa": da.TransactRecordWithId(da.GetClassFromDictionary<sp_GetCP_Master_Result>(data), metadata.TRANS, metadata.TYPE, false); break;
+                    case "CP_Moa": da.TransactRecord(da.GetClassFromDictionary<sp_GetCP_Master_Result>(data), metadata.TRANS, metadata.TYPE); break;
                     case "CP_CoMor_RiskFactors": da.TransactRecordWithId(da.GetClassFromDictionary<sp_GetCP_CoMor_RiskFactors_Result>(data), metadata.TRANS, metadata.TYPE, false); break;
                     case "CP_Complaints": da.TransactRecordWithId(da.GetClassFromDictionary<sp_GetCP_Complaints_Result>(data), metadata.TRANS, metadata.TYPE, false); break;
                     case "CP_Drug": da.TransactRecordWithId(da.GetClassFromDictionary<sp_GetCP_Drug_Result>(data), metadata.TRANS, metadata.TYPE, false); break;

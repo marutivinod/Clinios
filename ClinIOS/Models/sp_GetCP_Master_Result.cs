@@ -13,7 +13,8 @@ namespace ClinIOS.Models
     
     public partial class sp_GetCP_Master_Result
     {
-        public Nullable<long> Id { get; set; }
+        public Nullable<long> U_Id { get; set; }
+        public int Id { get; set; }
         public Nullable<int> PatientId { get; set; }
         public Nullable<int> ModeOfArrival_Id { get; set; }
         public string ModeOfArrival_Other { get; set; }

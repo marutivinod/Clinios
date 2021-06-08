@@ -1,0 +1,62 @@
+﻿
+<main>
+    <div ng-app="myApp" ng-controller="ChestPainController">
+        <form name="myForm">
+            <div class="whitebg top-margin">
+                <div class="sectionhdrCenter">Patient Information</div>
+                <div class="div-row-border_2">
+                    <label>First Name:</label>
+                    <div class="input-field">
+                        <input class="input-box" type="text" ng-model="Moa.Ref_From" />
+                    </div>
+                </div>
+                <div class="div-row-border_2">
+                    <label>Middle Name:</label>
+                    <div class="input-field">
+                        <input class="input-box" type="text" ng-model="Moa.Ref_From" />
+                    </div>
+                </div>
+                <div class="div-row-border_2">
+                    <label>Last Name:</label>
+                    <div class="input-field">
+                        <input class="input-box" type="text" ng-model="Moa.Ref_From" />
+                    </div>
+                </div>
+                <div class="div-row-border_2">
+                    <label>Date of Birth:</label>
+                    <div class="input-field">
+                        <input class="input-box" type="text" ng-model="Moa.Ref_From" />
+                    </div>
+                </div>
+                <div class="div-row-border_2">
+                    <label>Age:</label>
+                    <div class="input-field">
+                        <input class="input-box" type="text" ng-model="Moa.Ref_From" />
+                    </div>
+                </div>
+                <div class="div-row-border_2">
+                    <label>Gender:</label>
+                    <div class="input-field">
+                        <input class="input-box" type="text" ng-model="Moa.Ref_From" />
+                    </div>
+                </div>
+                <div class="div-row-border_2">
+                    <label>Last Name:</label>
+                    <div class="input-field">
+                        <input class="input-box" type="text" ng-model="Moa.Ref_From" />
+                    </div>
+                </div>
+                <div class="div-row-border_2">
+                    <label>Phone NUmber:</label>
+                    <div class="input-field">
+                        <input class="input-box" type="text" ng-model="Moa.Ref_From" />
+                    </div>
+                </div>
+        </form>
+    </div>
+
+</main>
+<script>
+    var app = angular.module('myApp', ['ngMaterial', 'ngMessages', 'angularMoment']);
+    app.service('chestPainService', function ($http) { });
+</script>

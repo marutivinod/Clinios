@@ -1134,6 +1134,7 @@ warning 6002: The table/view 'CliniOS.dbo.vw_Users' does not have a primary key 
         <Function Name="spInsertUpdateTriage_Vitals" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="operation" Type="int" Mode="In" />
         </Function>
+        <Function Name="spUpdateCP_Master" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <EntityContainer Name="ClinIOSModelStoreContainer">
           <EntitySet Name="Patients" EntityType="Self.Patients" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Role_Master" EntityType="Self.Role_Master" Schema="dbo" store:Type="Tables" />
@@ -2214,9 +2215,6 @@ warning 6002: The table/view 'CliniOS.dbo.vw_Users' does not have a primary key 
             <Parameter Name="Operation" Mode="In" Type="Boolean" />
             <Parameter Name="newId" Mode="InOut" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="sp_GetCP_Master" ReturnType="Collection(ClinIOSModel.sp_GetCP_Master_Result)">
-          <Parameter Name="PatientID" Mode="In" Type="Int32" />
-          </FunctionImport>
           <FunctionImport Name="sp_GetStrk_PA_Breathing" ReturnType="Collection(ClinIOSModel.sp_GetStrk_PA_Breathing_Result)">
           <Parameter Name="PatientID" Mode="In" Type="Int32" />
           </FunctionImport>
@@ -2243,7 +2241,11 @@ warning 6002: The table/view 'CliniOS.dbo.vw_Users' does not have a primary key 
             <Parameter Name="newId" Mode="InOut" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_GetCP_Inference" ReturnType="Collection(ClinIOSModel.sp_GetCP_Inference_Result)">
-            <Parameter Name="Id" Mode="In" Type="Int32" />
+          <Parameter Name="Id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="spUpdateCP_Master" />
+          <FunctionImport Name="sp_GetCP_Master" ReturnType="Collection(ClinIOSModel.sp_GetCP_Master_Result)">
+            <Parameter Name="PatientID" Mode="In" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="sp_getCitynames_Result">
@@ -5042,23 +5044,6 @@ warning 6002: The table/view 'CliniOS.dbo.vw_Users' does not have a primary key 
           <Property Type="Int32" Name="ModifiedBy" Nullable="true" />
           <Property Type="DateTime" Name="ModifiedDate" Nullable="true" Precision="23" />
         </ComplexType>
-        <ComplexType Name="sp_GetCP_Master_Result">
-          <Property Type="Int64" Name="Id" Nullable="true" />
-          <Property Type="Int32" Name="PatientId" Nullable="true" />
-          <Property Type="Int32" Name="ModeOfArrival_Id" Nullable="true" />
-          <Property Type="String" Name="ModeOfArrival_Other" Nullable="true" />
-          <Property Type="Int32" Name="Revisit48" Nullable="true" />
-          <Property Type="String" Name="RevisitReason" Nullable="true" />
-          <Property Type="String" Name="Ref_From" Nullable="true" MaxLength="200" />
-          <Property Type="Int32" Name="Pre_Arvl_Note" Nullable="true" />
-          <Property Type="DateTime" Name="Pre_Arvl_Time" Nullable="true" Precision="23" />
-          <Property Type="Int32" Name="TraigeDoneby" Nullable="true" />
-          <Property Type="DateTime" Name="TriageTime" Nullable="true" Precision="23" />
-          <Property Type="Int32" Name="CreatedBy" Nullable="true" />
-          <Property Type="DateTime" Name="CreatedDate" Nullable="true" Precision="23" />
-          <Property Type="Int32" Name="ModifiedBy" Nullable="true" />
-          <Property Type="DateTime" Name="ModifiedDate" Nullable="true" Precision="23" />
-        </ComplexType>
         <ComplexType Name="sp_GetStrk_PA_Breathing_Result">
           <Property Type="Int64" Name="Id" Nullable="true" />
           <Property Type="Int32" Name="StrokeId" Nullable="true" />
@@ -5466,6 +5451,24 @@ warning 6002: The table/view 'CliniOS.dbo.vw_Users' does not have a primary key 
           <Property Type="Boolean" Name="Drg_ACEIInd" Nullable="true" />
           <Property Type="DateTime" Name="CathShiftedTime" Nullable="true" Precision="23" />
           <Property Type="String" Name="Plan_of_care" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_GetCP_Master_Result">
+          <Property Type="Int64" Name="U_Id" Nullable="true" />
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="Int32" Name="PatientId" Nullable="true" />
+          <Property Type="Int32" Name="ModeOfArrival_Id" Nullable="true" />
+          <Property Type="String" Name="ModeOfArrival_Other" Nullable="true" />
+          <Property Type="Int32" Name="Revisit48" Nullable="true" />
+          <Property Type="String" Name="RevisitReason" Nullable="true" />
+          <Property Type="String" Name="Ref_From" Nullable="true" MaxLength="200" />
+          <Property Type="Int32" Name="Pre_Arvl_Note" Nullable="true" />
+          <Property Type="DateTime" Name="Pre_Arvl_Time" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="TraigeDoneby" Nullable="true" />
+          <Property Type="DateTime" Name="TriageTime" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="CreatedBy" Nullable="true" />
+          <Property Type="DateTime" Name="CreatedDate" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="ModifiedBy" Nullable="true" />
+          <Property Type="DateTime" Name="ModifiedDate" Nullable="true" Precision="23" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -8989,27 +8992,6 @@ warning 6002: The table/view 'CliniOS.dbo.vw_Users' does not have a primary key 
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="spInsertUpdateStrk_PA_Breathing" FunctionName="ClinIOSModel.Store.spInsertUpdateStrk_PA_Breathing" />
-          <FunctionImportMapping FunctionImportName="sp_GetCP_Master" FunctionName="ClinIOSModel.Store.sp_GetCP_Master">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="ClinIOSModel.sp_GetCP_Master_Result">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="PatientId" ColumnName="PatientId" />
-                <ScalarProperty Name="ModeOfArrival_Id" ColumnName="ModeOfArrival_Id" />
-                <ScalarProperty Name="ModeOfArrival_Other" ColumnName="ModeOfArrival_Other" />
-                <ScalarProperty Name="Revisit48" ColumnName="Revisit48" />
-                <ScalarProperty Name="RevisitReason" ColumnName="RevisitReason" />
-                <ScalarProperty Name="Ref_From" ColumnName="Ref_From" />
-                <ScalarProperty Name="Pre_Arvl_Note" ColumnName="Pre_Arvl_Note" />
-                <ScalarProperty Name="Pre_Arvl_Time" ColumnName="Pre_Arvl_Time" />
-                <ScalarProperty Name="TraigeDoneby" ColumnName="TraigeDoneby" />
-                <ScalarProperty Name="TriageTime" ColumnName="TriageTime" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
-                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
-                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_GetStrk_PA_Breathing" FunctionName="ClinIOSModel.Store.sp_GetStrk_PA_Breathing">
             <ResultMapping>
               <ComplexTypeMapping TypeName="ClinIOSModel.sp_GetStrk_PA_Breathing_Result">
@@ -9448,6 +9430,29 @@ warning 6002: The table/view 'CliniOS.dbo.vw_Users' does not have a primary key 
                 <ScalarProperty Name="Drg_ACEIInd" ColumnName="Drg_ACEIInd" />
                 <ScalarProperty Name="CathShiftedTime" ColumnName="CathShiftedTime" />
                 <ScalarProperty Name="Plan_of_care" ColumnName="Plan_of_care" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spUpdateCP_Master" FunctionName="ClinIOSModel.Store.spUpdateCP_Master" />
+          <FunctionImportMapping FunctionImportName="sp_GetCP_Master" FunctionName="ClinIOSModel.Store.sp_GetCP_Master">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ClinIOSModel.sp_GetCP_Master_Result">
+                <ScalarProperty Name="U_Id" ColumnName="U_Id" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="PatientId" ColumnName="PatientId" />
+                <ScalarProperty Name="ModeOfArrival_Id" ColumnName="ModeOfArrival_Id" />
+                <ScalarProperty Name="ModeOfArrival_Other" ColumnName="ModeOfArrival_Other" />
+                <ScalarProperty Name="Revisit48" ColumnName="Revisit48" />
+                <ScalarProperty Name="RevisitReason" ColumnName="RevisitReason" />
+                <ScalarProperty Name="Ref_From" ColumnName="Ref_From" />
+                <ScalarProperty Name="Pre_Arvl_Note" ColumnName="Pre_Arvl_Note" />
+                <ScalarProperty Name="Pre_Arvl_Time" ColumnName="Pre_Arvl_Time" />
+                <ScalarProperty Name="TraigeDoneby" ColumnName="TraigeDoneby" />
+                <ScalarProperty Name="TriageTime" ColumnName="TriageTime" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

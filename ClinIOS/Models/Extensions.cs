@@ -32,7 +32,15 @@ namespace ClinIOS.Models
             }
             catch (Exception e) { throw e; }
         }
-
+        public static void ExecuteTableValueProcedure<T>(this DbContext context, IEnumerable<T> data, string procedureName, string paramName,string typeName)
+        {
+            try
+            {
+                var authors = context.Database.ExecuteSqlCommand($"{procedureName} {paramName}",
+                    new SqlParameter(paramName, data.ToDataTable()) { SqlDbType = SqlDbType.Structured, TypeName = typeName });
+            }
+            catch (Exception e) { throw e; }
+        }
         public static DataTable ToDataTable<T>(this IEnumerable<T> data)
         {
             var props = TypeDescriptor.GetProperties(typeof(T));

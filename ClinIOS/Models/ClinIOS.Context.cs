@@ -2279,15 +2279,6 @@ namespace ClinIOS.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("spInsertUpdateStrk_PA_Breathing", operationParameter, newId);
         }
     
-        public virtual ObjectResult<sp_GetCP_Master_Result> sp_GetCP_Master(Nullable<int> patientID)
-        {
-            var patientIDParameter = patientID.HasValue ?
-                new ObjectParameter("PatientID", patientID) :
-                new ObjectParameter("PatientID", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_GetCP_Master_Result>("sp_GetCP_Master", patientIDParameter);
-        }
-    
         public virtual ObjectResult<sp_GetStrk_PA_Breathing_Result> sp_GetStrk_PA_Breathing(Nullable<int> patientID)
         {
             var patientIDParameter = patientID.HasValue ?
@@ -2367,6 +2358,20 @@ namespace ClinIOS.Models
                 new ObjectParameter("Id", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_GetCP_Inference_Result>("sp_GetCP_Inference", idParameter);
+        }
+    
+        public virtual int spUpdateCP_Master()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("spUpdateCP_Master");
+        }
+    
+        public virtual ObjectResult<sp_GetCP_Master_Result> sp_GetCP_Master(Nullable<int> patientID)
+        {
+            var patientIDParameter = patientID.HasValue ?
+                new ObjectParameter("PatientID", patientID) :
+                new ObjectParameter("PatientID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_GetCP_Master_Result>("sp_GetCP_Master", patientIDParameter);
         }
     }
 }
