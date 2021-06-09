@@ -15,24 +15,24 @@ namespace ClinIOS.Models
         {
             return new List<TableForms>()
             {
-                new TableForms(){FOMRID="CP_Complaints", GET="sp_GetCP_Complaints",TRANS="spInsertUpdateCP_Complaints",TYPE="CP_Complaints"}
+                new TableForms(){FOMRID="CP_Complaints", GET="sp_GetCP_Complaints",TRANS="spUpdateCP_Complaints",TYPE="CP_Complaints"}
                 ,new TableForms(){FOMRID="CP_Moa", GET="sp_GetCP_Master",TRANS="spUpdateCP_Master",TYPE="CP_Master"}
                 ,new TableForms(){FOMRID="Chestpain" ,GET="sp_GetChestpain",TRANS="spUpdateCP_Master",TYPE="ChestPain"}
-                ,new TableForms(){FOMRID="CP_CoMor_RiskFactors" ,GET="sp_GetCP_CoMor_RiskFactors",TRANS="spInsertUpdateCP_CoMor_RiskFactors",TYPE="CP_CoMor_RiskFactors"}
-                ,new TableForms(){FOMRID="CP_Drug" ,GET="sp_GetCP_Drug",TRANS="spInsertUpdateCP_Drug",TYPE="CP_Drug"}
-                ,new TableForms(){FOMRID="CP_Ecg" ,GET="sp_GetCP_Ecg",TRANS="spInsertUpdateCP_Ecg",TYPE="CP_Ecg"}
-                ,new TableForms(){FOMRID="CP_Investgations" ,GET="sp_GetCP_Investgations",TRANS="spInsertUpdateCP_Investgations",TYPE="CP_Investgations"}
-                ,new TableForms(){FOMRID="CP_NonST" ,GET="sp_GetCP_NonST",TRANS="spInsertUpdateCP_NonST",TYPE="CP_NonST"}
-                ,new TableForms(){FOMRID="CP_PhysicalExamination" ,GET="sp_GetCP_PhysicalExamination",TRANS="spInsertUpdateCP_PhysicalExamination",TYPE="CP_PhysicalExamination"}
-                ,new TableForms(){FOMRID="CP_PrimeAssmnt_Airway" ,GET="sp_GetCP_PrimeAssmnt_Airway",TRANS="spInsertUpdateCP_PrimeAssmnt_Airway",TYPE="CP_PrimeAssmnt_Airway"}
-                ,new TableForms(){FOMRID="CP_PrimeAssmnt_Breathing" ,GET="sp_GetCP_PrimeAssmnt_Breathing",TRANS="spInsertUpdateCP_PrimeAssmnt_Breathing",TYPE="CP_PrimeAssmnt_Breathing"}
-                ,new TableForms(){FOMRID="CP_PrimeAssmnt_Cerculation" ,GET="sp_GetCP_PrimeAssmnt_Cerculation",TRANS="spInsertUpdateCP_PrimeAssmnt_Cerculation",TYPE="CP_PrimeAssmnt_Cerculation"}
-                ,new TableForms(){FOMRID="CP_PrimeAssmnt_Disablty" ,GET="sp_GetCP_Disability",TRANS="spInsertUpdateCP_PrimeAssmnt_Disability",TYPE="CP_PrimeAssmnt_Disability"}
-                ,new TableForms(){FOMRID="CP_PrimeAssmnt_Expo" ,GET="sp_GetCP_Exposure",TRANS="spInsertUpdateCP_PrimeAssmnt_Exposure",TYPE="CP_PrimeAssmnt_Exposure"}
-                ,new TableForms(){FOMRID="CP_ST" ,GET="sp_GetCP_ST",TRANS="spInsertUpdateCP_ST",TYPE="CP_ST"}
-                ,new TableForms(){FOMRID="CP_STPharmPCI" ,GET="sp_GetCP_STPharmPCI",TRANS="spInsertUpdateCP_STPharmPCI",TYPE="CP_STPharmPCI"}
-                ,new TableForms(){FOMRID="CP_Vitals" ,GET="sp_GetCP_Vitals",TRANS="spInsertUpdateCP_Vitals",TYPE="CP_Vitals"}
-                ,new TableForms(){FOMRID="CP_DISP" ,GET="sp_GetCP_Disposition",TRANS="spInsertUpdateCP_Disposition",TYPE="CP_Disposition"}
+                ,new TableForms(){FOMRID="CP_CoMor_RiskFactors" ,GET="sp_GetCP_CoMor_RiskFactors",TRANS="spUpdateCP_CoMor_RiskFactors",TYPE="CP_CoMor_RiskFactors"}
+                ,new TableForms(){FOMRID="CP_Drug" ,GET="sp_GetCP_Drug",TRANS="spUpdateCP_Drug",TYPE="CP_Drug"}
+                ,new TableForms(){FOMRID="CP_Ecg" ,GET="sp_GetCP_Ecg",TRANS="spUpdateCP_Ecg",TYPE="CP_Ecg"}
+                ,new TableForms(){FOMRID="CP_Investgations" ,GET="sp_GetCP_Investgations",TRANS="spUpdateCP_Investigations",TYPE="CP_Investgations"}
+                ,new TableForms(){FOMRID="CP_NonST" ,GET="sp_GetCP_NonST",TRANS="spUpdateCP_NonST",TYPE="CP_NonST"}
+                ,new TableForms(){FOMRID="CP_PhysicalExamination" ,GET="sp_GetCP_PhysicalExamination",TRANS="spUpdateCP_PhysicalExamination",TYPE="CP_PhysicalExamination"}
+                ,new TableForms(){FOMRID="CP_PrimeAssmnt_Airway" ,GET="sp_GetCP_PrimeAssmnt_Airway",TRANS="spUpdateCP_PrimeAssmnt_Airway",TYPE="CP_PrimeAssmnt_Airway"}
+                ,new TableForms(){FOMRID="CP_PrimeAssmnt_Breathing" ,GET="sp_GetCP_PrimeAssmnt_Breathing",TRANS="spUpdateCP_PrimeAssmnt_Breathing",TYPE="CP_PrimeAssmnt_Breathing"}
+                ,new TableForms(){FOMRID="CP_PrimeAssmnt_Cerculation" ,GET="sp_GetCP_PrimeAssmnt_Cerculation",TRANS="spUpdateCP_PrimeAssmnt_Cerculation",TYPE="CP_PrimeAssmnt_Cerculation"}
+                ,new TableForms(){FOMRID="CP_PrimeAssmnt_Disablty" ,GET="sp_GetCP_Disability",TRANS="spUpdateCP_PrimeAssmnt_Disability",TYPE="CP_PrimeAssmnt_Disability"}
+                ,new TableForms(){FOMRID="CP_PrimeAssmnt_Expo" ,GET="sp_GetCP_Exposure",TRANS="spUpdateCP_PrimeAssmnt_Exposure",TYPE="CP_PrimeAssmnt_Exposure"}
+                ,new TableForms(){FOMRID="CP_ST" ,GET="sp_GetCP_ST",TRANS="spUpdateCP_ST",TYPE="CP_ST"}
+                ,new TableForms(){FOMRID="CP_STPharmPCI" ,GET="sp_GetCP_STPharmPCI",TRANS="spUpdateCP_STPharmPCI",TYPE="CP_STPharmPCI"}
+                ,new TableForms(){FOMRID="CP_Vitals" ,GET="sp_GetCP_Vitals",TRANS="spUpdateCP_Vitals",TYPE="CP_Vitals"}
+                ,new TableForms(){FOMRID="CP_DISP" ,GET="sp_GetCP_Disposition",TRANS="spUpdateCP_Disposition",TYPE="CP_Disposition"}
                
                 //stroke
                 ,new TableForms(){FOMRID="STRK_preHospt" ,GET="sp_GetStrokeMaster",TRANS="spInsertUpdateStrokeMaster",TYPE="StrokeMaster"}
@@ -311,25 +311,25 @@ namespace ClinIOS.Models
                 var metadata = GetTableFrom(secName);
                 switch (secName)
                 {
-                    case "Chestpain": da.TransactRecordWithId(da.GetClassFromDictionary<sp_GetChestpain_Result>(data), metadata.TRANS, metadata.TYPE, false); break;
+                    case "Chestpain": da.TransactRecord(da.GetClassFromDictionary<sp_GetChestpain_Result>(data), metadata.TRANS, metadata.TYPE); break;
                     case "CP_Moa": da.TransactRecord(da.GetClassFromDictionary<sp_GetCP_Master_Result>(data), metadata.TRANS, metadata.TYPE); break;
-                    case "CP_CoMor_RiskFactors": da.TransactRecordWithId(da.GetClassFromDictionary<sp_GetCP_CoMor_RiskFactors_Result>(data), metadata.TRANS, metadata.TYPE, false); break;
-                    case "CP_Complaints": da.TransactRecordWithId(da.GetClassFromDictionary<sp_GetCP_Complaints_Result>(data), metadata.TRANS, metadata.TYPE, false); break;
-                    case "CP_Drug": da.TransactRecordWithId(da.GetClassFromDictionary<sp_GetCP_Drug_Result>(data), metadata.TRANS, metadata.TYPE, false); break;
-                    case "CP_Ecg": da.TransactRecordWithId(da.GetClassFromDictionary<sp_GetCP_Ecg_Result>(data), metadata.TRANS, metadata.TYPE, false); break;
-                    case "CP_Investgations": da.TransactRecordWithId(da.GetClassFromDictionary<sp_GetCP_Investgations_Result>(data), metadata.TRANS, metadata.TYPE, false); break;
-                    case "CP_NonST": da.TransactRecordWithId(da.GetClassFromDictionary<sp_GetCP_NonST_Result>(data), metadata.TRANS, metadata.TYPE, false); break;
-                    case "CP_PhysicalExamination": da.TransactRecordWithId(da.GetClassFromDictionary<sp_GetCP_PhysicalExamination_Result>(data), metadata.TRANS, metadata.TYPE, false); break;
-                    case "CP_PrimeAssmnt_Airway": da.TransactRecordWithId(da.GetClassFromDictionary<sp_GetCP_PrimeAssmnt_Airway_Result>(data), metadata.TRANS, metadata.TYPE, false); break;
-                    case "CP_PrimeAssmnt_Breathing": da.TransactRecordWithId(da.GetClassFromDictionary<sp_GetCP_PrimeAssmnt_Breathing_Result>(data), metadata.TRANS, metadata.TYPE, false); break;
-                    case "CP_PrimeAssmnt_Cerculation": da.TransactRecordWithId(da.GetClassFromDictionary<sp_GetCP_PrimeAssmnt_Cerculation_Result>(data), metadata.TRANS, metadata.TYPE, false); break;
-                    case "CP_PrimeAssmnt_Disablty": da.TransactRecordWithId(da.GetClassFromDictionary<sp_GetCP_Disability_Result>(data), metadata.TRANS, metadata.TYPE, false); break;
-                    case "CP_PrimeAssmnt_Expo": da.TransactRecordWithId(da.GetClassFromDictionary<sp_GetCP_Exposure_Result>(data), metadata.TRANS, metadata.TYPE, false); break;
-                    case "CP_ST": da.TransactRecordWithId(da.GetClassFromDictionary<sp_GetCP_ST_Result>(data), metadata.TRANS, metadata.TYPE, false); break;
-                    case "CP_STPharmPCI": da.TransactRecordWithId(da.GetClassFromDictionary<sp_GetCP_STPharmPCI_Result>(data), metadata.TRANS, metadata.TYPE, false); break;
-                    case "CP_Vitals": da.TransactRecordWithId(da.GetClassFromDictionary<sp_GetCP_Vitals_Result>(data), metadata.TRANS, metadata.TYPE, false); break;
-                    //case "ST_DISP": da.TransactRecordWithId(da.GetClassFromDictionary<sp_GetPoisoning_Disposition_Result>(data), metadata.TRANS, metadata.TYPE, false); break;
-                    case "CP_DISP": da.TransactRecordWithId(da.GetClassFromDictionary<sp_GetPoisoning_Disposition_Result>(data), metadata.TRANS, metadata.TYPE, false); break;
+                    case "CP_CoMor_RiskFactors": da.TransactRecord(da.GetClassFromDictionary<sp_GetCP_CoMor_RiskFactors_Result>(data), metadata.TRANS, metadata.TYPE); break;
+                    case "CP_Complaints": da.TransactRecord(da.GetClassFromDictionary<sp_GetCP_Complaints_Result>(data), metadata.TRANS, metadata.TYPE); break;
+                    case "CP_Drug": da.TransactRecord(da.GetClassFromDictionary<sp_GetCP_Drug_Result>(data), metadata.TRANS, metadata.TYPE); break;
+                    case "CP_Ecg": da.TransactRecord(da.GetClassFromDictionary<sp_GetCP_Ecg_Result>(data), metadata.TRANS, metadata.TYPE); break;
+                    case "CP_Investgations": da.TransactRecord(da.GetClassFromDictionary<sp_GetCP_Investgations_Result>(data), metadata.TRANS, metadata.TYPE); break;
+                    case "CP_NonST": da.TransactRecord(da.GetClassFromDictionary<sp_GetCP_NonST_Result>(data), metadata.TRANS, metadata.TYPE); break;
+                    case "CP_PhysicalExamination": da.TransactRecord(da.GetClassFromDictionary<sp_GetCP_PhysicalExamination_Result>(data), metadata.TRANS, metadata.TYPE); break;
+                    case "CP_PrimeAssmnt_Airway": da.TransactRecord(da.GetClassFromDictionary<sp_GetCP_PrimeAssmnt_Airway_Result>(data), metadata.TRANS, metadata.TYPE); break;
+                    case "CP_PrimeAssmnt_Breathing": da.TransactRecord(da.GetClassFromDictionary<sp_GetCP_PrimeAssmnt_Breathing_Result>(data), metadata.TRANS, metadata.TYPE); break;
+                    case "CP_PrimeAssmnt_Cerculation": da.TransactRecord(da.GetClassFromDictionary<sp_GetCP_PrimeAssmnt_Cerculation_Result>(data), metadata.TRANS, metadata.TYPE); break;
+                    case "CP_PrimeAssmnt_Disablty": da.TransactRecord(da.GetClassFromDictionary<sp_GetCP_Disability_Result>(data), metadata.TRANS, metadata.TYPE); break;
+                    case "CP_PrimeAssmnt_Expo": da.TransactRecord(da.GetClassFromDictionary<sp_GetCP_Exposure_Result>(data), metadata.TRANS, metadata.TYPE); break;
+                    case "CP_ST": da.TransactRecord(da.GetClassFromDictionary<sp_GetCP_ST_Result>(data), metadata.TRANS, metadata.TYPE); break;
+                    case "CP_STPharmPCI": da.TransactRecord(da.GetClassFromDictionary<sp_GetCP_STPharmPCI_Result>(data), metadata.TRANS, metadata.TYPE); break;
+                    case "CP_Vitals": da.TransactRecord(da.GetClassFromDictionary<sp_GetCP_Vitals_Result>(data), metadata.TRANS, metadata.TYPE); break;
+                    //case "ST_DISP": da.TransactRecordWithId(da.GetClassFromDictionary<sp_GetPoisoning_Disposition_Result>(data), metadata.TRANS, metadata.TYPE); break;
+                    case "CP_DISP": da.TransactRecord(da.GetClassFromDictionary<sp_GetPoisoning_Disposition_Result>(data), metadata.TRANS, metadata.TYPE); break;
 
 
                     //stroke
