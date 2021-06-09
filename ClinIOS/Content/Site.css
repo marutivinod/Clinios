@@ -1,9 +1,9 @@
 ﻿html, body {
     padding: 0px;
     margin: 0px;
-    background: #eaeaea;
+    background: #eeee;
     height: 100%;
-    font-family: 'Segoe UI'
+    font-family: 'Segoe UI';
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -272,6 +272,7 @@ label {
     border-width: thin;
     padding: 2px;
 }
+
 .input-del-vsmall {
     width: 24px;
     height: 24px;
@@ -280,6 +281,7 @@ label {
     padding: 2px;
     cursor: pointer;
 }
+
 .whitebg {
     background-color: #FFFFFF;
 }
@@ -335,34 +337,35 @@ label {
     border-bottom: 1px solid #dddddd;
 }
 
-    .div-row-border label {
-        font-weight: 600;
-        text-align: right;
-        padding-right: 10px;
-        width: 28%;
-        display: inline-block
-    }
-
-    .div-row-border .input-field {
-        display: inline-block;
-    }
-.div-row-border_2 {
+.result-container {
     padding: 8px 0px;
     border-bottom: 1px solid #dddddd;
-    display:flex;
 }
 
-    .div-row-border_2 label {
-        font-weight: 600;
-        text-align: right;
-        padding-right: 10px;
-        width: 28%;
-        display: inline-block
-    }
+.div-row-border label {
+    font-weight: 600;
+    text-align: right;
+    padding-right: 10px;
+    width: 28%;
+    display: inline-block
+}
 
-    .div-row-border_2 .input-field {
-        display: inline-block;
-    }
+.result-container label {
+    font-weight: 600;
+    text-align: left;
+    padding-right: 10px;
+    width: 28%;
+    display: inline-block
+}
+
+.div-row-border .input-field {
+    display: inline-block;
+}
+
+.result-container .input-field {
+    display: inline-block;
+}
+
 .input-field .radiospan {
     margin-right: 14px;
     display: inline-block;
@@ -438,17 +441,20 @@ label {
 }
 
 .label-box-medium {
-width:13%;
-text-align:left !important;
+    width: 13%;
+    text-align: left !important;
 }
+
 .label-box-small {
     width: 9%;
     text-align: left !important;
 }
+
 .label-box-vsmall {
     width: 5%;
     text-align: left !important;
 }
+
 .div-row-woborder .input-field {
     display: inline-block;
     width: 70%;
@@ -456,7 +462,7 @@ text-align:left !important;
 }
 
 .btnselected {
-    min-width: 60px; 
+    min-width: 60px;
     height: 26px;
     color: #FFFFFF;
     border-radius: 12px;
@@ -581,15 +587,18 @@ input[type=checkbox] {
     padding: 5px 16px;
     border-radius: 5px 5px 0px 0px;
     text-decoration: none;
-    display:inline-block;
-    text-align:center;
+    display: inline-block;
+    text-align: center;
 }
+
 .big-tab {
     max-width: 162px !important;
 }
+
 .small-tab {
     max-width: 46px !important;
 }
+
 .ui-state-active a {
     background: #B5D8FB;
     border: 1px solid #B5D8FB;
@@ -617,20 +626,21 @@ input[type=checkbox] {
     background-color: #edfcf9;
     display: inline-block;
     width: 36%;
-    vertical-align:top;
+    vertical-align: top;
 }
 
 .trauma-manag-sec {
     background-color: #edfcf9;
     display: inline-block;
     width: 40%;
-    vertical-align:top;
+    vertical-align: top;
 }
+
 .trauma-re-asses-sec {
     background-color: #edfcf9;
     display: inline-block;
     width: 23%;
-    vertical-align:top;
+    vertical-align: top;
 }
 
 .exposure-asses-sec {
@@ -685,10 +695,11 @@ input[type=checkbox] {
     height: 32px;
     display: block;
 }
+
 .sec-box {
     background-color: #dae3f3;
-
 }
+
 .sec-label {
     width: 86px;
     display: inline-block;
@@ -711,11 +722,11 @@ input[type=checkbox] {
 
 .sec-label-block {
     display: block;
-    height:30px;
+    height: 30px;
 }
 
 .sec-box .sec-label-block {
-padding: 4px 4px;
+    padding: 4px 4px;
 }
 
 .sec-fields {
@@ -1025,6 +1036,7 @@ padding: 4px 4px;
     background-color: #FFFFFF;
     margin: 4px 6px 0px 6px;
 }
+
 .inner-grid {
     padding: 0px 4px;
 }
@@ -1102,7 +1114,7 @@ tfoot tr {
 .page-footer {
     padding: 10px;
     text-align: right;
-    margin-top:10px;
+    margin-top: 10px;
     background-color: #dddddd;
 }
 
@@ -1132,7 +1144,7 @@ tfoot tr {
 .toggle-button-cover {
     display: inline-block;
     box-sizing: border-box;
-    vertical-align:middle;
+    vertical-align: middle;
 }
 
 .button-cover {
@@ -1247,36 +1259,43 @@ tfoot tr {
 
 .vitals-hdr {
     background-color: #D8EAFC;
-    padding:6px;
+    padding: 6px;
 }
+
 .vitals-sec {
-padding:6px;
+    padding: 6px;
 }
 
 .label-width {
     min-width: 120px;
     text-align: left !important;
 }
+
 .green-txt {
     color: #0CD0A8;
-    font-weight:600;
+    font-weight: 600;
 }
+
 .align-center {
- text-align:center;
+    text-align: center;
 }
 
 .align-left {
     text-align: left;
 }
+
 .evengray {
     background-color: #F8F8F8;
 }
+
 .redtext {
-color:#FF0000;
+    color: #FF0000;
 }
+
 .inner-row {
-line-height:50px;
+    line-height: 50px;
 }
+
 .navigation-links {
     padding: 0px;
 }
@@ -1291,8 +1310,8 @@ line-height:50px;
 }
 
 .row-ht {
-height:20px;
-padding:8px 0px;
+    height: 20px;
+    padding: 8px 0px;
 }
 
 .comorbid-sec {
@@ -1305,54 +1324,78 @@ padding:8px 0px;
     text-align: right;
     background-color: #D8EAFC;
 }
+
 .row-boxcolor {
-    padding:4px 0px;
+    padding: 4px 0px;
     background-color: #DDE9F5;
-    vertical-align:top;
-    font-size:13px;
+    vertical-align: top;
+    font-size: 13px;
 }
 
 .grid-border {
-padding: 0px 4px;
+    padding: 0px 4px;
 }
+
     .grid-border table {
         width: 100%;
         border-collapse: collapse;
         border: 1px solid #999999;
     }
-.grid-border thead tr {
-    background-color: #6DA8E4;
-    height: 34px;
-    color: #FFFFFF;
-    text-align: center;
-    font-weight: 600;
-}
-    .grid-border tbody tr td{
-        border-collapse:collapse;
-        border:1px solid #999999;
+
+    .grid-border thead tr {
+        background-color: #6DA8E4;
         height: 34px;
         color: #FFFFFF;
         text-align: center;
         font-weight: 600;
     }
+
+    .grid-border tbody tr td {
+        border-collapse: collapse;
+        border: 1px solid #999999;
+        height: 34px;
+        color: #FFFFFF;
+        text-align: center;
+        font-weight: 600;
+    }
+
 .padding-top {
-padding-top:4px;
+    padding-top: 4px;
 }
+
 .label-100 {
     width: 100px;
     display: inline-block;
     text-align: right;
     padding-right: 10px;
 }
+
 .label-140 {
     width: 140px;
     display: inline-block;
     text-align: right;
     padding-right: 10px;
 }
+
 .label-200 {
     width: 200px;
     display: inline-block;
     text-align: right;
-    padding-right:10px;
+    padding-right: 10px;
+}
+
+.footer {
+    width: 1037px;
+    position: fixed;
+    bottom: 0;
+}
+
+.form-elements {
+    margin-bottom: 56px;
+}
+
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 1) {
+    .footer {
+        width: 100% !important;
+    }
 }
