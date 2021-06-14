@@ -14,5 +14,12 @@ namespace ClinIOS.Models
         public string TRANS { get; set; }
         public string DEL { get; set; }
         public object DATA { get; set; }
+        public TableForms(string _formid, string _get, string _trans, string _type)
+        {
+            FOMRID = _formid; GET = _get; TYPE = _type; TRANS = _trans;
+        }
+        public TableForms()
+        {
+        }
     }
 }

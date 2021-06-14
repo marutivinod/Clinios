@@ -15,142 +15,143 @@ namespace ClinIOS.Models
         {
             return new List<TableForms>()
             {
-                new TableForms(){FOMRID="CP_Complaints", GET="sp_GetCP_Complaints",TRANS="spUpdateCP_Complaints",TYPE="CP_Complaints"}
-                ,new TableForms(){FOMRID="CP_Moa", GET="sp_GetCP_Master",TRANS="spUpdateCP_Master",TYPE="CP_Master"}
-                ,new TableForms(){FOMRID="Chestpain" ,GET="sp_GetChestpain",TRANS="spUpdateCP_Master",TYPE="ChestPain"}
-                ,new TableForms(){FOMRID="CP_CoMor_RiskFactors" ,GET="sp_GetCP_CoMor_RiskFactors",TRANS="spUpdateCP_CoMor_RiskFactors",TYPE="CP_CoMor_RiskFactors"}
-                ,new TableForms(){FOMRID="CP_Drug" ,GET="sp_GetCP_Drug",TRANS="spUpdateCP_Drug",TYPE="CP_Drug"}
-                ,new TableForms(){FOMRID="CP_Ecg" ,GET="sp_GetCP_Ecg",TRANS="spUpdateCP_Ecg",TYPE="CP_Ecg"}
-                ,new TableForms(){FOMRID="CP_Investgations" ,GET="sp_GetCP_Investgations",TRANS="spUpdateCP_Investigations",TYPE="CP_Investgations"}
-                ,new TableForms(){FOMRID="CP_NonST" ,GET="sp_GetCP_NonST",TRANS="spUpdateCP_NonST",TYPE="CP_NonST"}
-                ,new TableForms(){FOMRID="CP_PhysicalExamination" ,GET="sp_GetCP_PhysicalExamination",TRANS="spUpdateCP_PhysicalExamination",TYPE="CP_PhysicalExamination"}
-                ,new TableForms(){FOMRID="CP_PrimeAssmnt_Airway" ,GET="sp_GetCP_PrimeAssmnt_Airway",TRANS="spUpdateCP_PrimeAssmnt_Airway",TYPE="CP_PrimeAssmnt_Airway"}
-                ,new TableForms(){FOMRID="CP_PrimeAssmnt_Breathing" ,GET="sp_GetCP_PrimeAssmnt_Breathing",TRANS="spUpdateCP_PrimeAssmnt_Breathing",TYPE="CP_PrimeAssmnt_Breathing"}
-                ,new TableForms(){FOMRID="CP_PrimeAssmnt_Cerculation" ,GET="sp_GetCP_PrimeAssmnt_Cerculation",TRANS="spUpdateCP_PrimeAssmnt_Cerculation",TYPE="CP_PrimeAssmnt_Cerculation"}
-                ,new TableForms(){FOMRID="CP_PrimeAssmnt_Disablty" ,GET="sp_GetCP_Disability",TRANS="spUpdateCP_PrimeAssmnt_Disability",TYPE="CP_PrimeAssmnt_Disability"}
-                ,new TableForms(){FOMRID="CP_PrimeAssmnt_Expo" ,GET="sp_GetCP_Exposure",TRANS="spUpdateCP_PrimeAssmnt_Exposure",TYPE="CP_PrimeAssmnt_Exposure"}
-                ,new TableForms(){FOMRID="CP_ST" ,GET="sp_GetCP_ST",TRANS="spUpdateCP_ST",TYPE="CP_ST"}
-                ,new TableForms(){FOMRID="CP_STPharmPCI" ,GET="sp_GetCP_STPharmPCI",TRANS="spUpdateCP_STPharmPCI",TYPE="CP_STPharmPCI"}
-                ,new TableForms(){FOMRID="CP_Vitals" ,GET="sp_GetCP_Vitals",TRANS="spUpdateCP_Vitals",TYPE="CP_Vitals"}
-                ,new TableForms(){FOMRID="CP_DISP" ,GET="sp_GetCP_Disposition",TRANS="spUpdateCP_Disposition",TYPE="CP_Disposition"}
-               
+                //Chest Pain
+                 new TableForms("CP_Complaints", "sp_GetCP_Complaints","spUpdateCP_Complaints","CP_Complaints")
+                ,new TableForms("CP_Moa", "sp_GetCP_Master","spUpdateCP_Master","CP_Master")
+                ,new TableForms("Chestpain" ,"sp_GetChestpain","spUpdateCP_Master","ChestPain")
+                ,new TableForms("CP_CoMor_RiskFactors" ,"sp_GetCP_CoMor_RiskFactors","spUpdateCP_CoMor_RiskFactors","CP_CoMor_RiskFactors")
+                ,new TableForms("CP_Drug" ,"sp_GetCP_Drug","spUpdateCP_Drug","CP_Drug")
+                ,new TableForms("CP_Ecg" ,"sp_GetCP_Ecg","spUpdateCP_Ecg","CP_Ecg")
+                ,new TableForms("CP_Investgations" ,"sp_GetCP_Investgations","spUpdateCP_Investigations","CP_Investigations")
+                ,new TableForms("CP_NonST" ,"sp_GetCP_NonST","spUpdateCP_NonST","CP_NonST")
+                ,new TableForms("CP_PhysicalExamination" ,"sp_GetCP_PhysicalExamination","spUpdateCP_PhysicalExamination","CP_PhysicalExamination")
+                ,new TableForms("CP_PrimeAssmnt_Airway" ,"sp_GetCP_PrimeAssmnt_Airway","spUpdateCP_PrimeAssmnt_Airway","CP_PrimeAssmnt_Airway")
+                ,new TableForms("CP_PrimeAssmnt_Breathing" ,"sp_GetCP_PrimeAssmnt_Breathing","spUpdateCP_PrimeAssmnt_Breathing","CP_PrimeAssmnt_Breathing")
+                ,new TableForms("CP_PrimeAssmnt_Cerculation" ,"sp_GetCP_PrimeAssmnt_Cerculation","spUpdateCP_PrimeAssmnt_Cerculation","CP_PrimeAssmnt_Cerculation")
+                ,new TableForms("CP_PrimeAssmnt_Disablty" ,"sp_GetCP_Disability","spUpdateCP_PrimeAssmnt_Disability","CP_PrimeAssmnt_Disability")
+                ,new TableForms("CP_PrimeAssmnt_Expo" ,"sp_GetCP_Exposure","spUpdateCP_PrimeAssmnt_Exposure","CP_PrimeAssmnt_Exposure")
+                ,new TableForms("CP_ST" ,"sp_GetCP_ST","spUpdateCP_ST","CP_ST")
+                ,new TableForms("CP_STPharmPCI" ,"sp_GetCP_STPharmPCI","spUpdateCP_STPharmPCI","CP_STPharmPCI")
+                ,new TableForms("CP_Vitals" ,"sp_GetCP_Vitals","spUpdateCP_Vitals","CP_Vitals")
+                ,new TableForms("CP_DISP" ,"sp_GetCP_Disposition","spUpdateCP_Disposition","CP_Disposition")
+
                 //stroke
-                ,new TableForms(){FOMRID="STRK_preHospt" ,GET="sp_GetStrokeMaster",TRANS="spInsertUpdateStrokeMaster",TYPE="StrokeMaster"}
-                //,new TableForms(){FOMRID="STRK_emegRoom" ,GET="",TRANS="",TYPE=""}
-                ,new TableForms(){FOMRID="STRK_vitalsOnArri" ,GET="sp_GetStrk_Vitals",TRANS="spInsertUpdateStrk_Vitals",TYPE="Strk_Vitals"}
-                ,new TableForms(){FOMRID="STRK_psAirWay" ,GET="sp_GetStrk_PA_Airway",TRANS="spInsertUpdateStrk_PA_Airway",TYPE="Strk_PA_Airway"}
-                ,new TableForms(){FOMRID="STRK_psBreath" ,GET="sp_GetStrk_PA_Breathing",TRANS="spInsertUpdateStrk_PA_Breathing",TYPE="Strk_PA_Breathing"}
-                ,new TableForms(){FOMRID="STRK_psCirc" ,GET="sp_GetStrk_PA_Cerculation",TRANS="spInsertUpdateStrk_PA_Cerculation",TYPE="Strk_PA_Cerculation"}
-                ,new TableForms(){FOMRID="STRK_psDisab" ,GET="sp_GetStrk_PA_Disability",TRANS="spInsertUpdateStrk_PA_Disability",TYPE="Strk_PA_Disability"}
-                ,new TableForms(){FOMRID="STRK_psExpo" ,GET="sp_GetStrk_PA_Exposure",TRANS="spInsertUpdateStrk_PA_Exposure",TYPE="Strk_PA_Exposure"}
-                ,new TableForms(){FOMRID="STRK_strkEval" ,GET="sp_GetStrk_Evaluation",TRANS="spInsertUpdateStrk_Evaluation",TYPE="Strk_Evaluation"}
-                ,new TableForms(){FOMRID="STRK_strkTeam" ,GET="sp_GetStrk_Team",TRANS="spInsertUpdateStrk_Team",TYPE="Strk_Team"}
-                ,new TableForms(){FOMRID="STRK_crMorbds" ,GET="sp_GetStrk_Comorbids",TRANS="spInsertUpdateStrk_Comorbids",TYPE="Strk_Comorbids"}
-                ,new TableForms(){FOMRID="STRK_invesgt" ,GET="sp_GetStrk_Investigations",TRANS="spInsertUpdateStrk_Investigations",TYPE="Strk_Investigations"}
-                ,new TableForms(){FOMRID="STRK_invesgtTimes" ,GET="sp_GetStrk_Investigations_Times",TRANS="spInsertUpdateStrk_Investigations_Times",TYPE="Strk_Investigations_Times"}
-                ,new TableForms(){FOMRID="STRK_planCare" ,GET="sp_GetStrk_PlanOfCare",TRANS="spInsertUpdateStrk_PlanOfCare",TYPE="Strk_PlanOfCare"}
-                ,new TableForms(){FOMRID="STRK_strk_FibriList" ,GET="sp_GetStrk_FibrinolyticChkList",TRANS="spInsertUpdateStrk_FibrinolyticChkList",TYPE="Strk_FibrinolyticChkList"}
-                ,new TableForms(){FOMRID="STRK_strk_Port" ,GET="sp_GetStrk_Protocol",TRANS="spInsertUpdateStrk_Protocol",TYPE="Strk_Protocol"}
-                ,new TableForms(){FOMRID="STRK_Strk_Dispo" ,GET="sp_GetStrk_Disposition",TRANS="spInsertUpdateStrk_Disposition",TYPE="Strk_Disposition"}
-                ,new TableForms(){FOMRID="STRK_vitalPop" ,GET="sp_GetStrk_Vitals",TRANS="spInsertUpdateStrk_Vitals",TYPE="Strk_Vitals"}
-                ,new TableForms(){FOMRID="STRK_Drugs" ,GET="spInsertUpdateStrk_Drug",TRANS="spInsertUpdateTrauma_Drug",TYPE="Strk_Drug"}
-                ,new TableForms(){FOMRID="STRK_DrugsER" ,GET="spInsertUpdateStrk_DrugRecon",TRANS="spInsertUpdateTrauma_DrugRecon",TYPE="Strk_DrugRecon"}
+                ,new TableForms("STRK_preHospt" ,"sp_GetStrokeMaster","spInsertUpdateStrokeMaster","StrokeMaster")
+                //,new TableForms("STRK_emegRoom" ,"","","")
+                ,new TableForms("STRK_vitalsOnArri" ,"sp_GetStrk_Vitals","spInsertUpdateStrk_Vitals","Strk_Vitals")
+                ,new TableForms("STRK_psAirWay" ,"sp_GetStrk_PA_Airway","spInsertUpdateStrk_PA_Airway","Strk_PA_Airway")
+                ,new TableForms("STRK_psBreath" ,"sp_GetStrk_PA_Breathing","spInsertUpdateStrk_PA_Breathing","Strk_PA_Breathing")
+                ,new TableForms("STRK_psCirc" ,"sp_GetStrk_PA_Cerculation","spInsertUpdateStrk_PA_Cerculation","Strk_PA_Cerculation")
+                ,new TableForms("STRK_psDisab" ,"sp_GetStrk_PA_Disability","spInsertUpdateStrk_PA_Disability","Strk_PA_Disability")
+                ,new TableForms("STRK_psExpo" ,"sp_GetStrk_PA_Exposure","spInsertUpdateStrk_PA_Exposure","Strk_PA_Exposure")
+                ,new TableForms("STRK_strkEval" ,"sp_GetStrk_Evaluation","spInsertUpdateStrk_Evaluation","Strk_Evaluation")
+                ,new TableForms("STRK_strkTeam" ,"sp_GetStrk_Team","spInsertUpdateStrk_Team","Strk_Team")
+                ,new TableForms("STRK_crMorbds" ,"sp_GetStrk_Comorbids","spInsertUpdateStrk_Comorbids","Strk_Comorbids")
+                ,new TableForms("STRK_invesgt" ,"sp_GetStrk_Investigations","spInsertUpdateStrk_Investigations","Strk_Investigations")
+                ,new TableForms("STRK_invesgtTimes" ,"sp_GetStrk_Investigations_Times","spInsertUpdateStrk_Investigations_Times","Strk_Investigations_Times")
+                ,new TableForms("STRK_planCare" ,"sp_GetStrk_PlanOfCare","spInsertUpdateStrk_PlanOfCare","Strk_PlanOfCare")
+                ,new TableForms("STRK_strk_FibriList" ,"sp_GetStrk_FibrinolyticChkList","spInsertUpdateStrk_FibrinolyticChkList","Strk_FibrinolyticChkList")
+                ,new TableForms("STRK_strk_Port" ,"sp_GetStrk_Protocol","spInsertUpdateStrk_Protocol","Strk_Protocol")
+                ,new TableForms("STRK_Strk_Dispo" ,"sp_GetStrk_Disposition","spInsertUpdateStrk_Disposition","Strk_Disposition")
+                ,new TableForms("STRK_vitalPop" ,"sp_GetStrk_Vitals","spInsertUpdateStrk_Vitals","Strk_Vitals")
+                ,new TableForms("STRK_Drugs" ,"spInsertUpdateStrk_Drug","spInsertUpdateTrauma_Drug","Strk_Drug")
+                ,new TableForms("STRK_DrugsER" ,"spInsertUpdateStrk_DrugRecon","spInsertUpdateTrauma_DrugRecon","Strk_DrugRecon")
 
 
                 //Abdomen
-                ,new TableForms(){FOMRID="AB_moa" ,GET="sp_GetAbdomenMaster",TRANS="spInsertUpdateAbdomenMaster",TYPE="AbdomenMaster"}
-                ,new TableForms(){FOMRID="AB_PAAir" ,GET="sp_GetAbdomen_PA_Airway",TRANS="spInsertUpdateAbdomen_PA_Airway",TYPE="Abdomen_PA_Airway"}
-                ,new TableForms(){FOMRID="AB_PABreat" ,GET="sp_GetAbdomen_PA_Breathing",TRANS="spInsertUpdateAbdomen_PA_Breathing",TYPE="Abdomen_PA_Breathing"}
-                ,new TableForms(){FOMRID="AB_PACir" ,GET="sp_GetAbdomen_PA_Cerculation",TRANS="spInsertUpdateAbdomen_PA_Cerculation",TYPE="Abdomen_PA_Cerculation"}
-                ,new TableForms(){FOMRID="AB_VitalPop" ,GET="sp_GetAbdomen_Vitals",TRANS="spInsertUpdateAbdomen_Vitals",TYPE="Abdomen_Vitals"}
-                ,new TableForms(){FOMRID="AB_PADisa" ,GET="sp_GetAbdomen_PA_Disability",TRANS="spInsertUpdateAbdomen_PA_Disability",TYPE="Abdomen_PA_Disability"}
-                ,new TableForms(){FOMRID="AB_PAExpo" ,GET="sp_GetAbdomen_PA_Exposure",TRANS="spInsertUpdateAbdomen_PA_Exposure",TYPE="Abdomen_PA_Exposure"}
-                ,new TableForms(){FOMRID="AB_PrCp" ,GET="sp_GetAbdomen_PresentCompl",TRANS="spInsertUpdateAbdomen_PresentCompl",TYPE="Abdomen_PresentCompl"}
-                ,new TableForms(){FOMRID="AB_Cmrbds" ,GET="sp_GetAbdomen_Comorbids",TRANS="spInsertUpdateAbdomen_Comorbids",TYPE="Abdomen_Comorbids"}
-                ,new TableForms(){FOMRID="AB_ABIncid" ,GET="sp_GetAbdomen_Incidents",TRANS="spInsertUpdateAbdomen_Incidents",TYPE="Abdomen_Incidents"}
-                ,new TableForms(){FOMRID="AB_Exams" ,GET="sp_GetAbdomen_Examinations",TRANS="spInsertUpdateAbdomen_Examinations",TYPE="Abdomen_Examinations"}
-                ,new TableForms(){FOMRID="AB_Invs" ,GET="sp_GetAbdomen_Investigations",TRANS="spInsertUpdateAbdomen_Investigations",TYPE="Abdomen_Investigations"}
-                ,new TableForms(){FOMRID="AB_Refs" ,GET="sp_GetAbdomen_Referels",TRANS="spInsertUpdateAbdomen_Referels",TYPE="Abdomen_Referels"}
-                ,new TableForms(){FOMRID="AB_DISP" ,GET="sp_GetAbdomen_Disposition",TRANS="spInsertUpdateAbdomen_Disposition",TYPE="Abdomen_Disposition"}
-                ,new TableForms(){FOMRID="AB_Drugs" ,GET="sp_GetAbdomen_Drug",TRANS="spInsertUpdateAbdomen_Drug",TYPE="Abdomen_Drug"}
-                ,new TableForms(){FOMRID="AB_DrugsChrts" ,GET="sp_GetAbdomen_DrugRecon",TRANS="spInsertUpdateAbdomen_DrugRecon",TYPE="Abdomen_DrugRecon"}
+                ,new TableForms("AB_moa" ,"sp_GetAbdomenMaster","spInsertUpdateAbdomenMaster","AbdomenMaster")
+                ,new TableForms("AB_PAAir" ,"sp_GetAbdomen_PA_Airway","spInsertUpdateAbdomen_PA_Airway","Abdomen_PA_Airway")
+                ,new TableForms("AB_PABreat" ,"sp_GetAbdomen_PA_Breathing","spInsertUpdateAbdomen_PA_Breathing","Abdomen_PA_Breathing")
+                ,new TableForms("AB_PACir" ,"sp_GetAbdomen_PA_Cerculation","spInsertUpdateAbdomen_PA_Cerculation","Abdomen_PA_Cerculation")
+                ,new TableForms("AB_VitalPop" ,"sp_GetAbdomen_Vitals","spInsertUpdateAbdomen_Vitals","Abdomen_Vitals")
+                ,new TableForms("AB_PADisa" ,"sp_GetAbdomen_PA_Disability","spInsertUpdateAbdomen_PA_Disability","Abdomen_PA_Disability")
+                ,new TableForms("AB_PAExpo" ,"sp_GetAbdomen_PA_Exposure","spInsertUpdateAbdomen_PA_Exposure","Abdomen_PA_Exposure")
+                ,new TableForms("AB_PrCp" ,"sp_GetAbdomen_PresentCompl","spInsertUpdateAbdomen_PresentCompl","Abdomen_PresentCompl")
+                ,new TableForms("AB_Cmrbds" ,"sp_GetAbdomen_Comorbids","spInsertUpdateAbdomen_Comorbids","Abdomen_Comorbids")
+                ,new TableForms("AB_ABIncid" ,"sp_GetAbdomen_Incidents","spInsertUpdateAbdomen_Incidents","Abdomen_Incidents")
+                ,new TableForms("AB_Exams" ,"sp_GetAbdomen_Examinations","spInsertUpdateAbdomen_Examinations","Abdomen_Examinations")
+                ,new TableForms("AB_Invs" ,"sp_GetAbdomen_Investigations","spInsertUpdateAbdomen_Investigations","Abdomen_Investigations")
+                ,new TableForms("AB_Refs" ,"sp_GetAbdomen_Referels","spInsertUpdateAbdomen_Referels","Abdomen_Referels")
+                ,new TableForms("AB_DISP" ,"sp_GetAbdomen_Disposition","spInsertUpdateAbdomen_Disposition","Abdomen_Disposition")
+                ,new TableForms("AB_Drugs" ,"sp_GetAbdomen_Drug","spInsertUpdateAbdomen_Drug","Abdomen_Drug")
+                ,new TableForms("AB_DrugsChrts" ,"sp_GetAbdomen_DrugRecon","spInsertUpdateAbdomen_DrugRecon","Abdomen_DrugRecon")
 
                 //GI
-                ,new TableForms(){FOMRID="GI_VitalsPop" ,GET="sp_GetGI_Bleed_Vitals",TRANS="spInsertUpdateGI_Bleed_Vitals",TYPE="GI_Bleed_Vitals"}
-                ,new TableForms(){FOMRID="GI_PreHosp" ,GET="sp_GetGI_Bleed_PreHospital",TRANS="spInsertUpdateGI_Bleed_PreHospital",TYPE="GI_Bleed_PreHospital"}
-                ,new TableForms(){FOMRID="GI_vitals2" ,GET="sp_GetGI_Bleed_Vitals",TRANS="spInsertUpdateGI_Bleed_Vitals",TYPE="GI_Bleed_Vitals"}
-                ,new TableForms(){FOMRID="GI_PAAir" ,GET="sp_GetGI_Bleed_PA_Airway",TRANS="spInsertUpdateGI_Bleed_PA_Airway",TYPE="GI_Bleed_PA_Airway"}
-                ,new TableForms(){FOMRID="GI_PABreat" ,GET="sp_GetGI_Bleed_PA_Breathing",TRANS="spInsertUpdateGI_Bleed_PA_Breathing",TYPE="GI_Bleed_PA_Breathing"}
-                ,new TableForms(){FOMRID="GI_PACir" ,GET="sp_GetGI_Bleed_PA_Cerculation",TRANS="spInsertUpdateGI_Bleed_PA_Cerculation",TYPE="GI_Bleed_PA_Cerculation"}
-                ,new TableForms(){FOMRID="GI_PADisa" ,GET="sp_GetGI_Bleed_PA_Disability",TRANS="spInsertUpdateGI_Bleed_PA_Disability",TYPE="GI_Bleed_PA_Disability"}
-                ,new TableForms(){FOMRID="GI_PAExpo" ,GET="sp_GetGI_Bleed_PA_Exposure",TRANS="spInsertUpdateGI_Bleed_PA_Exposure",TYPE="GI_Bleed_PA_Exposure"}
-                ,new TableForms(){FOMRID="GI_CFShock" ,GET="sp_GetGI_Bleed_PA_ClacificShock",TRANS="spInsertUpdateGI_Bleed_PA_ClacificShock",TYPE="GI_Bleed_PA_ClacificShock"}
-                ,new TableForms(){FOMRID="GI_PreCompl" ,GET="sp_GetGI_Bleed_Complaints",TRANS="spInsertUpdateGI_Bleed_Complaints",TYPE="GI_Bleed_Complaints"}
-                ,new TableForms(){FOMRID="GI_Exams" ,GET="sp_GetGI_Bleed_Examinations",TRANS="spInsertUpdateGI_Bleed_Examinations",TYPE="GI_Bleed_Examinations"}
-                //,new TableForms(){FOMRID="GI_Intrven" ,GET="",TRANS="",TYPE=""}
-                ,new TableForms(){FOMRID="GI_Cmrbds" ,GET="sp_GetGI_Bleed_AmpleHistory",TRANS="spInsertUpdateGI_Bleed_AmpleHistory",TYPE="GI_Bleed_AmpleHistory"}
-                ,new TableForms(){FOMRID="GI_RiskStrf" ,GET="sp_GetGI_Bleed_RiskStratification",TRANS="spInsertUpdateGI_Bleed_RiskStratification",TYPE="GI_Bleed_RiskStratification"}
-                ,new TableForms(){FOMRID="GI_Invesg" ,GET="sp_GetGI_Bleed_Investigations",TRANS="spInsertUpdateGI_Bleed_Investigations",TYPE="GI_Bleed_Investigations"}
-                ,new TableForms(){FOMRID="GI_Refs" ,GET="sp_GetGI_Bleed_Referels",TRANS="spInsertUpdateGI_Bleed_Referels",TYPE="GI_Bleed_Referels"}
-                ,new TableForms(){FOMRID="GI_EndPlan" ,GET="sp_GetGI_Bleed_Planning",TRANS="spInsertUpdateGI_Bleed_Planning",TYPE="GI_Bleed_Planning"}
-                ,new TableForms(){FOMRID="GI_Dispo" ,GET="sp_GetGI_Bleed_Disposition",TRANS="spInsertUpdateGI_Bleed_Disposition",TYPE="GI_Bleed_Disposition"}
-                ,new TableForms(){FOMRID="GI_Drugs" ,GET="sp_GetGI_Bleed_Drug",TRANS="spInsertUpdateGI_Bleed_Drug",TYPE="GI_Bleed_Drug"}
-                ,new TableForms(){FOMRID="GI_DrugsChrts" ,GET="sp_GetGI_Bleed_DrugRecon",TRANS="spInsertUpdateGI_Bleed_DrugRecon",TYPE="GI_Bleed_DrugRecon"}
+                ,new TableForms("GI_VitalsPop" ,"sp_GetGI_Bleed_Vitals","spInsertUpdateGI_Bleed_Vitals","GI_Bleed_Vitals")
+                ,new TableForms("GI_PreHosp" ,"sp_GetGI_Bleed_PreHospital","spInsertUpdateGI_Bleed_PreHospital","GI_Bleed_PreHospital")
+                ,new TableForms("GI_vitals2" ,"sp_GetGI_Bleed_Vitals","spInsertUpdateGI_Bleed_Vitals","GI_Bleed_Vitals")
+                ,new TableForms("GI_PAAir" ,"sp_GetGI_Bleed_PA_Airway","spInsertUpdateGI_Bleed_PA_Airway","GI_Bleed_PA_Airway")
+                ,new TableForms("GI_PABreat" ,"sp_GetGI_Bleed_PA_Breathing","spInsertUpdateGI_Bleed_PA_Breathing","GI_Bleed_PA_Breathing")
+                ,new TableForms("GI_PACir" ,"sp_GetGI_Bleed_PA_Cerculation","spInsertUpdateGI_Bleed_PA_Cerculation","GI_Bleed_PA_Cerculation")
+                ,new TableForms("GI_PADisa" ,"sp_GetGI_Bleed_PA_Disability","spInsertUpdateGI_Bleed_PA_Disability","GI_Bleed_PA_Disability")
+                ,new TableForms("GI_PAExpo" ,"sp_GetGI_Bleed_PA_Exposure","spInsertUpdateGI_Bleed_PA_Exposure","GI_Bleed_PA_Exposure")
+                ,new TableForms("GI_CFShock" ,"sp_GetGI_Bleed_PA_ClacificShock","spInsertUpdateGI_Bleed_PA_ClacificShock","GI_Bleed_PA_ClacificShock")
+                ,new TableForms("GI_PreCompl" ,"sp_GetGI_Bleed_Complaints","spInsertUpdateGI_Bleed_Complaints","GI_Bleed_Complaints")
+                ,new TableForms("GI_Exams" ,"sp_GetGI_Bleed_Examinations","spInsertUpdateGI_Bleed_Examinations","GI_Bleed_Examinations")
+                //,new TableForms("GI_Intrven" ,"","","")
+                ,new TableForms("GI_Cmrbds" ,"sp_GetGI_Bleed_AmpleHistory","spInsertUpdateGI_Bleed_AmpleHistory","GI_Bleed_AmpleHistory")
+                ,new TableForms("GI_RiskStrf" ,"sp_GetGI_Bleed_RiskStratification","spInsertUpdateGI_Bleed_RiskStratification","GI_Bleed_RiskStratification")
+                ,new TableForms("GI_Invesg" ,"sp_GetGI_Bleed_Investigations","spInsertUpdateGI_Bleed_Investigations","GI_Bleed_Investigations")
+                ,new TableForms("GI_Refs" ,"sp_GetGI_Bleed_Referels","spInsertUpdateGI_Bleed_Referels","GI_Bleed_Referels")
+                ,new TableForms("GI_EndPlan" ,"sp_GetGI_Bleed_Planning","spInsertUpdateGI_Bleed_Planning","GI_Bleed_Planning")
+                ,new TableForms("GI_Dispo" ,"sp_GetGI_Bleed_Disposition","spInsertUpdateGI_Bleed_Disposition","GI_Bleed_Disposition")
+                ,new TableForms("GI_Drugs" ,"sp_GetGI_Bleed_Drug","spInsertUpdateGI_Bleed_Drug","GI_Bleed_Drug")
+                ,new TableForms("GI_DrugsChrts" ,"sp_GetGI_Bleed_DrugRecon","spInsertUpdateGI_Bleed_DrugRecon","GI_Bleed_DrugRecon")
 
                 //poision
-                ,new TableForms(){FOMRID="PO_VitalsPop" ,GET="sp_GetPoisoning_Vitals",TRANS="spInsertUpdatePoisoning_Vitals",TYPE="Poisoning_Vitals"}
-                ,new TableForms(){FOMRID="PO_Moa" ,GET="sp_GetPoisoningMaster",TRANS="spInsertUpdatePoisoningMaster",TYPE="PoisoningMaster"}
-                ,new TableForms(){FOMRID="PO_vitals" ,GET="sp_GetPoisoning_Vitals",TRANS="spInsertUpdatePoisoning_Vitals",TYPE="Poisoning_Vitals"}
-                ,new TableForms(){FOMRID="PO_PAAir" ,GET="sp_GetPoisoning_PA_Airway",TRANS="spInsertUpdatePoisoning_PA_Airway",TYPE="Poisoning_PA_Airway"}
-                ,new TableForms(){FOMRID="PO_PABreat" ,GET="sp_GetPoisoning_PA_Breathing",TRANS="spInsertUpdatePoisoning_PA_Breathing",TYPE="Poisoning_PA_Breathing"}
-                ,new TableForms(){FOMRID="PO_PACir" ,GET="sp_GetPoisoning_PA_Cerculation",TRANS="spInsertUpdatePoisoning_PA_Cerculation",TYPE="Poisoning_PA_Cerculation"}
-                ,new TableForms(){FOMRID="PO_PADisa" ,GET="sp_GetPoisoning_PA_Disability",TRANS="spInsertUpdatePoisoning_PA_Disability",TYPE="Poisoning_PA_Disability"}
-                ,new TableForms(){FOMRID="PO_PAExpo" ,GET="sp_GetPoisoning_PA_Exposure",TRANS="spInsertUpdatePoisoning_PA_Exposure",TYPE="Poisoning_PA_Exposure"}
-                ,new TableForms(){FOMRID="PO_DetEvnt" ,GET="sp_GetPoisoning_EventDet",TRANS="spInsertUpdatePoisoning_EventDet",TYPE="Poisoning_EventDet"}
-                ,new TableForms(){FOMRID="PO_AmplHist" ,GET="sp_GetPoisoning_AmpleHistory",TRANS="spInsertUpdatePoisoning_AmpleHistory",TYPE="Poisoning_AmpleHistory"}
-                ,new TableForms(){FOMRID="PO_SupCare" ,GET="sp_GetPoisoning_SuppCare",TRANS="spInsertUpdatePoisoning_SuppCare",TYPE="Poisoning_SuppCare"}
-                ,new TableForms(){FOMRID="PO_PHExam" ,GET="sp_GetPoisoning_Examinations",TRANS="spInsertUpdatePoisoning_Examinations",TYPE="Poisoning_Examinations"}
-                ,new TableForms(){FOMRID="PO_PoiCat" ,GET="sp_GetPoisioning_Categoty",TRANS="spInsertUpdatePoisioning_Categoty",TYPE="Poisioning_Categoty"}
-                ,new TableForms(){FOMRID="PO_Inves" ,GET="sp_GetPoisoning_Investigations",TRANS="spInsertUpdatePoisoning_Investigations",TYPE="Poisoning_Investigations"}
-                ,new TableForms(){FOMRID="PO_Dispo" ,GET="sp_GetPoisoning_Disposition",TRANS="spInsertUpdatePoisoning_Disposition",TYPE="Poisoning_Disposition"}
-                ,new TableForms(){FOMRID="PO_Drugs" ,GET="sp_GetPoisoning_Drug",TRANS="spInsertUpdatePoisoning_Drug",TYPE="Poisoning_Drug"}
-                ,new TableForms(){FOMRID="PO_DrugsChrts" ,GET="sp_GetPoisoning_DrugRecon",TRANS="spInsertUpdatePoisoning_DrugRecon",TYPE="Poisoning_DrugRecon"}
+                ,new TableForms("PO_VitalsPop" ,"sp_GetPoisoning_Vitals","spInsertUpdatePoisoning_Vitals","Poisoning_Vitals")
+                ,new TableForms("PO_Moa" ,"sp_GetPoisoningMaster","spInsertUpdatePoisoningMaster","PoisoningMaster")
+                ,new TableForms("PO_vitals" ,"sp_GetPoisoning_Vitals","spInsertUpdatePoisoning_Vitals","Poisoning_Vitals")
+                ,new TableForms("PO_PAAir" ,"sp_GetPoisoning_PA_Airway","spInsertUpdatePoisoning_PA_Airway","Poisoning_PA_Airway")
+                ,new TableForms("PO_PABreat" ,"sp_GetPoisoning_PA_Breathing","spInsertUpdatePoisoning_PA_Breathing","Poisoning_PA_Breathing")
+                ,new TableForms("PO_PACir" ,"sp_GetPoisoning_PA_Cerculation","spInsertUpdatePoisoning_PA_Cerculation","Poisoning_PA_Cerculation")
+                ,new TableForms("PO_PADisa" ,"sp_GetPoisoning_PA_Disability","spInsertUpdatePoisoning_PA_Disability","Poisoning_PA_Disability")
+                ,new TableForms("PO_PAExpo" ,"sp_GetPoisoning_PA_Exposure","spInsertUpdatePoisoning_PA_Exposure","Poisoning_PA_Exposure")
+                ,new TableForms("PO_DetEvnt" ,"sp_GetPoisoning_EventDet","spInsertUpdatePoisoning_EventDet","Poisoning_EventDet")
+                ,new TableForms("PO_AmplHist" ,"sp_GetPoisoning_AmpleHistory","spInsertUpdatePoisoning_AmpleHistory","Poisoning_AmpleHistory")
+                ,new TableForms("PO_SupCare" ,"sp_GetPoisoning_SuppCare","spInsertUpdatePoisoning_SuppCare","Poisoning_SuppCare")
+                ,new TableForms("PO_PHExam" ,"sp_GetPoisoning_Examinations","spInsertUpdatePoisoning_Examinations","Poisoning_Examinations")
+                ,new TableForms("PO_PoiCat" ,"sp_GetPoisioning_Categoty","spInsertUpdatePoisioning_Categoty","Poisioning_Categoty")
+                ,new TableForms("PO_Inves" ,"sp_GetPoisoning_Investigations","spInsertUpdatePoisoning_Investigations","Poisoning_Investigations")
+                ,new TableForms("PO_Dispo" ,"sp_GetPoisoning_Disposition","spInsertUpdatePoisoning_Disposition","Poisoning_Disposition")
+                ,new TableForms("PO_Drugs" ,"sp_GetPoisoning_Drug","spInsertUpdatePoisoning_Drug","Poisoning_Drug")
+                ,new TableForms("PO_DrugsChrts" ,"sp_GetPoisoning_DrugRecon","spInsertUpdatePoisoning_DrugRecon","Poisoning_DrugRecon")
 
                 //trauma
-                ,new TableForms(){FOMRID="Trm_VitalsPop" ,GET="sp_GetTrauma_Vitals",TRANS="spInsertUpdateTrauma_Vitals",TYPE="Trauma_Vitals"}
-                ,new TableForms(){FOMRID="Trm_vitals" ,GET="sp_GetTrauma_Vitals",TRANS="spInsertUpdateTrauma_Vitals",TYPE="Trauma_Vitals"}
-                ,new TableForms(){FOMRID="Trm_PreHosp" ,GET="sp_GetTrauma_PreHospital",TRANS="spInsertUpdateTrauma_PreHospital",TYPE="Trauma_PreHospital"}
-                ,new TableForms(){FOMRID="Trm_TraIncid" ,GET="sp_GetTrauma_IncidentDet",TRANS="spInsertUpdateTrauma_IncidentDet",TYPE="Trauma_IncidentDet"}
-                ,new TableForms(){FOMRID="Trm_PSAir" ,GET="sp_GetTrauma_PA_Airway",TRANS="spInsertUpdateTrauma_PA_Airway",TYPE="Trauma_PA_Airway"}
-                ,new TableForms(){FOMRID="Trm_PSBreat" ,GET="sp_GetTrauma_PA_Breathing",TRANS="spInsertUpdateTrauma_PA_Breathing",TYPE="Trauma_PA_Breathing"}
-                ,new TableForms(){FOMRID="Trm_PSCir" ,GET="sp_GetTrauma_PA_Cerculation",TRANS="spInsertUpdateTrauma_PA_Cerculation",TYPE="Trauma_PA_Cerculation"}
-                ,new TableForms(){FOMRID="Trm_PSDisa" ,GET="sp_GetTrauma_PA_Disability",TRANS="spInsertUpdateTrauma_PA_Disability",TYPE="Trauma_PA_Disability"}
-                ,new TableForms(){FOMRID="Trm_PSExpo" ,GET="sp_GetTrauma_PA_Exposure",TRANS="spInsertUpdateTrauma_PA_Exposure",TYPE="Trauma_PA_Exposure"}
-                ,new TableForms(){FOMRID="Trm_SecServ" ,GET="sp_GetTrauma_SecondSurvey",TRANS="spInsertUpdateTrauma_SecondSurvey",TYPE="Trauma_SecondSurvey"}
-                ,new TableForms(){FOMRID="Trm_AmplHist" ,GET="sp_GetTrauma_AmpleHistory",TRANS="spInsertUpdateTrauma_AmpleHistory",TYPE="Trauma_AmpleHistory"}
-                ,new TableForms(){FOMRID="Trm_TraTm" ,GET="sp_GetTrauma_Team",TRANS="spInsertUpdateTrauma_Team",TYPE="Trauma_Team"}
-                ,new TableForms(){FOMRID="Trm_Inves" ,GET="sp_GetTrauma_Investigations",TRANS="spInsertUpdateTrauma_Investigations",TYPE="Trauma_Investigations"}
-                ,new TableForms(){FOMRID="Trm_Dispo" ,GET="sp_GetTrauma_Disposition",TRANS="spInsertUpdateTrauma_Disposition",TYPE="Trauma_Disposition"}
-                ,new TableForms(){FOMRID="Trm_BldRec" ,GET="sp_GetTrauma_Blood",TRANS="spInsertUpdateTrauma_Blood",TYPE="Trauma_Blood"}
-                ,new TableForms(){FOMRID="Trm_Drugs" ,GET="sp_GetTrauma_Drug",TRANS="spInsertUpdateTrauma_Drug",TYPE="Trauma_Drug"}
-                ,new TableForms(){FOMRID="Trm_DrugsChrts" ,GET="sp_GetTrauma_DrugRecon",TRANS="spInsertUpdateTrauma_DrugRecon",TYPE="Trauma_DrugRecon"}
+                ,new TableForms("Trm_VitalsPop" ,"sp_GetTrauma_Vitals","spInsertUpdateTrauma_Vitals","Trauma_Vitals")
+                ,new TableForms("Trm_vitals" ,"sp_GetTrauma_Vitals","spInsertUpdateTrauma_Vitals","Trauma_Vitals")
+                ,new TableForms("Trm_PreHosp" ,"sp_GetTrauma_PreHospital","spInsertUpdateTrauma_PreHospital","Trauma_PreHospital")
+                ,new TableForms("Trm_TraIncid" ,"sp_GetTrauma_IncidentDet","spInsertUpdateTrauma_IncidentDet","Trauma_IncidentDet")
+                ,new TableForms("Trm_PSAir" ,"sp_GetTrauma_PA_Airway","spInsertUpdateTrauma_PA_Airway","Trauma_PA_Airway")
+                ,new TableForms("Trm_PSBreat" ,"sp_GetTrauma_PA_Breathing","spInsertUpdateTrauma_PA_Breathing","Trauma_PA_Breathing")
+                ,new TableForms("Trm_PSCir" ,"sp_GetTrauma_PA_Cerculation","spInsertUpdateTrauma_PA_Cerculation","Trauma_PA_Cerculation")
+                ,new TableForms("Trm_PSDisa" ,"sp_GetTrauma_PA_Disability","spInsertUpdateTrauma_PA_Disability","Trauma_PA_Disability")
+                ,new TableForms("Trm_PSExpo" ,"sp_GetTrauma_PA_Exposure","spInsertUpdateTrauma_PA_Exposure","Trauma_PA_Exposure")
+                ,new TableForms("Trm_SecServ" ,"sp_GetTrauma_SecondSurvey","spInsertUpdateTrauma_SecondSurvey","Trauma_SecondSurvey")
+                ,new TableForms("Trm_AmplHist" ,"sp_GetTrauma_AmpleHistory","spInsertUpdateTrauma_AmpleHistory","Trauma_AmpleHistory")
+                ,new TableForms("Trm_TraTm" ,"sp_GetTrauma_Team","spInsertUpdateTrauma_Team","Trauma_Team")
+                ,new TableForms("Trm_Inves" ,"sp_GetTrauma_Investigations","spInsertUpdateTrauma_Investigations","Trauma_Investigations")
+                ,new TableForms("Trm_Dispo" ,"sp_GetTrauma_Disposition","spInsertUpdateTrauma_Disposition","Trauma_Disposition")
+                ,new TableForms("Trm_BldRec" ,"sp_GetTrauma_Blood","spInsertUpdateTrauma_Blood","Trauma_Blood")
+                ,new TableForms("Trm_Drugs" ,"sp_GetTrauma_Drug","spInsertUpdateTrauma_Drug","Trauma_Drug")
+                ,new TableForms("Trm_DrugsChrts" ,"sp_GetTrauma_DrugRecon","spInsertUpdateTrauma_DrugRecon","Trauma_DrugRecon")
 
                 //seizures
-                ,new TableForms(){FOMRID="SZ_VitalsPop" ,GET="sp_GetSeizures_Vitals",TRANS="spInsertUpdateSeizures_Vitals",TYPE="Seizures_Vitals"}
-                ,new TableForms(){FOMRID="SZ_Moa" ,GET="sp_GetSeizuresMaster",TRANS="spInsertUpdateSeizuresMaster",TYPE="SeizuresMaster"}
-                ,new TableForms(){FOMRID="SZ_vitals" ,GET="sp_GetSeizures_Vitals",TRANS="spInsertUpdateSeizures_Vitals",TYPE="Seizures_Vitals"}
-                ,new TableForms(){FOMRID="SZ_ChSei" ,GET="sp_GetSeizures_Charecters",TRANS="spInsertUpdateSeizures_Charecters",TYPE="Seizures_Charecters"}
-                ,new TableForms(){FOMRID="SZ_PSAir" ,GET="sp_GetSeizures_PA_Airway",TRANS="spInsertUpdateSeizures_PA_Airway",TYPE="Seizures_PA_Airway"}
-                ,new TableForms(){FOMRID="SZ_PSBreat" ,GET="sp_GetSeizures_PA_Breathing",TRANS="spInsertUpdateSeizures_PA_Breathing",TYPE="Seizures_PA_Breathing"}
-                ,new TableForms(){FOMRID="SZ_PSCir" ,GET="sp_GetSeizures_PA_Cerculation",TRANS="spInsertUpdateSeizures_PA_Cerculation",TYPE="Seizures_PA_Cerculation"}
-                ,new TableForms(){FOMRID="SZ_PSDisa" ,GET="sp_GetSeizures_PA_Disability",TRANS="spInsertUpdateSeizures_PA_Disability",TYPE="Seizures_PA_Disability"}
-                ,new TableForms(){FOMRID="SZ_PSExpo" ,GET="sp_GetSeizures_PA_Exposure",TRANS="spInsertUpdateSeizures_PA_Exposure",TYPE="Seizures_PA_Exposure"}
-                ,new TableForms(){FOMRID="SZ_Exams" ,GET="sp_GetSeizures_Examinations",TRANS="spInsertUpdateSeizures_Examinations",TYPE="Seizures_Examinations"}
-                ,new TableForms(){FOMRID="SZ_Invs" ,GET="sp_GetSeizures_Investigations",TRANS="spInsertUpdateSeizures_Investigations",TYPE="Seizures_Investigations"}
-                ,new TableForms(){FOMRID="SZ_Refs" ,GET="sp_GetSeizures_Ref",TRANS="spInsertUpdateSeizures_Ref",TYPE="Seizures_Ref"}
-                ,new TableForms(){FOMRID="SZ_Dispo" ,GET="sp_GetSeizures_Disposition",TRANS="spInsertUpdateSeizures_Disposition",TYPE="Seizures_Disposition"}
-                ,new TableForms(){FOMRID="SZ_Drugs" ,GET="sp_GetSeizures_Drug",TRANS="spInsertUpdateSeizures_Drug",TYPE="Seizures_Drug"}
-                ,new TableForms(){FOMRID="SZ_DrugsChrts" ,GET="sp_GetSeizures_DrugRecon",TRANS="spInsertUpdateSeizures_DrugRecon",TYPE="Seizures_DrugRecon"}
+                ,new TableForms("SZ_VitalsPop" ,"sp_GetSeizures_Vitals","spInsertUpdateSeizures_Vitals","Seizures_Vitals")
+                ,new TableForms("SZ_Moa" ,"sp_GetSeizuresMaster","spInsertUpdateSeizuresMaster","SeizuresMaster")
+                ,new TableForms("SZ_vitals" ,"sp_GetSeizures_Vitals","spInsertUpdateSeizures_Vitals","Seizures_Vitals")
+                ,new TableForms("SZ_ChSei" ,"sp_GetSeizures_Charecters","spInsertUpdateSeizures_Charecters","Seizures_Charecters")
+                ,new TableForms("SZ_PSAir" ,"sp_GetSeizures_PA_Airway","spInsertUpdateSeizures_PA_Airway","Seizures_PA_Airway")
+                ,new TableForms("SZ_PSBreat" ,"sp_GetSeizures_PA_Breathing","spInsertUpdateSeizures_PA_Breathing","Seizures_PA_Breathing")
+                ,new TableForms("SZ_PSCir" ,"sp_GetSeizures_PA_Cerculation","spInsertUpdateSeizures_PA_Cerculation","Seizures_PA_Cerculation")
+                ,new TableForms("SZ_PSDisa" ,"sp_GetSeizures_PA_Disability","spInsertUpdateSeizures_PA_Disability","Seizures_PA_Disability")
+                ,new TableForms("SZ_PSExpo" ,"sp_GetSeizures_PA_Exposure","spInsertUpdateSeizures_PA_Exposure","Seizures_PA_Exposure")
+                ,new TableForms("SZ_Exams" ,"sp_GetSeizures_Examinations","spInsertUpdateSeizures_Examinations","Seizures_Examinations")
+                ,new TableForms("SZ_Invs" ,"sp_GetSeizures_Investigations","spInsertUpdateSeizures_Investigations","Seizures_Investigations")
+                ,new TableForms("SZ_Refs" ,"sp_GetSeizures_Ref","spInsertUpdateSeizures_Ref","Seizures_Ref")
+                ,new TableForms("SZ_Dispo" ,"sp_GetSeizures_Disposition","spInsertUpdateSeizures_Disposition","Seizures_Disposition")
+                ,new TableForms("SZ_Drugs" ,"sp_GetSeizures_Drug","spInsertUpdateSeizures_Drug","Seizures_Drug")
+                ,new TableForms("SZ_DrugsChrts" ,"sp_GetSeizures_DrugRecon","spInsertUpdateSeizures_DrugRecon","Seizures_DrugRecon")
 
             };
         }
@@ -158,13 +159,17 @@ namespace ClinIOS.Models
         {
             return Froms().SingleOrDefault(x => x.FOMRID == id);
         }
-
+       private Dictionary<string, object>GetData<T>(string spNamem, int Id) where T:class
+        {
+            return da.GetDictionaryFromClass(da.GetRecord<T>("sp_GetChestpain", Id) ?? (T)Activator.CreateInstance(typeof(T)));
+        }
         public Dictionary<string, object> GetData(string secName, int Id)
         {
             var _ = new Dictionary<string, object>();
             switch (secName)
             {
-                case "Chestpain": _ = da.GetDictionaryFromClass(da.GetRecord<sp_GetChestpain_Result>("sp_GetChestpain", Id) ?? new sp_GetChestpain_Result()); break;
+               // case "Chestpain": _ = da.GetDictionaryFromClass(da.GetRecord<sp_GetChestpain_Result>("sp_GetChestpain", Id) ?? new sp_GetChestpain_Result()); break;
+                case "Chestpain": _ = GetData<sp_GetChestpain_Result>("sp_GetCP_Master", Id); break;
                 case "CP_Moa": _ = da.GetDictionaryFromClass(da.GetRecord<sp_GetCP_Master_Result>("sp_GetCP_Master", Id) ?? new sp_GetCP_Master_Result()); break;
                 case "CP_CoMor_RiskFactors": _ = da.GetDictionaryFromClass(da.GetRecord<sp_GetCP_CoMor_RiskFactors_Result>("sp_GetCP_CoMor_RiskFactors", Id) ?? new sp_GetCP_CoMor_RiskFactors_Result()); break;
                 case "CP_Complaints": _ = da.GetDictionaryFromClass(da.GetRecord<sp_GetCP_Complaints_Result>("sp_GetCP_Complaints", Id) ?? new sp_GetCP_Complaints_Result()); break;
