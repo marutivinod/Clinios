@@ -1186,24 +1186,43 @@
                                         <table>
                                             <thead>
                                                 <tr>
+                                                    <td>S.No</td>
                                                     <td>Drug</td>
                                                     <td>Drug Name</td>
                                                     <td>Dose</td>
                                                     <td>Route</td>
                                                     <td>Time</td>
                                                     <td>Continuity</td>
-                                                    <td></td>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr class="odd" ng-repeat="record in DrugRec">
+                                                <tr class="odd" ng-repeat="record in drugs">
                                                     <td>{{record.Id}}</td>
-                                                    <td class="left-column"><input type="text" class="input-box-small" ng-model="record.Drug"></td>
+                                                    <td><input type="text" class="input-box-small" ng-model="record.Drug"></td>
                                                     <td><input type="text" class="input-box-small" ng-model="record.DrugName"></td>
                                                     <td><input type="text" class="input-box-small" ng-model="record.Dose"></td>
                                                     <td><input type="text" class="input-box-small" ng-model="record.Route"></td>
                                                     <td><input type="text" class="input-box-small" ng-model="record.Time"></td>
-                                                    <td><input type="text" class="input-box-small" ng-model="record.ToContId"></td>
+                                                    @*<td><input type="text" class="input-box-small" ng-model="record.ToContId"></td>*@
+                                                    <td class="align-center">
+                                                        <div class="toggle-button-cover">
+                                                            <div class="button-cover">
+                                                                <div class="button b2" id="button-10">
+                                                                    <input type="checkbox" class="checkbox">
+                                                                    <div class="knobs">
+                                                                        <input ng-repeat="item in ddValues.YesNo"
+                                                                               type='button'
+                                                                               class="btn-unselected"
+                                                                               ng-class="{'btnselected': record.ToContInd == {{item.Id}}}"
+                                                                               value='{{item.Name}}'
+                                                                               ng-click="buttonSelect('ToContInd',item.Id,'record')"
+                                                                               ng-model="record.ToContInd">
+                                                                    </div>
+                                                                    <div class="layer"></div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </td>
                                                     <td><img class="input-del-vsmall" src="~/Images/del.png" ng-click="deleteDrugRecRow(record.Id)" /></td>
                                                 </tr>
                                             </tbody>
@@ -2049,9 +2068,11 @@
     var json_chestpain = null;
     var json_Moa = null;
     var json_complaints = null;
-    var json_airway = null;
-    var json_breathing = null;
+    var json_PSAir = null;
+    var json_PSBreat = null;
     var json_cerculation = null;
+    var json_Dis = null;
+    var json_Exp = null;
     var json_vitals = null;
     var json_ecg = null;
     var json_physicalexamination = null;
@@ -2068,21 +2089,29 @@
     app.controller('ChestPainController', function ($scope, $http, $filter, $window, $mdDialog, chestPainService) {
         var request = $http.get(baseUrl + "api/ChestPain?secName=CP_Moa&Id=3").then(function (response) { if (response.data.Id != null) { $scope.Moa = response.data; json_Moa = response.data;   /* insertRecord('chestpain', json)*/ } });
         var request = $http.get(baseUrl + "api/ChestPain?secName=CP_Complaints&Id=3").then(function (response) { if (response.data.Id != null) { $scope.complaints = response.data; json_complaints = response.data; } });
-        var request = $http.get(baseUrl + "api/ChestPain?secName=CP_PrimeAssmnt_Airway&Id=3").then(function (response) { if (response.data.Id != null) { $scope.airway = response.data; json_airway = response.data; } });
-        //var request = $http.get(baseUrl + "api/ChestPain?secName=CP_PrimeAssmnt_Breathing&Id=3").then(function (response) { if (response.data.Id != null) { $scope.breathing = response.data; json_breathing = response.data; }});
-        //var request = $http.get(baseUrl + "api/ChestPain?secName=CP_PrimeAssmnt_Cerculation&Id=3").then(function (response) { if (response.data.Id != null) { $scope.cerculation = response.data; json_cerculation = response.data; }});
-        //var request = $http.get(baseUrl + "api/ChestPain?secName=CP_Vitals&Id=3").then(function (response) { if (response.data.Id != null) { $scope.vitals = response.data; json_vitals = response.data; } });
-        //var request = $http.get(baseUrl + "api/ChestPain?secName=CP_Ecg&Id=3").then(function (response) { if (response.data.Id != null) { $scope.ecg = response.data; json_ecg = response.data; }});
-        //var request = $http.get(baseUrl + "api/ChestPain?secName=CP_PhysicalExamination&Id=3").then(function (response) { if (response.data.Id != null) { $scope.physicalexamination = response.data; json_physicalexamination = response.data; }});
-        //var request = $http.get(baseUrl + "api/ChestPain?secName=CP_CoMor_RiskFactors&Id=3").then(function (response) { if (response.data.Id != null) { $scope.riskfactors = response.data; json_riskfactors = response.data; }});
-        //var request = $http.get(baseUrl + "api/ChestPain?secName=CP_Drug&Id=3").then(function (response) { if (response.data.Id != null) { $scope.drug = response.data; json_drug = response.data; } });
-        //var request = $http.get(baseUrl + "api/ChestPain?secName=CP_Investgations&Id=3").then(function (response) { if (response.data.Id != null) { $scope.investgations = response.data; json_investgations = response.data; }});
-        //var request = $http.get(baseUrl + "api/ChestPain?secName=CP_ST&Id=3").then(function (response) { if (response.data.Id != null) { $scope.st = response.data; json_st = response.data; } });
-        //var request = $http.get(baseUrl + "api/ChestPain?secName=CP_NonST&Id=3").then(function (response) { if (response.data.Id != null) { $scope.nonst = response.data; json_nonst = response.data; } });
-        //var request = $http.get(baseUrl + "api/ChestPain?secName=CP_STPharmPCI&Id=3").then(function (response) { if (response.data.Id != null) { $scope.stpharmpci = response.data; json_stpharmpci = response.data; } });
-        //var request = $http.get(baseUrl + "api/ChestPain?secName=ST_DISP&Id=3").then(function (response) { if (response.data.Id != null) { $scope.disp = response.data; json_disp = response.data; } });
-        //var request = $http.get(baseUrl + "api/ChestPain?secName=CP_Drugs&Id=3").then(function (response) { if (response.data.Id != null) { $scope.drugs = response.data; json_drugs = response.data; } });
-        
+        var request = $http.get(baseUrl + "api/ChestPain?secName=CP_PrimeAssmnt_Airway&Id=3").then(function (response) { if (response.data.Id != null) { $scope.PSAir = response.data; json_PSAir = response.data; } });
+        var request = $http.get(baseUrl + "api/ChestPain?secName=CP_PrimeAssmnt_Breathing&Id=3").then(function (response) { if (response.data.Id != null) { $scope.PSBreat = response.data; json_PSBreat = response.data; }});
+        var request = $http.get(baseUrl + "api/ChestPain?secName=CP_PrimeAssmnt_Cerculation&Id=3").then(function (response) { if (response.data.Id != null) { $scope.PSCir = response.data; json_cerculation = response.data; }});
+        var request = $http.get(baseUrl + "api/ChestPain?secName=CP_PrimeAssmnt_Disablty&Id=3").then(function (response) { if (response.data.Id != null) { $scope.PSDisab = response.data; json_Dis = response.data; } });
+        var request = $http.get(baseUrl + "api/ChestPain?secName=CP_PrimeAssmnt_Expo&Id=3").then(function (response) { if (response.data.Id != null) { $scope.PSExpo = response.data; json_Exp = response.data; } });
+        var request = $http.get(baseUrl + "api/ChestPain?secName=CP_Vitals&Id=3").then(function (response) { if (response.data.Id != null) { $scope.vitals = response.data; json_vitals = response.data; } });
+        var request = $http.get(baseUrl + "api/ChestPain?secName=CP_Ecg&Id=3").then(function (response) { if (response.data.Id != null) { $scope.ecg = response.data; json_ecg = response.data; } });
+        var request = $http.get(baseUrl + "api/ChestPain?secName=CP_PhysicalExamination&Id=3").then(function (response) { if (response.data.Id != null) { $scope.physicalexamination = response.data; json_physicalexamination = response.data; } });
+         var request = $http.get(baseUrl + "api/ChestPain?secName=CP_CoMor_RiskFactors&Id=3").then(function (response) { if (response.data.Id != null) { $scope.riskfactors = response.data; json_riskfactors = response.data; } });
+        var request = $http.get(baseUrl + "api/ChestPain?secName=CP_Drug&Id=3").then(function (response) { if (response.data.Id != null) { $scope.drug = response.data; json_drug = response.data; } });
+        var request = $http.get(baseUrl + "api/ChestPain?secName=CP_Investgations&Id=3").then(function (response) { if (response.data.Id != null) { $scope.ChInv = response.data; json_investgations = response.data; } });
+        var request = $http.get(baseUrl + "api/ChestPain?secName=CP_ST&Id=3").then(function (response) { if (response.data.Id != null) { $scope.st = response.data; json_st = response.data; } });
+        var request = $http.get(baseUrl + "api/ChestPain?secName=CP_NonST&Id=3").then(function (response) { if (response.data.Id != null) { $scope.nonst = response.data; json_nonst = response.data; } });
+        var request = $http.get(baseUrl + "api/ChestPain?secName=CP_STPharmPCI&Id=3").then(function (response) { if (response.data.Id != null) { $scope.stpharmpci = response.data; json_stpharmpci = response.data; } });
+        var request = $http.get(baseUrl + "api/ChestPain?secName=ST_DISP&Id=3").then(function (response) { if (response.data.Id != null) { $scope.disp = response.data; json_disp = response.data; } });
+        var request = $http.get(baseUrl + "api/ChestPain?secName=CP_Drugs&Id=3").then(function (response) { if (response.data.Id != null) { $scope.drugs = response.data; json_drugs = response.data; } });
+
+        $scope.ddValues = ddValues;
+        $scope.YesNo = [{ Id: true, Name: "Yes" }, { Id: false, Name: "No" }];
+        $scope.LeftRight = [{ Id: 0, Name: "Left" }, { Id: 1, Name: "Right" }];
+        $scope.buttonSelect = function (field, value, tblname) {
+            $scope[tblname][field] = value;
+        };
         $scope.ddValues = ddValues;
         $scope.YesNo = [{ Id: true, Name: "Yes" }, { Id: false, Name: "No" }];
         $scope.LeftRight = [{ Id: 0, Name: "Left" }, { Id: 1, Name: "Right" }];
@@ -2150,9 +2179,21 @@
 
             var request = $http.put(baseUrl + "api/ChestPain?secName=CP_INF&Id=3").then(function (response) { if (response.data.Id != null) { $scope.Moa = response.data; json_Inference = response.data;   /* insertRecord('chestpain', json)*/ } });
 
-            if ($scope.Moa != null) { $http.put(baseUrl + "api/ChestPain?key=CP_Moa", $scope.Moa, {}).then(function (response) {});}
-            if ($scope.complaints != null) { $http.put(baseUrl + "api/ChestPain?key=CP_Complaints", $scope.complaints, {}).then(function (response) { });}
-            if ($scope.PSAir != null) { $http.put(baseUrl + "api/ChestPain?key=CP_PrimeAssmnt_Airway", $scope.PSAir, {}).then(function (response) { }); }
+             if ($scope.complaints != null) { $http.put(baseUrl + "api/ChestPain?key=CP_Complaints", $scope.complaints, {}).then(function (response) { });}
+             if ($scope.PSAir != null) { $http.put(baseUrl + "api/ChestPain?key=CP_PrimeAssmnt_Airway", $scope.PSAir, {}).then(function (response) { }); }
+             if ($scope.PSBreat != null) { $http.put(baseUrl + "api/ChestPain?key=CP_PrimeAssmnt_Breathing", $scope.PSBreat, {}).then(function (response) {});}
+             if ($scope.PSBreat != null) { $http.put(baseUrl + "api/ChestPain?key=CP_PrimeAssmnt_Cerculation", $scope.PSCir, {}).then(function (response) { }); }
+              if ($scope.PSBreat != null) { $http.put(baseUrl + "api/ChestPain?key=CP_PrimeAssmnt_Disablty", $scope.PSDisab, {}).then(function (response) { }); }
+             if ($scope.PSBreat != null) { $http.put(baseUrl + "api/ChestPain?key=CP_PrimeAssmnt_Expo", $scope.PSExpo, {}).then(function (response) { }); }
+             if ($scope.PSBreat != null) { $http.put(baseUrl + "api/ChestPain?key=CP_Vitals", $scope.vitals, {}).then(function (response) { }); }
+             if ($scope.PSBreat != null) { $http.put(baseUrl + "api/ChestPain?key=CP_Ecg", $scope.ecg, {}).then(function (response) { }); }
+            if ($scope.PSBreat != null) { $http.put(baseUrl + "api/ChestPain?key=CP_PhysicalExamination", $scope.physicalexamination, {}).then(function (response) { }); }
+            if ($scope.PSBreat != null) { $http.put(baseUrl + "api/ChestPain?key=CP_CoMor_RiskFactors", $scope.physicalexamination, {}).then(function (response) { }); }
+             if ($scope.PSBreat != null) { $http.put(baseUrl + "api/ChestPain?key=CP_Investgations", $scope.ChInv, {}).then(function (response) { }); }
+            if ($scope.PSBreat != null) { $http.put(baseUrl + "api/ChestPain?key=CP_ST", $scope.st, {}).then(function (response) { }); }
+            if ($scope.PSBreat != null) { $http.put(baseUrl + "api/ChestPain?key=CP_NonST", $scope.nonst, {}).then(function (response) { }); }
+            if ($scope.PSBreat != null) { $http.put(baseUrl + "api/ChestPain?key=CP_STPharmPCI", $scope.stpharmpci, {}).then(function (response) { }); }
+            if ($scope.PSBreat != null) { $http.put(baseUrl + "api/ChestPain?key=CP_DISP", $scope.disp, {}).then(function (response) { }); }
 
             //if ($scope.PSBreat != null) {
             //    $scope.PSBreat.PatientId = 1;
@@ -2332,7 +2373,7 @@
         $scope.vitalsSave = function (ev) {
             if ($scope.vitals != null) {
                 $scope.vitals =$scope.Form1;
-                $scope.vitals.PatientId = 1;
+                $scope.vitals.PatientId = 3;
                 $scope.vitals.IsActive = true;
                 $scope.vitals.CreatedBy = 1;
                 $scope.vitals.CreatedDate = new Date();
