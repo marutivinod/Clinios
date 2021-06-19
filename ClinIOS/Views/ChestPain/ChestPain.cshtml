@@ -2044,16 +2044,14 @@
 
 </main>
 <script>
+    var CPUrl = baseUrl + "api/ChestPain";
     var DrugRec = [{ Id: 1, Drug: 'Disprin', DrugName: '(aspirin)', Dose: '350 Mg', Route: 'PO', Frequency: '09.35 a.m', ToContInd: 'Twice Daily' }];
     var CurRecId = 1;
-
     var DrugChrt = [{ Id: 1, Drug: 'Disprin', DrugSpec: '(aspirin)', Dose: '350 Mg', Route: 'PO', Qty: '10 mg', OrderBy: 'Head Nurse', AdminBy: 'Doc',ContinuityId: 'Twice Daily' }];
     var CurRecoId = 1;
-
     var links = ["H1", "H2", "H3", "H4", "H5"];
     var CurRecId = 1;
     var CurRecOId = 1;
-
     var totalBlock = 5;
     var currentId = 0;
     getDDValues("8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,90,101");
@@ -2109,21 +2107,15 @@
         $scope.ddValues = ddValues;
         $scope.YesNo = [{ Id: true, Name: "Yes" }, { Id: false, Name: "No" }];
         $scope.LeftRight = [{ Id: 0, Name: "Left" }, { Id: 1, Name: "Right" }];
-        $scope.buttonSelect = function (field, value, tblname) {
-            $scope[tblname][field] = value;
-        };
+        $scope.buttonSelect = function (field, value, tblname) { $scope[tblname][field] = value;};
         $scope.ddValues = ddValues;
         $scope.YesNo = [{ Id: true, Name: "Yes" }, { Id: false, Name: "No" }];
         $scope.LeftRight = [{ Id: 0, Name: "Left" }, { Id: 1, Name: "Right" }];
-        $scope.buttonSelect = function (field, value, tblname) {
-            $scope[tblname][field] = value;
-        };
-
+        $scope.buttonSelect = function (field, value, tblname) { $scope[tblname][field] = value; };
         $scope.EyeOpen = 0;
         $scope.VerbalResp = 0;
         $scope.MotorResp = 0;
         $scope.EVMTotal = 0;
-
         $scope.Form1 = {};
         $scope.Moa = {};
         $scope.complaints = {};
@@ -2141,7 +2133,6 @@
         $scope.stpharmpci = {};
         $scope.nonst = {};
         $scope.disp = {};
-
         $scope.drugs = DrugRec;
         $scope.drugsChart = DrugChrt;
 
@@ -2171,29 +2162,30 @@
         };
         // end
 
-        var urls = [];
-        urls.push({ TabId: "1", Controller: "ChestPain", Sec: "CP_INF", Id: "2", Obj: $scope.Moa })
-        urls.push({ TabId: "1", Controller: "ChestPain", Sec: "CP_Complaints", Id: "2", Obj: $scope.breathing })
+       
 
         $scope.save = function (field, ev) {
+            var urls = [];
+            urls.push({ Sec: "CP_Moa", Obj: $scope.Moa })
+            urls.push({ Sec: "CP_Complaints", Obj: $scope.PSBreat })
+            urls.push({ Sec: "CP_PrimeAssmnt_Airway", Obj: $scope.PSAir})
+            urls.push({ Sec: "CP_PrimeAssmnt_Breathing", Obj: $scope.PSBreat})
+            urls.push({ Sec: "CP_PrimeAssmnt_Cerculation", Obj: $scope.PSCir})
+            urls.push({ Sec: "CP_PrimeAssmnt_Disablty", Obj: $scope.PSDisab})
+            urls.push({ Sec: "CP_PrimeAssmnt_Expo", Obj: $scope.PSExpo})
+            urls.push({ Sec: "CP_Vitals", Obj: $scope.vitals})
+            urls.push({ Sec: "CP_Ecg", Obj: $scope.ecg})
+            urls.push({ Sec: "CP_PhysicalExamination", Obj: $scope.physicalexamination})
+            urls.push({ Sec: "CP_CoMor_RiskFactors", Obj: $scope.physicalexamination})
+            urls.push({ Sec: "CP_Investgations", Obj: $scope.ChInv})
+            urls.push({ Sec: "CP_ST", Obj: $scope.st})
+            urls.push({ Sec: "CP_NonST", Obj: $scope.nonst})
+            urls.push({ Sec: "CP_STPharmPCI", Obj: $scope.stpharmpci})
+            urls.push({ Sec: "CP_DISP", Obj: $scope.disp })
+            $http.put(CPUrl, JSON.stringify(urls), {}).then(function (response) { }); 
 
-            var request = $http.put(baseUrl + "api/ChestPain?secName=CP_INF&Id=3").then(function (response) { if (response.data.Id != null) { $scope.Moa = response.data; json_Inference = response.data;   /* insertRecord('chestpain', json)*/ } });
+            var request = $http.get(baseUrl + "api/ChestPain?secName=CP_INF&Id=3").then(function (response) { if (response.data.Id != null) { $scope.Moa = response.data; json_Inference = response.data;   /* insertRecord('chestpain', json)*/ } });
 
-             if ($scope.complaints != null) { $http.put(baseUrl + "api/ChestPain?key=CP_Complaints", $scope.complaints, {}).then(function (response) { });}
-             if ($scope.PSAir != null) { $http.put(baseUrl + "api/ChestPain?key=CP_PrimeAssmnt_Airway", $scope.PSAir, {}).then(function (response) { }); }
-             if ($scope.PSBreat != null) { $http.put(baseUrl + "api/ChestPain?key=CP_PrimeAssmnt_Breathing", $scope.PSBreat, {}).then(function (response) {});}
-             if ($scope.PSBreat != null) { $http.put(baseUrl + "api/ChestPain?key=CP_PrimeAssmnt_Cerculation", $scope.PSCir, {}).then(function (response) { }); }
-              if ($scope.PSBreat != null) { $http.put(baseUrl + "api/ChestPain?key=CP_PrimeAssmnt_Disablty", $scope.PSDisab, {}).then(function (response) { }); }
-             if ($scope.PSBreat != null) { $http.put(baseUrl + "api/ChestPain?key=CP_PrimeAssmnt_Expo", $scope.PSExpo, {}).then(function (response) { }); }
-             if ($scope.PSBreat != null) { $http.put(baseUrl + "api/ChestPain?key=CP_Vitals", $scope.vitals, {}).then(function (response) { }); }
-             if ($scope.PSBreat != null) { $http.put(baseUrl + "api/ChestPain?key=CP_Ecg", $scope.ecg, {}).then(function (response) { }); }
-            if ($scope.PSBreat != null) { $http.put(baseUrl + "api/ChestPain?key=CP_PhysicalExamination", $scope.physicalexamination, {}).then(function (response) { }); }
-            if ($scope.PSBreat != null) { $http.put(baseUrl + "api/ChestPain?key=CP_CoMor_RiskFactors", $scope.physicalexamination, {}).then(function (response) { }); }
-             if ($scope.PSBreat != null) { $http.put(baseUrl + "api/ChestPain?key=CP_Investgations", $scope.ChInv, {}).then(function (response) { }); }
-            if ($scope.PSBreat != null) { $http.put(baseUrl + "api/ChestPain?key=CP_ST", $scope.st, {}).then(function (response) { }); }
-            if ($scope.PSBreat != null) { $http.put(baseUrl + "api/ChestPain?key=CP_NonST", $scope.nonst, {}).then(function (response) { }); }
-            if ($scope.PSBreat != null) { $http.put(baseUrl + "api/ChestPain?key=CP_STPharmPCI", $scope.stpharmpci, {}).then(function (response) { }); }
-            if ($scope.PSBreat != null) { $http.put(baseUrl + "api/ChestPain?key=CP_DISP", $scope.disp, {}).then(function (response) { }); }
 
             //if ($scope.PSBreat != null) {
             //    $scope.PSBreat.PatientId = 1;
