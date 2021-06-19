@@ -20,8 +20,8 @@ namespace ClinIOS.Models
         public Nullable<int> RiskPriority { get; set; }
         public Nullable<int> SymptomId { get; set; }
         public Nullable<int> Status { get; set; }
-        public int TriageId { get; set; }
         public int Triage_Vital_id { get; set; }
+        public int TriageId { get; set; }
         public Nullable<int> ConsciousLevelId { get; set; }
         public Nullable<int> RespRate { get; set; }
         public Nullable<double> PainScore { get; set; }

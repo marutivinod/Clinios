@@ -186,6 +186,7 @@
     <Compile Include="Models\Patient.cs">
       <DependentUpon>ClinIOS.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\PutClass.cs" />
     <Compile Include="Models\Role_Master.cs">
       <DependentUpon>ClinIOS.tt</DependentUpon>
     </Compile>

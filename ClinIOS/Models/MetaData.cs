@@ -15,8 +15,11 @@ namespace ClinIOS.Models
         {
             return new List<TableForms>()
             {
+                //Triage
+                 new TableForms("Triage", "sp_GetTriageDetails","spInsertUpdateTriage_Vitals","Triage_Vital")
+
                 //Chest Pain
-                 new TableForms("CP_Complaints", "sp_GetCP_Complaints","spUpdateCP_Complaints","CP_Complaints")
+                ,new TableForms("CP_Complaints", "sp_GetCP_Complaints","spUpdateCP_Complaints","CP_Complaints")
                 ,new TableForms("CP_Moa", "sp_GetCP_Master","spUpdateCP_Master","CP_Master")
                 ,new TableForms("Chestpain" ,"sp_GetChestpain","spUpdateCP_Master","ChestPain")
                 ,new TableForms("CP_CoMor_RiskFactors" ,"sp_GetCP_CoMor_RiskFactors","spUpdateCP_CoMor_RiskFactors","CP_CoMor_RiskFactors")
@@ -316,6 +319,7 @@ namespace ClinIOS.Models
                 var metadata = GetTableFrom(secName);
                 switch (secName)
                 {
+                    case "Triage": da.TransactRecord(da.GetClassFromDictionary<sp_GetTriageDetails_Result>(data), metadata.TRANS, metadata.TYPE); break;
                     case "Chestpain": da.TransactRecord(da.GetClassFromDictionary<sp_GetChestpain_Result>(data), metadata.TRANS, metadata.TYPE); break;
                     case "CP_Moa": da.TransactRecord(da.GetClassFromDictionary<sp_GetCP_Master_Result>(data), metadata.TRANS, metadata.TYPE); break;
                     case "CP_CoMor_RiskFactors": da.TransactRecord(da.GetClassFromDictionary<sp_GetCP_CoMor_RiskFactors_Result>(data), metadata.TRANS, metadata.TYPE); break;

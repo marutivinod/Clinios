@@ -15,10 +15,11 @@ namespace ClinIOS.Controllers.APIS
             else { return new sp_GetTriageDetails_Result(); }
         }
 
-        public void Post(Dictionary<string, object> data)
+        public void PUT(Dictionary<string, object> data, string key)
         {
-            var d=  da.GetClassFromDictionary<sp_GetTriageDetails_Result>(data);
-            da.TransactRecord(d, "spInsertUpdateTriage_Vitals", "Triage_Vital", d.TriageId == 0?0:1);
+            new MetaData().SaveData(key, data);
+            //var d=  da.GetClassFromDictionary<sp_GetTriageDetails_Result>(data);
+            //da.TransactRecord(d, "spInsertUpdateTriage_Vitals", "Triage_Vital", d.TriageId == 0?0:1);
         }
     }
 }

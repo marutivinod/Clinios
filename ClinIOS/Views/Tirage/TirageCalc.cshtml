@@ -163,14 +163,8 @@
     app.service('tirageService', function ($http) {
         //insert
         this.addTirageVitals = function (data) {
-            var req = $http.post(baseUrl + 'api/TirageVitals', JSON.stringify(data),
-                {
-                    headers: {
-                        'Content-Type': 'application/json'
-                    }
-                }
-            );
-            return req;
+            $http.put(baseUrl + 'api/TirageVitals?key=Triage', data, {}).then(function (response) { }); 
+           // return req;
         };
         //Get
         this.getTirageVitals = function () {

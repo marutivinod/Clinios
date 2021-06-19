@@ -119,15 +119,6 @@ namespace ClinIOS.Models
             return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<fn_CheckLogin_Result>("[ClinIOSDBEntities].[fn_CheckLogin](@userName, @Password)", userNameParameter, passwordParameter);
         }
     
-        public virtual ObjectResult<sp_GetTriageDetails_Result> sp_GetTriageDetails(Nullable<int> patientID)
-        {
-            var patientIDParameter = patientID.HasValue ?
-                new ObjectParameter("PatientID", patientID) :
-                new ObjectParameter("PatientID", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_GetTriageDetails_Result>("sp_GetTriageDetails", patientIDParameter);
-        }
-    
         public virtual int spInsertUpdateChestpain(Nullable<bool> operation, ObjectParameter newId)
         {
             var operationParameter = operation.HasValue ?
@@ -2372,6 +2363,15 @@ namespace ClinIOS.Models
                 new ObjectParameter("PatientID", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_GetCP_Master_Result>("sp_GetCP_Master", patientIDParameter);
+        }
+    
+        public virtual ObjectResult<sp_GetTriageDetails_Result> sp_GetTriageDetails(Nullable<int> patientID)
+        {
+            var patientIDParameter = patientID.HasValue ?
+                new ObjectParameter("PatientID", patientID) :
+                new ObjectParameter("PatientID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_GetTriageDetails_Result>("sp_GetTriageDetails", patientIDParameter);
         }
     }
 }
