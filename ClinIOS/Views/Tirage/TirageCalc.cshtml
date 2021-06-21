@@ -238,8 +238,9 @@
             var r = confirm("Are You Sure to Update the Tirage ?");
             if (r == true) {
                 tirageService.addTirageVitals(item).then(function (response) {
+                    debugger;
                     tirageService.getTirageVitals().then(function (response) {
-                        debugger;
+                      
                         switch (response.data.PainTypeId) {
                             case 15: window.location.href = baseUrl + "Stroke/Stroke"; break;
                             case 16: window.location.href = baseUrl + "ChestPain/ChestPain"; break;

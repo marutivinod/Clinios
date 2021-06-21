@@ -11,13 +11,13 @@ namespace ClinIOS.Controllers.APIS
         public sp_GetTriageDetails_Result GET(string id)
         {
             if (id != null)
-            { return da.GetRecord<sp_GetTriageDetails_Result>("sp_GetTriageDetails", int.Parse(id)); }
+            { return da.GetSingleRecord<sp_GetTriageDetails_Result>("sp_GetTriageDetails", int.Parse(id)); }
             else { return new sp_GetTriageDetails_Result(); }
         }
 
-        public void PUT(Dictionary<string, object> data, string key)
+        public bool PUT(Dictionary<string, object> data, string key)
         {
-            new MetaData().SaveData(key, data);
+            return new MetaData().SaveData(key, data);
             //var d=  da.GetClassFromDictionary<sp_GetTriageDetails_Result>(data);
             //da.TransactRecord(d, "spInsertUpdateTriage_Vitals", "Triage_Vital", d.TriageId == 0?0:1);
         }
