@@ -2364,15 +2364,18 @@
         //save Vitals
         $scope.vitalsSave = function (ev) {
             if ($scope.vitals != null) {
+                console.log($scope.vitals, 'Vitals');
+                $scope.Form1['Id'] = $scope.vitals.Id;
                 $scope.vitals =$scope.Form1;
                 $scope.vitals.PatientId = 3;
                 $scope.vitals.IsActive = true;
                 $scope.vitals.CreatedBy = 1;
                 $scope.vitals.CreatedDate = new Date();
-                $http.put(baseUrl + "api/ChestPain?key=CP_Vitals", $scope.vitals, {}).then(function (response) {
-                    alert("Successfully Saved.");
-                    $mdDialog.cancel();
-                });
+                $mdDialog.cancel();
+                //$http.put(baseUrl + "api/ChestPain?key=CP_Vitals", $scope.vitals, {}).then(function (response) {
+                //    alert("Successfully Saved.");
+                //    $mdDialog.cancel();
+                //});
             }
         };
         //end Vitals
