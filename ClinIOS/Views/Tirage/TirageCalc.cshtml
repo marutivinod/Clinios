@@ -148,7 +148,7 @@
 
     getDDValues("3,5,6,7,8,9");
     var json = {};
-
+    var tot;
     var app = angular.module('myApp', ['ngMaterial', 'ngMessages', 'angularMoment']);
     app.config(function ($mdDateLocaleProvider) {
         $mdDateLocaleProvider.formatDate = function (date) {
@@ -163,7 +163,8 @@
     app.service('tirageService', function ($http) {
         //insert
         this.addTirageVitals = function (data) {
-            $http.put(baseUrl + 'api/TirageVitals?key=Triage', data, {}).then(function (response) { }); 
+
+           
            // return req;
         };
         //Get
@@ -237,31 +238,29 @@
 
             var r = confirm("Are You Sure to Update the Tirage ?");
             if (r == true) {
-                tirageService.addTirageVitals(item).then(function (response) {
-                    debugger;
-                    tirageService.getTirageVitals().then(function (response) {
-                      
-                        switch (response.data.PainTypeId) {
-                            case 15: window.location.href = baseUrl + "Stroke/Stroke"; break;
-                            case 16: window.location.href = baseUrl + "ChestPain/ChestPain"; break;
-                            case 17: window.location.href = baseUrl + "Poisoning/Poisoning"; break;
-                            case 18: window.location.href = baseUrl + "Seizures/Seizures"; break;
-                            case 19: window.location.href = baseUrl + "SOB/SOB"; break;
-                            case 20: window.location.href = baseUrl + "Trauma/Trauma"; break;
-                            case 21: window.location.href = baseUrl + "AltMentalStatus/AltMentalStatus"; break;
-                            case 22: window.location.href = baseUrl + "GI/GI"; break;
-                            case 23: window.location.href = baseUrl + "Burns/Burns"; break;
-                            case 24: window.location.href = baseUrl + "Febrile/Febrile"; break;
-                            case 25: window.location.href = baseUrl + "PainAbdomen/PainAbdomen"; break;
+                $http.put(baseUrl + 'api/TirageVitals?key=Triage', item, {}).then(function (res) {
+                    if (res.data) {
+                      //  tirageService.getTirageVitals().then(function (response) {
+                            
+                        switch ($scope.data.PainTypeId) {
+                                case 15: window.location.href = baseUrl + "Stroke/Stroke"; break;
+                                case 16: window.location.href = baseUrl + "ChestPain/ChestPain"; break;
+                                case 17: window.location.href = baseUrl + "Poisoning/Poisoning"; break;
+                                case 18: window.location.href = baseUrl + "Seizures/Seizures"; break;
+                                case 19: window.location.href = baseUrl + "SOB/SOB"; break;
+                                case 20: window.location.href = baseUrl + "Trauma/Trauma"; break;
+                                case 21: window.location.href = baseUrl + "AltMentalStatus/AltMentalStatus"; break;
+                                case 22: window.location.href = baseUrl + "GI/GI"; break;
+                                case 23: window.location.href = baseUrl + "Burns/Burns"; break;
+                                case 24: window.location.href = baseUrl + "Febrile/Febrile"; break;
+                                case 25: window.location.href = baseUrl + "PainAbdomen/PainAbdomen"; break;
 
-                            default: window.location.href = baseUrl + "Tirage/TirageCalc"; break
-                        }
-                        return response;
-                    });
-
-
-                });
-
+                                default: window.location.href = baseUrl + "Tirage/TirageCalc"; break
+                            }
+                            return response;
+                       // });
+                    }
+                })
             }
         };
         function requiresO2() {
