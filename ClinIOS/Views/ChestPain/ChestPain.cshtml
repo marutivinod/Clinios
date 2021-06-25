@@ -2085,6 +2085,7 @@
     var json_Inference = null
 
     app.controller('ChestPainController', function ($scope, $http, $filter, $window, $mdDialog, chestPainService) {
+        var request = $http.get(baseUrl + "api/Patients?secName=Patient").then(function (response) { if (response.data.Id != null) { $scope.Moa = response.data; json_Moa = response.data;   /* insertRecord('chestpain', json)*/ } });
         var request = $http.get(baseUrl + "api/ChestPain?secName=CP_Moa&Id=3").then(function (response) { if (response.data.Id != null) { $scope.Moa = response.data; json_Moa = response.data;   /* insertRecord('chestpain', json)*/ } });
         var request = $http.get(baseUrl + "api/ChestPain?secName=CP_Complaints&Id=3").then(function (response) { if (response.data.Id != null) { $scope.complaints = response.data; json_complaints = response.data; } });
         var request = $http.get(baseUrl + "api/ChestPain?secName=CP_PrimeAssmnt_Airway&Id=3").then(function (response) { if (response.data.Id != null) { $scope.PSAir = response.data; json_PSAir = response.data; } });

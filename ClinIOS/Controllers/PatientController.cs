@@ -13,5 +13,9 @@ namespace ClinIOS.Controllers
         {
             return View();
         }
+        public ActionResult Patients()
+        {
+            return View();
+        }
     }
 }

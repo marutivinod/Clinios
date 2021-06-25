@@ -421,6 +421,7 @@ warning 6002: The table/view 'CliniOS.dbo.vw_Users' does not have a primary key 
         <Function Name="sp_GetGI_Bleed_Vitals" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="PatientID" Type="int" Mode="In" />
         </Function>
+        <Function Name="sp_GetPatientList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="sp_GetPoisioning_Categoty" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="PatientID" Type="int" Mode="In" />
         </Function>
@@ -1131,9 +1132,7 @@ warning 6002: The table/view 'CliniOS.dbo.vw_Users' does not have a primary key 
           <Parameter Name="Operation" Type="bit" Mode="In" />
           <Parameter Name="newId" Type="int" Mode="InOut" />
         </Function>
-        <Function Name="spInsertUpdateTriage_Vitals" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="operation" Type="int" Mode="In" />
-        </Function>
+        <Function Name="spInsertUpdateTriage_Vitals" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="spUpdateCP_Master" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <EntityContainer Name="ClinIOSModelStoreContainer">
           <EntitySet Name="Patients" EntityType="Self.Patients" Schema="dbo" store:Type="Tables" />
@@ -1351,7 +1350,6 @@ warning 6002: The table/view 'CliniOS.dbo.vw_Users' does not have a primary key 
           <Parameter Name="operation" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="spInsertUpdateTriage_Vitals">
-          <Parameter Name="operation" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_getCitynames" ReturnType="Collection(ClinIOSModel.sp_getCitynames_Result)" />
           <FunctionImport Name="sp_getStateCountryListbyCityId" ReturnType="Collection(ClinIOSModel.sp_getStateCountryListbyCityId_Result)">
@@ -2245,8 +2243,9 @@ warning 6002: The table/view 'CliniOS.dbo.vw_Users' does not have a primary key 
           <Parameter Name="PatientID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_GetTriageDetails" ReturnType="Collection(ClinIOSModel.sp_GetTriageDetails_Result)">
-            <Parameter Name="PatientID" Mode="In" Type="Int32" />
+          <Parameter Name="PatientID" Mode="In" Type="Int32" />
           </FunctionImport>
+          <FunctionImport Name="sp_GetPatientList" ReturnType="Collection(ClinIOSModel.sp_GetPatientList_Result)" />
         </EntityContainer>
         <ComplexType Name="sp_getCitynames_Result">
           <Property Type="Int32" Name="Id" Nullable="false" />
@@ -5469,6 +5468,20 @@ warning 6002: The table/view 'CliniOS.dbo.vw_Users' does not have a primary key 
           <Property Type="DateTime" Name="CreatedDate" Nullable="true" Precision="23" />
           <Property Type="Int32" Name="ModifiedBy" Nullable="true" />
           <Property Type="DateTime" Name="ModifiedDate" Nullable="true" Precision="23" />
+        </ComplexType>
+        <ComplexType Name="sp_GetPatientList_Result">
+          <Property Type="Int64" Name="Id" Nullable="true" />
+          <Property Type="Int32" Name="TriageId" Nullable="false" />
+          <Property Type="Int32" Name="PatientID" Nullable="true" />
+          <Property Type="String" Name="Patient" Nullable="true" MaxLength="101" />
+          <Property Type="Int32" Name="Age" Nullable="true" />
+          <Property Type="String" Name="Sex" Nullable="true" MaxLength="150" />
+          <Property Type="DateTime" Name="TrgDate" Nullable="true" />
+          <Property Type="Time" Name="TrgTime" Nullable="true" />
+          <Property Type="String" Name="RiskPriority" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="Symptom" Nullable="true" MaxLength="150" />
+          <Property Type="Int32" Name="Status" Nullable="true" />
+          <Property Type="String" Name="TraigeDoneBy" Nullable="true" MaxLength="101" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -9453,6 +9466,24 @@ warning 6002: The table/view 'CliniOS.dbo.vw_Users' does not have a primary key 
                 <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
                 <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
                 <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_GetPatientList" FunctionName="ClinIOSModel.Store.sp_GetPatientList">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ClinIOSModel.sp_GetPatientList_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="TriageId" ColumnName="TriageId" />
+                <ScalarProperty Name="PatientID" ColumnName="PatientID" />
+                <ScalarProperty Name="Patient" ColumnName="Patient" />
+                <ScalarProperty Name="Age" ColumnName="Age" />
+                <ScalarProperty Name="Sex" ColumnName="Sex" />
+                <ScalarProperty Name="TrgDate" ColumnName="TrgDate" />
+                <ScalarProperty Name="TrgTime" ColumnName="TrgTime" />
+                <ScalarProperty Name="RiskPriority" ColumnName="RiskPriority" />
+                <ScalarProperty Name="Symptom" ColumnName="Symptom" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="TraigeDoneBy" ColumnName="TraigeDoneBy" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

@@ -69,13 +69,9 @@ namespace ClinIOS.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("spInsertUpdateTriage", operationParameter);
         }
     
-        public virtual int spInsertUpdateTriage_Vitals(Nullable<int> operation)
+        public virtual int spInsertUpdateTriage_Vitals()
         {
-            var operationParameter = operation.HasValue ?
-                new ObjectParameter("operation", operation) :
-                new ObjectParameter("operation", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("spInsertUpdateTriage_Vitals", operationParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("spInsertUpdateTriage_Vitals");
         }
     
         public virtual ObjectResult<sp_getCitynames_Result> sp_getCitynames()
@@ -2372,6 +2368,11 @@ namespace ClinIOS.Models
                 new ObjectParameter("PatientID", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_GetTriageDetails_Result>("sp_GetTriageDetails", patientIDParameter);
+        }
+    
+        public virtual ObjectResult<sp_GetPatientList_Result> sp_GetPatientList()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_GetPatientList_Result>("sp_GetPatientList");
         }
     }
 }

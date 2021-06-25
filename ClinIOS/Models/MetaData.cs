@@ -15,8 +15,11 @@ namespace ClinIOS.Models
         {
             return new List<TableForms>()
             {
+                //Patient
+                new TableForms("Patient", "sp_GetPatientList","","")
+
                 //Triage
-                 new TableForms("Triage", "sp_GetTriageDetails","spInsertUpdateTriage_Vitals","Triage_Vital")
+                 ,new TableForms("Triage", "sp_GetTriageDetails","spInsertUpdateTriage_Vitals","Triage_Vital")
 
                 //Chest Pain
                 ,new TableForms("CP_Complaints", "sp_GetCP_Complaints","spUpdateCP_Complaints","CP_Complaints")
@@ -164,14 +167,27 @@ namespace ClinIOS.Models
         }
        private Dictionary<string, object>GetData<T>(string spNamem, int Id) where T:class
         {
-            return da.GetDictionaryFromClass(da.GetRecord<T>("sp_GetChestpain", Id) ?? (T)Activator.CreateInstance(typeof(T)));
+            return da.GetDictionaryFromClass(da.GetRecord<T>(spNamem, Id) ?? (T)Activator.CreateInstance(typeof(T)));
+        }
+        private List<Dictionary<string, object>> GetData<T>(string spNamem) where T : class
+        {
+            return da.GetDictionaryFromClass(da.GetRecords<T>(spNamem));
+        }
+        public List<Dictionary<string, object>> GetData(string secName)
+        {
+            var _ = new List<Dictionary<string, object>>();
+            switch (secName)
+            {
+                case "Patient": _ = GetData<sp_GetPatientList_Result>("sp_GetPatientList"); break;
+            }
+            return _;
         }
         public Dictionary<string, object> GetData(string secName, int Id)
         {
             var _ = new Dictionary<string, object>();
             switch (secName)
             {
-               // case "Chestpain": _ = da.GetDictionaryFromClass(da.GetRecord<sp_GetChestpain_Result>("sp_GetChestpain", Id) ?? new sp_GetChestpain_Result()); break;
+                // case "Chestpain": _ = da.GetDictionaryFromClass(da.GetRecord<sp_GetChestpain_Result>("sp_GetChestpain", Id) ?? new sp_GetChestpain_Result()); break;
                 case "Chestpain": _ = GetData<sp_GetChestpain_Result>("sp_GetCP_Master", Id); break;
                 case "CP_Moa": _ = da.GetDictionaryFromClass(da.GetRecord<sp_GetCP_Master_Result>("sp_GetCP_Master", Id) ?? new sp_GetCP_Master_Result()); break;
                 case "CP_CoMor_RiskFactors": _ = da.GetDictionaryFromClass(da.GetRecord<sp_GetCP_CoMor_RiskFactors_Result>("sp_GetCP_CoMor_RiskFactors", Id) ?? new sp_GetCP_CoMor_RiskFactors_Result()); break;

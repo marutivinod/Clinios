@@ -20,6 +20,11 @@ namespace ClinIOS.Models
 
         public T GetRecord<T>( string spName, int Id) where T : class { using (var ctx = GetContext()) 
             { return ctx.Database.SqlQuery<T>($"exec {spName} {Id}").SingleOrDefault(); } }
+        public List<T> GetRecords<T>(string spName) where T : class
+        {
+            using (var ctx = GetContext())
+            { return ctx.Database.SqlQuery<T>($"exec {spName}").ToList(); }
+        }
         public T GetSingleRecord<T>(string spName, int Id) where T : class
         {
             using (var ctx = GetContext())

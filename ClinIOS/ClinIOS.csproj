@@ -140,6 +140,7 @@
     <Compile Include="Controllers\APIS\ChestPainController.cs" />
     <Compile Include="Controllers\APIS\DDValuesController.cs" />
     <Compile Include="Controllers\APIS\GIController.cs" />
+    <Compile Include="Controllers\APIS\PatientsController.cs" />
     <Compile Include="Controllers\APIS\PoisoningController.cs" />
     <Compile Include="Controllers\APIS\SeizuresController.cs" />
     <Compile Include="Controllers\APIS\StrokeController.cs" />
@@ -368,6 +369,9 @@
       <DependentUpon>ClinIOS.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\sp_GetGI_Bleed_Vitals_Result.cs">
+      <DependentUpon>ClinIOS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_GetPatientList_Result.cs">
       <DependentUpon>ClinIOS.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\sp_GetPoisioning_Categoty_Result.cs">
@@ -739,6 +743,7 @@
     <Content Include="Views\Abdomen\Abdomen.cshtml" />
     <Content Include="Views\ChestPain\ChestPainReport.cshtml" />
     <Content Include="Views\Patient\PatientEntry.cshtml" />
+    <Content Include="Views\Patient\Patients.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
