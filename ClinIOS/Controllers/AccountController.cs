@@ -59,7 +59,7 @@ namespace ClinIOS.Controllers
                     //da.SetValue("AuthMode", da.GetRecords<ControlTable>().FirstOrDefault().AuthMode.ToString(), mod.Id.Value);
                     //// da.SetValue("UserRole", roles.Contains("admin") ? "Admin" : "", mod.ID); i ,comment 14-19-19 
                     //da.SetValue("UserName", mod.UserName, mod.Id.Value);
-                    return RedirectToAction( "TirageCalc","Tirage");
+                    return RedirectToAction( "Patients","Patient");
                     //return RedirectToAction("SelectRole", "Home", new { Id =mod.ID});// pass userId from the database
                 }
             }

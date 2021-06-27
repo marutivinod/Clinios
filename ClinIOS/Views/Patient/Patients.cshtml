@@ -1,1 +1,81 @@
 ﻿
+
+<main>
+    <div ng-app="myApp" ng-controller="PatientController">
+        <h2 style="text-align: center">Patient Records</h2>
+        <div class="md-container">
+            <table id="customers">
+                <tr>
+                    <th>Patient</th>
+                    <th>Age</th>
+                    <th>Sex</th>
+                    <th>Symptom</th>
+                    <th>Risk Priority</th>
+                    <th>Traige Done By</th>
+                    <th>Triage Date</th>
+                    <th>Triage Time</th>
+                </tr>
+
+                <tr ng-repeat="item in PatientRecords ">
+                    <td><a ng-click="onNavigatinToTriage(item.Id)">{{item.Patient}}</a></td>
+                    <td>{{item.Age}}</td>
+                    <td>{{item.Sex}}</td>
+                    <td>{{item.Symptom}}</td>
+                    <td>{{item.RiskPriority}}</td>
+                    <td>{{item.TraigeDoneBy}}</td>
+                    <td>{{item.TrgDate}}</td>
+                    <td>{{item.TrgTime}}</td>
+                </tr>
+                
+            </table>
+        </div>
+    </div>
+
+</main>
+<script>
+    var app = angular.module('myApp', ['ngMaterial', 'ngMessages', 'angularMoment']);
+    app.service('PatientService', function ($http) { });
+
+
+    app.controller('PatientController', function ($scope, $http, $filter, $window, $mdDialog, PatientService, $location) {
+        $scope.PatientRecords = {};
+        var request = $http.get(baseUrl + "api/Patients?secName=Patient").then(
+            function (response) {
+               console.log(response)
+                $scope.PatientRecords = response.data;
+            });
+
+        $scope.onNavigatinToTriage = function (patientId) {
+            console.log(baseUrl)
+            window.location.href =  `http://localhost:57990/Tirage/TirageCalc?id:${patientId}`
+        }
+    })
+</script>
+<style>
+    #customers {
+        font-family: Arial, Helvetica, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+        #customers td, #customers th {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+
+        #customers tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        #customers tr:hover {
+            background-color: #ddd;
+        }
+
+        #customers th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            background-color: #04AA6D;
+            color: white;
+        }
+</style>
