@@ -17,7 +17,7 @@
                 </tr>
 
                 <tr ng-repeat="item in PatientRecords ">
-                    <td><a ng-click="onNavigatinToTriage(item.Id)">{{item.Patient}}</a></td>
+                    <td style="cursor: pointer"><a ng-click="onNavigatinToTriage(item.Id)"><b>{{item.Patient}}</b></a></td>
                     <td>{{item.Age}}</td>
                     <td>{{item.Sex}}</td>
                     <td>{{item.Symptom}}</td>
