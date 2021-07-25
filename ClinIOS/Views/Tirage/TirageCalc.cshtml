@@ -243,19 +243,18 @@
                       //  tirageService.getTirageVitals().then(function (response) {
                             
                         switch ($scope.data.PainTypeId) {
-                                case 15: window.location.href = baseUrl + "Stroke/Stroke"; break;
-                                case 16: window.location.href = baseUrl + "ChestPain/ChestPain"; break;
-                                case 17: window.location.href = baseUrl + "Poisoning/Poisoning"; break;
-                                case 18: window.location.href = baseUrl + "Seizures/Seizures"; break;
-                                case 19: window.location.href = baseUrl + "SOB/SOB"; break;
-                                case 20: window.location.href = baseUrl + "Trauma/Trauma"; break;
-                                case 21: window.location.href = baseUrl + "AltMentalStatus/AltMentalStatus"; break;
-                                case 22: window.location.href = baseUrl + "GI/GI"; break;
-                                case 23: window.location.href = baseUrl + "Burns/Burns"; break;
-                                case 24: window.location.href = baseUrl + "Febrile/Febrile"; break;
-                                case 25: window.location.href = baseUrl + "PainAbdomen/PainAbdomen"; break;
-
-                                default: window.location.href = baseUrl + "Tirage/TirageCalc"; break
+                            case 15: window.location.href = baseUrl + `Stroke/Stroke?id:${$scope.data.PainTypeId}`; break;
+                            case 16: window.location.href = baseUrl + `ChestPain/ChestPain?id:${$scope.data.PainTypeId}`; break;
+                            case 17: window.location.href = baseUrl + `Poisoning/Poisoning?id:${$scope.data.PainTypeId}`; break;
+                            case 18: window.location.href = baseUrl + `Seizures/Seizures?id:${$scope.data.PainTypeId}`; break;
+                            case 19: window.location.href = baseUrl + `SOB/SOB?id:${$scope.data.PainTypeId}`; break;
+                            case 20: window.location.href = baseUrl + `Trauma/Trauma?id:${$scope.data.PainTypeId}`; break;
+                            case 21: window.location.href = baseUrl + `AltMentalStatus/AltMentalStatus?id:${$scope.data.PainTypeId}`; break;
+                            case 22: window.location.href = baseUrl + `GI/GI?id:${$scope.data.PainTypeId}`; break;
+                            case 23: window.location.href = baseUrl + `Burns/Burns?id:${$scope.data.PainTypeId}`; break;
+                            case 24: window.location.href = baseUrl + `Febrile/Febrile?id:${$scope.data.PainTypeId}`; break;
+                            case 25: window.location.href = baseUrl + `PainAbdomen/PainAbdomen?id:${$scope.data.PainTypeId}`; break;
+                            default: window.location.href = baseUrl + `Tirage/TirageCalc?id:${$scope.data.PainTypeId}`; break;
                             }
                             return response;
                        // });
