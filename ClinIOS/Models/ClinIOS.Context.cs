@@ -2230,15 +2230,6 @@ namespace ClinIOS.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_GetCP_PrimeAssmnt_Cerculation_Result>("sp_GetCP_PrimeAssmnt_Cerculation", patientIDParameter);
         }
     
-        public virtual ObjectResult<sp_GetCP_ST_Result> sp_GetCP_ST(Nullable<int> patientID)
-        {
-            var patientIDParameter = patientID.HasValue ?
-                new ObjectParameter("PatientID", patientID) :
-                new ObjectParameter("PatientID", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_GetCP_ST_Result>("sp_GetCP_ST", patientIDParameter);
-        }
-    
         public virtual ObjectResult<sp_GetCP_STPharmPCI_Result> sp_GetCP_STPharmPCI(Nullable<int> patientID)
         {
             var patientIDParameter = patientID.HasValue ?
@@ -2373,6 +2364,15 @@ namespace ClinIOS.Models
         public virtual ObjectResult<sp_GetPatientList_Result> sp_GetPatientList()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_GetPatientList_Result>("sp_GetPatientList");
+        }
+    
+        public virtual ObjectResult<sp_GetCP_ST_Result> sp_GetCP_ST(Nullable<int> patientID)
+        {
+            var patientIDParameter = patientID.HasValue ?
+                new ObjectParameter("PatientID", patientID) :
+                new ObjectParameter("PatientID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_GetCP_ST_Result>("sp_GetCP_ST", patientIDParameter);
         }
     }
 }

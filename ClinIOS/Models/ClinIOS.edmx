@@ -761,10 +761,6 @@ warning 6002: The table/view 'CliniOS.dbo.vw_Users' does not have a primary key 
           <Parameter Name="Operation" Type="bit" Mode="In" />
           <Parameter Name="newId" Type="int" Mode="InOut" />
         </Function>
-        <Function Name="spInsertUpdateCP_ST" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="Operation" Type="bit" Mode="In" />
-          <Parameter Name="newId" Type="int" Mode="InOut" />
-        </Function>
         <Function Name="spInsertUpdateCP_STPharmPCI" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Operation" Type="bit" Mode="In" />
           <Parameter Name="newId" Type="int" Mode="InOut" />
@@ -2197,9 +2193,6 @@ warning 6002: The table/view 'CliniOS.dbo.vw_Users' does not have a primary key 
           <FunctionImport Name="sp_GetCP_PrimeAssmnt_Cerculation" ReturnType="Collection(ClinIOSModel.sp_GetCP_PrimeAssmnt_Cerculation_Result)">
           <Parameter Name="PatientID" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="sp_GetCP_ST" ReturnType="Collection(ClinIOSModel.sp_GetCP_ST_Result)">
-          <Parameter Name="PatientID" Mode="In" Type="Int32" />
-          </FunctionImport>
           <FunctionImport Name="sp_GetCP_STPharmPCI" ReturnType="Collection(ClinIOSModel.sp_GetCP_STPharmPCI_Result)">
           <Parameter Name="PatientID" Mode="In" Type="Int32" />
           </FunctionImport>
@@ -2246,6 +2239,9 @@ warning 6002: The table/view 'CliniOS.dbo.vw_Users' does not have a primary key 
           <Parameter Name="PatientID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_GetPatientList" ReturnType="Collection(ClinIOSModel.sp_GetPatientList_Result)" />
+          <FunctionImport Name="sp_GetCP_ST" ReturnType="Collection(ClinIOSModel.sp_GetCP_ST_Result)">
+            <Parameter Name="PatientID" Mode="In" Type="Int32" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="sp_getCitynames_Result">
           <Property Type="Int32" Name="Id" Nullable="false" />
@@ -4921,46 +4917,6 @@ warning 6002: The table/view 'CliniOS.dbo.vw_Users' does not have a primary key 
           <Property Type="Boolean" Name="MngMnt_FluidsCollInd" Nullable="true" />
           <Property Type="Boolean" Name="MngMnt_FluidsBldInd" Nullable="true" />
         </ComplexType>
-        <ComplexType Name="sp_GetCP_ST_Result">
-          <Property Type="Int64" Name="Id" Nullable="true" />
-          <Property Type="Int32" Name="ChestPainId" Nullable="true" />
-          <Property Type="Int32" Name="PatientId" Nullable="true" />
-          <Property Type="Boolean" Name="CardInformedInd" Nullable="true" />
-          <Property Type="String" Name="CardInfrmTxt" Nullable="true" />
-          <Property Type="DateTime" Name="CardInfrmTime" Nullable="true" Precision="23" />
-          <Property Type="Boolean" Name="CathAlertedInd" Nullable="true" />
-          <Property Type="DateTime" Name="CathAlertTime" Nullable="true" Precision="23" />
-          <Property Type="Boolean" Name="PrimePCIInd" Nullable="true" />
-          <Property Type="Boolean" Name="ThrombInd" Nullable="true" />
-          <Property Type="Boolean" Name="ThrombContraInd" Nullable="true" />
-          <Property Type="Boolean" Name="EligibilityId" Nullable="true" />
-          <Property Type="Boolean" Name="CARBGInd" Nullable="true" />
-          <Property Type="Boolean" Name="ConentInd" Nullable="true" />
-          <Property Type="Boolean" Name="DrugALergyInd" Nullable="true" />
-          <Property Type="Boolean" Name="LMWHInd" Nullable="true" />
-          <Property Type="Int32" Name="VitalId_30" Nullable="true" />
-          <Property Type="Int32" Name="VitalId_60" Nullable="true" />
-          <Property Type="Int32" Name="VitalId_90" Nullable="true" />
-          <Property Type="Int32" Name="STDrugAdmin" Nullable="true" />
-          <Property Type="Int32" Name="StDrunOrderBy" Nullable="true" />
-          <Property Type="Int32" Name="StDrugId" Nullable="true" />
-          <Property Type="Int32" Name="STECG_30Id" Nullable="true" />
-          <Property Type="Int32" Name="STECG_60Id" Nullable="true" />
-          <Property Type="Int32" Name="STECG_90Id" Nullable="true" />
-          <Property Type="Int32" Name="StSymtRelf_30Id" Nullable="true" />
-          <Property Type="Int32" Name="StSymtRelf_60Id" Nullable="true" />
-          <Property Type="Int32" Name="StSymtRelf_90Id" Nullable="true" />
-          <Property Type="Int32" Name="STBleed_30Id" Nullable="true" />
-          <Property Type="Int32" Name="STBleed_60Id" Nullable="true" />
-          <Property Type="Int32" Name="STBleed_90Id" Nullable="true" />
-          <Property Type="Int32" Name="STThrob90SuccId" Nullable="true" />
-          <Property Type="String" Name="STPlanOfCare" Nullable="true" />
-          <Property Type="Boolean" Name="IsActive" Nullable="true" />
-          <Property Type="Int32" Name="CreatedBy" Nullable="true" />
-          <Property Type="DateTime" Name="CreatedDate" Nullable="true" Precision="23" />
-          <Property Type="Int32" Name="ModifiedBy" Nullable="true" />
-          <Property Type="DateTime" Name="ModifiedDate" Nullable="true" Precision="23" />
-        </ComplexType>
         <ComplexType Name="sp_GetCP_STPharmPCI_Result">
           <Property Type="Int64" Name="Id" Nullable="true" />
           <Property Type="Int32" Name="ChestPainId" Nullable="true" />
@@ -5483,6 +5439,46 @@ warning 6002: The table/view 'CliniOS.dbo.vw_Users' does not have a primary key 
           <Property Type="Int32" Name="Status" Nullable="true" />
           <Property Type="String" Name="TraigeDoneBy" Nullable="true" MaxLength="101" />
         </ComplexType>
+        <ComplexType Name="sp_GetCP_ST_Result">
+          <Property Type="Int64" Name="Id" Nullable="true" />
+          <Property Type="Int32" Name="ChestPainId" Nullable="true" />
+          <Property Type="Int32" Name="PatientId" Nullable="true" />
+          <Property Type="Boolean" Name="CardInformedInd" Nullable="true" />
+          <Property Type="String" Name="CardInfrmTxt" Nullable="true" />
+          <Property Type="DateTime" Name="CardInfrmTime" Nullable="true" Precision="23" />
+          <Property Type="Boolean" Name="CathAlertedInd" Nullable="true" />
+          <Property Type="DateTime" Name="CathAlertTime" Nullable="true" Precision="23" />
+          <Property Type="Boolean" Name="PrimePCIInd" Nullable="true" />
+          <Property Type="Boolean" Name="ThrombInd" Nullable="true" />
+          <Property Type="Boolean" Name="ThrombContraInd" Nullable="true" />
+          <Property Type="Boolean" Name="EligibilityId" Nullable="true" />
+          <Property Type="Boolean" Name="CARBGInd" Nullable="true" />
+          <Property Type="Boolean" Name="ConentInd" Nullable="true" />
+          <Property Type="Boolean" Name="DrugALergyInd" Nullable="true" />
+          <Property Type="Boolean" Name="LMWHInd" Nullable="true" />
+          <Property Type="String" Name="VitalId_30" Nullable="true" MaxLength="616" />
+          <Property Type="String" Name="VitalId_60" Nullable="true" MaxLength="616" />
+          <Property Type="String" Name="VitalId_90" Nullable="true" MaxLength="616" />
+          <Property Type="Int32" Name="STDrugAdmin" Nullable="true" />
+          <Property Type="Int32" Name="StDrunOrderBy" Nullable="true" />
+          <Property Type="Int32" Name="StDrugId" Nullable="true" />
+          <Property Type="Int32" Name="STECG_30Id" Nullable="true" />
+          <Property Type="Int32" Name="STECG_60Id" Nullable="true" />
+          <Property Type="Int32" Name="STECG_90Id" Nullable="true" />
+          <Property Type="Int32" Name="StSymtRelf_30Id" Nullable="true" />
+          <Property Type="Int32" Name="StSymtRelf_60Id" Nullable="true" />
+          <Property Type="Int32" Name="StSymtRelf_90Id" Nullable="true" />
+          <Property Type="Int32" Name="STBleed_30Id" Nullable="true" />
+          <Property Type="Int32" Name="STBleed_60Id" Nullable="true" />
+          <Property Type="Int32" Name="STBleed_90Id" Nullable="true" />
+          <Property Type="Int32" Name="STThrob90SuccId" Nullable="true" />
+          <Property Type="String" Name="STPlanOfCare" Nullable="true" />
+          <Property Type="Boolean" Name="IsActive" Nullable="true" />
+          <Property Type="Int32" Name="CreatedBy" Nullable="true" />
+          <Property Type="DateTime" Name="CreatedDate" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="ModifiedBy" Nullable="true" />
+          <Property Type="DateTime" Name="ModifiedDate" Nullable="true" Precision="23" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -5751,7 +5747,6 @@ warning 6002: The table/view 'CliniOS.dbo.vw_Users' does not have a primary key 
           <FunctionImportMapping FunctionImportName="spInsertUpdateCP_PrimeAssmnt_Cerculation" FunctionName="ClinIOSModel.Store.spInsertUpdateCP_PrimeAssmnt_Cerculation" />
           <FunctionImportMapping FunctionImportName="spInsertUpdateCP_PrimeAssmnt_Disability" FunctionName="ClinIOSModel.Store.spInsertUpdateCP_PrimeAssmnt_Disability" />
           <FunctionImportMapping FunctionImportName="spInsertUpdateCP_PrimeAssmnt_Exposure" FunctionName="ClinIOSModel.Store.spInsertUpdateCP_PrimeAssmnt_Exposure" />
-          <FunctionImportMapping FunctionImportName="spInsertUpdateCP_ST" FunctionName="ClinIOSModel.Store.spInsertUpdateCP_ST" />
           <FunctionImportMapping FunctionImportName="spInsertUpdateCP_STPharmPCI" FunctionName="ClinIOSModel.Store.spInsertUpdateCP_STPharmPCI" />
           <FunctionImportMapping FunctionImportName="spInsertUpdateCP_Vitals" FunctionName="ClinIOSModel.Store.spInsertUpdateCP_Vitals" />
           <FunctionImportMapping FunctionImportName="sp_GetAbdomen_Comorbids" FunctionName="ClinIOSModel.Store.sp_GetAbdomen_Comorbids">
@@ -8866,50 +8861,6 @@ warning 6002: The table/view 'CliniOS.dbo.vw_Users' does not have a primary key 
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_GetCP_ST" FunctionName="ClinIOSModel.Store.sp_GetCP_ST">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="ClinIOSModel.sp_GetCP_ST_Result">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="ChestPainId" ColumnName="ChestPainId" />
-                <ScalarProperty Name="PatientId" ColumnName="PatientId" />
-                <ScalarProperty Name="CardInformedInd" ColumnName="CardInformedInd" />
-                <ScalarProperty Name="CardInfrmTxt" ColumnName="CardInfrmTxt" />
-                <ScalarProperty Name="CardInfrmTime" ColumnName="CardInfrmTime" />
-                <ScalarProperty Name="CathAlertedInd" ColumnName="CathAlertedInd" />
-                <ScalarProperty Name="CathAlertTime" ColumnName="CathAlertTime" />
-                <ScalarProperty Name="PrimePCIInd" ColumnName="PrimePCIInd" />
-                <ScalarProperty Name="ThrombInd" ColumnName="ThrombInd" />
-                <ScalarProperty Name="ThrombContraInd" ColumnName="ThrombContraInd" />
-                <ScalarProperty Name="EligibilityId" ColumnName="EligibilityId" />
-                <ScalarProperty Name="CARBGInd" ColumnName="CARBGInd" />
-                <ScalarProperty Name="ConentInd" ColumnName="ConentInd" />
-                <ScalarProperty Name="DrugALergyInd" ColumnName="DrugALergyInd" />
-                <ScalarProperty Name="LMWHInd" ColumnName="LMWHInd" />
-                <ScalarProperty Name="VitalId_30" ColumnName="VitalId_30" />
-                <ScalarProperty Name="VitalId_60" ColumnName="VitalId_60" />
-                <ScalarProperty Name="VitalId_90" ColumnName="VitalId_90" />
-                <ScalarProperty Name="STDrugAdmin" ColumnName="STDrugAdmin" />
-                <ScalarProperty Name="StDrunOrderBy" ColumnName="StDrunOrderBy" />
-                <ScalarProperty Name="StDrugId" ColumnName="StDrugId" />
-                <ScalarProperty Name="STECG_30Id" ColumnName="STECG_30Id" />
-                <ScalarProperty Name="STECG_60Id" ColumnName="STECG_60Id" />
-                <ScalarProperty Name="STECG_90Id" ColumnName="STECG_90Id" />
-                <ScalarProperty Name="StSymtRelf_30Id" ColumnName="StSymtRelf_30Id" />
-                <ScalarProperty Name="StSymtRelf_60Id" ColumnName="StSymtRelf_60Id" />
-                <ScalarProperty Name="StSymtRelf_90Id" ColumnName="StSymtRelf_90Id" />
-                <ScalarProperty Name="STBleed_30Id" ColumnName="STBleed_30Id" />
-                <ScalarProperty Name="STBleed_60Id" ColumnName="STBleed_60Id" />
-                <ScalarProperty Name="STBleed_90Id" ColumnName="STBleed_90Id" />
-                <ScalarProperty Name="STThrob90SuccId" ColumnName="STThrob90SuccId" />
-                <ScalarProperty Name="STPlanOfCare" ColumnName="STPlanOfCare" />
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
-                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
-                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_GetCP_STPharmPCI" FunctionName="ClinIOSModel.Store.sp_GetCP_STPharmPCI">
             <ResultMapping>
               <ComplexTypeMapping TypeName="ClinIOSModel.sp_GetCP_STPharmPCI_Result">
@@ -9484,6 +9435,50 @@ warning 6002: The table/view 'CliniOS.dbo.vw_Users' does not have a primary key 
                 <ScalarProperty Name="Symptom" ColumnName="Symptom" />
                 <ScalarProperty Name="Status" ColumnName="Status" />
                 <ScalarProperty Name="TraigeDoneBy" ColumnName="TraigeDoneBy" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_GetCP_ST" FunctionName="ClinIOSModel.Store.sp_GetCP_ST">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ClinIOSModel.sp_GetCP_ST_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ChestPainId" ColumnName="ChestPainId" />
+                <ScalarProperty Name="PatientId" ColumnName="PatientId" />
+                <ScalarProperty Name="CardInformedInd" ColumnName="CardInformedInd" />
+                <ScalarProperty Name="CardInfrmTxt" ColumnName="CardInfrmTxt" />
+                <ScalarProperty Name="CardInfrmTime" ColumnName="CardInfrmTime" />
+                <ScalarProperty Name="CathAlertedInd" ColumnName="CathAlertedInd" />
+                <ScalarProperty Name="CathAlertTime" ColumnName="CathAlertTime" />
+                <ScalarProperty Name="PrimePCIInd" ColumnName="PrimePCIInd" />
+                <ScalarProperty Name="ThrombInd" ColumnName="ThrombInd" />
+                <ScalarProperty Name="ThrombContraInd" ColumnName="ThrombContraInd" />
+                <ScalarProperty Name="EligibilityId" ColumnName="EligibilityId" />
+                <ScalarProperty Name="CARBGInd" ColumnName="CARBGInd" />
+                <ScalarProperty Name="ConentInd" ColumnName="ConentInd" />
+                <ScalarProperty Name="DrugALergyInd" ColumnName="DrugALergyInd" />
+                <ScalarProperty Name="LMWHInd" ColumnName="LMWHInd" />
+                <ScalarProperty Name="VitalId_30" ColumnName="VitalId_30" />
+                <ScalarProperty Name="VitalId_60" ColumnName="VitalId_60" />
+                <ScalarProperty Name="VitalId_90" ColumnName="VitalId_90" />
+                <ScalarProperty Name="STDrugAdmin" ColumnName="STDrugAdmin" />
+                <ScalarProperty Name="StDrunOrderBy" ColumnName="StDrunOrderBy" />
+                <ScalarProperty Name="StDrugId" ColumnName="StDrugId" />
+                <ScalarProperty Name="STECG_30Id" ColumnName="STECG_30Id" />
+                <ScalarProperty Name="STECG_60Id" ColumnName="STECG_60Id" />
+                <ScalarProperty Name="STECG_90Id" ColumnName="STECG_90Id" />
+                <ScalarProperty Name="StSymtRelf_30Id" ColumnName="StSymtRelf_30Id" />
+                <ScalarProperty Name="StSymtRelf_60Id" ColumnName="StSymtRelf_60Id" />
+                <ScalarProperty Name="StSymtRelf_90Id" ColumnName="StSymtRelf_90Id" />
+                <ScalarProperty Name="STBleed_30Id" ColumnName="STBleed_30Id" />
+                <ScalarProperty Name="STBleed_60Id" ColumnName="STBleed_60Id" />
+                <ScalarProperty Name="STBleed_90Id" ColumnName="STBleed_90Id" />
+                <ScalarProperty Name="STThrob90SuccId" ColumnName="STThrob90SuccId" />
+                <ScalarProperty Name="STPlanOfCare" ColumnName="STPlanOfCare" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

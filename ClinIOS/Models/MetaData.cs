@@ -16,7 +16,7 @@ namespace ClinIOS.Models
             return new List<TableForms>()
             {
                 //Patient
-                new TableForms("Patient", "sp_GetPatientList","","")
+                new TableForms("Patient", "sp_GetPatientList","spInsertUpdatePatientDetails","Patients")
 
                 //Triage
                  ,new TableForms("Triage", "sp_GetTriageDetails","spInsertUpdateTriage_Vitals","Triage_Vital")

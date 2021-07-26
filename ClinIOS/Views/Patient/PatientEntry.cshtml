@@ -1,62 +1,146 @@
 ﻿
 <main>
-    <div ng-app="myApp" ng-controller="ChestPainController">
-        <form name="myForm">
-            <div class="whitebg top-margin">
-                <div class="sectionhdrCenter">Patient Information</div>
-                <div class="div-row-border_2">
-                    <label>First Name:</label>
-                    <div class="input-field">
-                        <input class="input-box" type="text" ng-model="Moa.Ref_From" />
+    <div ng-app="myApp" ng-controller="PatientController">
+        @*<form name="myForm">
+            <div class="navigation-toolbar"></div>
+                <div class="whitebg top-margin">
+                    <div class="sectionhdrCenter">Patient Information</div>
+                    <div class="div-row-border_2">
+                        <label>First Name:</label>
+                        <div class="input-field">
+                            <input class="input-box" type="text" ng-model="Moa.Ref_From" />
+                        </div>
                     </div>
-                </div>
-                <div class="div-row-border_2">
-                    <label>Middle Name:</label>
-                    <div class="input-field">
-                        <input class="input-box" type="text" ng-model="Moa.Ref_From" />
+                    <div class="div-row-border_2">
+                        <label>Middle Name:</label>
+                        <div class="input-field">
+                            <input class="input-box" type="text" ng-model="Moa.Ref_From" />
+                        </div>
                     </div>
-                </div>
-                <div class="div-row-border_2">
-                    <label>Last Name:</label>
-                    <div class="input-field">
-                        <input class="input-box" type="text" ng-model="Moa.Ref_From" />
+                    <div class="div-row-border_2">
+                        <label>Last Name:</label>
+                        <div class="input-field">
+                            <input class="input-box" type="text" ng-model="Moa.Ref_From" />
+                        </div>
                     </div>
-                </div>
-                <div class="div-row-border_2">
-                    <label>Date of Birth:</label>
-                    <div class="input-field">
-                        <input class="input-box" type="text" ng-model="Moa.Ref_From" />
+                    <div class="div-row-border_2">
+                        <label>Date of Birth:</label>
+                        <div class="input-field">
+                            <input class="input-box" type="text" ng-model="Moa.Ref_From" />
+                        </div>
                     </div>
-                </div>
-                <div class="div-row-border_2">
-                    <label>Age:</label>
-                    <div class="input-field">
-                        <input class="input-box" type="text" ng-model="Moa.Ref_From" />
+                    <div class="div-row-border_2">
+                        <label>Age:</label>
+                        <div class="input-field">
+                            <input class="input-box" type="text" ng-model="Moa.Ref_From" />
+                        </div>
                     </div>
-                </div>
-                <div class="div-row-border_2">
-                    <label>Gender:</label>
-                    <div class="input-field">
-                        <input class="input-box" type="text" ng-model="Moa.Ref_From" />
+                    <div class="div-row-border_2">
+                        <label>Gender:</label>
+                        <div class="input-field">
+                            <input class="input-box" type="text" ng-model="Moa.Ref_From" />
+                        </div>
                     </div>
-                </div>
-                <div class="div-row-border_2">
-                    <label>Last Name:</label>
-                    <div class="input-field">
-                        <input class="input-box" type="text" ng-model="Moa.Ref_From" />
+                    <div class="div-row-border_2">
+                        <label>Last Name:</label>
+                        <div class="input-field">
+                            <input class="input-box" type="text" ng-model="Moa.Ref_From" />
+                        </div>
                     </div>
-                </div>
-                <div class="div-row-border_2">
-                    <label>Phone NUmber:</label>
-                    <div class="input-field">
-                        <input class="input-box" type="text" ng-model="Moa.Ref_From" />
+                    <div class="div-row-border_2">
+                        <label>Phone Number:</label>
+                        <div class="input-field">
+                            <input class="input-box" type="text" ng-model="Moa.Ref_From" />
+                        </div>
                     </div>
+        </form>*@
+        <md-content layout-padding>
+            <form name="userForm">
+                <div layout="row" layout-xs="column" layout-sm="column" layout-align="space-between center">
+                   <h2>Add Patient</h2>
                 </div>
-        </form>
+
+                <div layout-gt-sm="row">
+
+                    <md-input-container class="md-block" flex-gt-sm>
+                        <label>First Name</label>
+                        <input md-maxlength="30" required name="name" ng-model="user.name" />
+
+                        <div class="hint" ng-if="showHints">Tell us what we should call you!</div>
+
+                        <div ng-messages="userForm.name.$error" ng-if="!showHints">
+                            <div ng-message="required">Name is required.</div>
+                            <div ng-message="md-maxlength">The name has to be less than 30 characters long.</div>
+                        </div>
+                    </md-input-container>
+
+                    <div flex="5" hide-xs hide-sm>
+                        <!-- Spacer //-->
+                    </div>
+
+                    <md-input-container class="md-block" flex-gt-sm>
+                        <label>SMiddle Name</label>
+                        <input name="social" ng-model="user.social" ng-pattern="/^[0-9]{3}-[0-9]{2}-[0-9]{4}$/" />
+
+                        <div class="hint" ng-if="showHints">###-##-####</div>
+
+                        <div ng-messages="userForm.social.$error" ng-if="!showHints">
+                            <div ng-message="pattern">###-##-#### - Please enter a valid SSN.</div>
+                        </div>
+                    </md-input-container>
+
+                </div>
+
+                <div layout-gt-sm="row">
+
+                    <md-input-container class="md-block" flex-gt-sm>
+                        <label>Last Name</label>
+                        <input name="email" ng-model="user.email" required minlength="10" maxlength="100"/>
+
+                        <div class="hint" ng-show="showHints">How can we reach you?</div>
+
+                        <div ng-messages="userForm.email.$error" ng-hide="showHints">
+                            <div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
+                                Your email must be between 10 and 100 characters long and look like an e-mail address.
+                            </div>
+                        </div>
+                    </md-input-container>
+
+                    <div flex="5" hide-xs hide-sm>
+                        <!-- Spacer //-->
+                    </div>
+
+                    <md-input-container class="md-block" flex-gt-sm>
+                        <label>Date of Birth</label>
+                        <input name="phone" ng-model="user.phone" ng-pattern="/^[(][0-9]{3}[)] [0-9]{3}-[0-9]{4}$/" />
+
+                        <div class="hint" ng-show="showHints"></div>
+
+                        <div ng-messages="userForm.phone.$error" ng-hide="showHints">
+                            <div ng-message="pattern">Please enter a valid phone number.</div>
+                        </div>
+                    </md-input-container>
+
+                    <style>
+                                     /*
+                        * The Material demos system does not currently allow targeting the body element, so this
+                        * must go here in the HTML.
+                        */
+                                     body[dir=rtl] .hint {
+                                         right: 2px;
+                                         left: auto;
+                                     }
+                    </style>
+                </div>
+
+            </form>
+        </md-content>
     </div>
 
 </main>
 <script>
     var app = angular.module('myApp', ['ngMaterial', 'ngMessages', 'angularMoment']);
-    app.service('chestPainService', function ($http) { });
+    app.service('PatientService', function ($http) { });
+    app.controller('PatientController', function ($scope, $http, $filter, $window, $mdDialog, PatientService, $location) { })
+  /*  $http.put(baseUrl + "api/Patinet?key=Patient", $scope.PSBreat, {}).then(function (response) {*/
 </script>

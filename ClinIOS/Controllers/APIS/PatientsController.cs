@@ -14,5 +14,9 @@ namespace ClinIOS.Controllers.APIS
         {
             return new MetaData().GetData(secName);
         }
+        public void Put(Dictionary<string, object> data, string key)
+        {
+            new MetaData().SaveData(key, data);
+        }
     }
 }

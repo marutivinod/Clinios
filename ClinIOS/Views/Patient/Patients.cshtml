@@ -2,7 +2,11 @@
 
 <main>
     <div ng-app="myApp" ng-controller="PatientController">
-        <h2 style="text-align: center">Patient Records</h2>
+        <div style="padding-top: 1rem; margin-bottom: 2rem">
+            <span style="text-align: left">Patient Records</span>
+            <button ng-click="onAddPatient()" style="float: right" class="btn-cancel btn-primary">Add Patient</button>
+        </div>
+
         <div class="md-container">
             <table id="customers">
                 <tr>
@@ -44,6 +48,10 @@
                console.log(response)
                 $scope.PatientRecords = response.data;
             });
+
+        $scope.onAddPatient = function () {
+            window.location.href = `http://localhost:57990/Patient/PatientEntry`;   
+        }
 
         $scope.onNavigatinToTriage = function (patientId) {
             console.log(baseUrl)

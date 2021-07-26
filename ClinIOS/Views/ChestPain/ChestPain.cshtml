@@ -2066,7 +2066,7 @@
                             <div class="drugchart-grid">
                                 <div class="col-md-4 col-sm-4">
                                     <label>Respiratory rate  </label>
-                                    <input type="number" class="input-box" min="9.00" max="30.00" required ng-class="{'required': vitalDurationForm.resRate.$invalid}" name="resRate" ng-model="vitalsDuraion.resRate" />
+                                    <input type="number" class="input-box" min="9.00" max="30.00" required name="resRate" ng-model="vitalsDuraion.resRate" />
                                 </div><br>
                                 <div class="col-md-4 col-sm-4">
                                     <label>Heart rate </label>
@@ -2268,23 +2268,24 @@
        
 
         $scope.save = function (field, ev) {
+            $scope.st.PatientId = $scope.patinetId;
             var urls = [];
             urls.push({ Sec: "CP_Moa", Obj: $scope.Moa })
-            urls.push({ Sec: "CP_Complaints", Obj: $scope.PSBreat })
-            urls.push({ Sec: "CP_PrimeAssmnt_Airway", Obj: $scope.PSAir})
-            urls.push({ Sec: "CP_PrimeAssmnt_Breathing", Obj: $scope.PSBreat})
-            urls.push({ Sec: "CP_PrimeAssmnt_Cerculation", Obj: $scope.PSCir})
-            urls.push({ Sec: "CP_PrimeAssmnt_Disablty", Obj: $scope.PSDisab})
-            urls.push({ Sec: "CP_PrimeAssmnt_Expo", Obj: $scope.PSExpo})
-            urls.push({ Sec: "CP_Vitals", Obj: $scope.vitals})
-            urls.push({ Sec: "CP_Ecg", Obj: $scope.ecg})
-            urls.push({ Sec: "CP_PhysicalExamination", Obj: $scope.physicalexamination})
-            urls.push({ Sec: "CP_CoMor_RiskFactors", Obj: $scope.physicalexamination})
-            urls.push({ Sec: "CP_Investgations", Obj: $scope.ChInv})
+            //urls.push({ Sec: "CP_Complaints", Obj: $scope.PSBreat })
+            //urls.push({ Sec: "CP_PrimeAssmnt_Airway", Obj: $scope.PSAir})
+            //urls.push({ Sec: "CP_PrimeAssmnt_Breathing", Obj: $scope.PSBreat})
+            //urls.push({ Sec: "CP_PrimeAssmnt_Cerculation", Obj: $scope.PSCir})
+            //urls.push({ Sec: "CP_PrimeAssmnt_Disablty", Obj: $scope.PSDisab})
+            //urls.push({ Sec: "CP_PrimeAssmnt_Expo", Obj: $scope.PSExpo})
+            //urls.push({ Sec: "CP_Vitals", Obj: $scope.vitals})
+            //urls.push({ Sec: "CP_Ecg", Obj: $scope.ecg})
+            //urls.push({ Sec: "CP_PhysicalExamination", Obj: $scope.physicalexamination})
+            //urls.push({ Sec: "CP_CoMor_RiskFactors", Obj: $scope.physicalexamination})
+            //urls.push({ Sec: "CP_Investgations", Obj: $scope.ChInv})
             urls.push({ Sec: "CP_ST", Obj: $scope.st})
-            urls.push({ Sec: "CP_NonST", Obj: $scope.nonst})
-            urls.push({ Sec: "CP_STPharmPCI", Obj: $scope.stpharmpci})
-            urls.push({ Sec: "CP_DISP", Obj: $scope.disp })
+            //urls.push({ Sec: "CP_NonST", Obj: $scope.nonst})
+            //urls.push({ Sec: "CP_STPharmPCI", Obj: $scope.stpharmpci})
+            //urls.push({ Sec: "CP_DISP", Obj: $scope.disp })
             $http.put(CPUrl, JSON.stringify(urls), {}).then(function (response) { }); 
 
             var request = $http.get(baseUrl + "api/ChestPain?secName=CP_INF&Id=3").then(function (response) { if (response.data.Id != null) { $scope.Moa = response.data; json_Inference = response.data;   /* insertRecord('chestpain', json)*/ } });

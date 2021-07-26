@@ -29,9 +29,9 @@ namespace ClinIOS.Models
         public Nullable<bool> ConentInd { get; set; }
         public Nullable<bool> DrugALergyInd { get; set; }
         public Nullable<bool> LMWHInd { get; set; }
-        public Nullable<int> VitalId_30 { get; set; }
-        public Nullable<int> VitalId_60 { get; set; }
-        public Nullable<int> VitalId_90 { get; set; }
+        public string VitalId_30 { get; set; }
+        public string VitalId_60 { get; set; }
+        public string VitalId_90 { get; set; }
         public Nullable<int> STDrugAdmin { get; set; }
         public Nullable<int> StDrunOrderBy { get; set; }
         public Nullable<int> StDrugId { get; set; }
